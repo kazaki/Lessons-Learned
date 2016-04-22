@@ -4,15 +4,11 @@
 /*
  * General styles
  */
-body, html {
-    height: 100%;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
-}
 
 .card-container.card {
     max-width: 350px;
     padding: 40px 40px;
+	margin: auto;
 }
 
 .btn {
@@ -78,7 +74,7 @@ body, html {
     box-sizing: border-box;
 }
 
-.form-signin #inputEmail,
+.form-signin #inputUsername,
 .form-signin #inputPassword {
     direction: ltr;
     height: 44px;
@@ -107,9 +103,6 @@ body, html {
 }
 
 .btn.btn-signin {
-    /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
-    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
     font-size: 14px;
@@ -125,9 +118,9 @@ body, html {
 }
 
 .btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
+.btn.btn-signin:focus,
+.btn.btn-signin:active {
+	background-color: rgb(12, 97, 33);
 }
 
 .forgot-password {
@@ -138,4 +131,19 @@ body, html {
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+
+
+#homeTitle {
+	color: #333333;
+	font-family: Century Gothic, sans-serif;
+	font-size: 6vw;
+	font-size: 8vmin;
+	color: white;
+	font-weight: bold;
+	font-style: italic;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	text-align: center;
+	line-height: 100px;
+	margin-top: 30px;
 }
