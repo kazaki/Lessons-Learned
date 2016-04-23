@@ -11,7 +11,8 @@ For more info and more free Bootstrap 3 HTML themes, visit http://startbootstrap
 body, html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-image: linear-gradient(rgb(124, 165, 182), rgb(12, 33, 97));
+	font-family: Century Gothic, sans-serif;
 }
 
 body {
@@ -23,6 +24,9 @@ body {
     cursor:pointer;
 }
 
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+	background-color: rgba(22,22,22,0.7);
+}
 
 .img-home-portfolio,
 .img-customer,
@@ -130,22 +134,64 @@ footer {
 	bottom: 0;
 	width: 100%;
 	height: 60px;
-	padding-right: 15px;
-	padding-left: 15px;
+	margin-bottom:-10px;
+	color: white;
+	font-weight: bold;
+}
+
+.unselectable {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
 }
 
 /* Navbar Styles */
 .navbar {
-  background-color: rgba(0,0,0,0);
-  color: white;
-  line-height: 50px;
-  background-image: linear-gradient(rgb(11, 45, 33), rgb(66, 97, 33));
-  
+	background-color: rgba(0,0,0,0);
+	color: white;
+	line-height: 50px;
+	background-image: linear-gradient(rgb(255, 255, 255), rgb(222, 222, 222));
+
 }
 
-#forcewhite{
-	color: white;
+.navbar-brand {
+  /* padding: 0px; /* firefox bug fix */ 
+  padding-left: 15px;
+  margin-left: 15px;
 }
+.navbar-brand>img {
+  height: 90%;
+  padding-top: 10px; /* firefox bug fix */
+  width: auto;
+  border: 1px solid black;
+}
+
+.navbar .nav > li > a {
+    color:  #000;
+	font-size: 130%;
+}
+
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a:active {
+	color:  #000;
+	background-color: rgba(80,80,80,0.1);
+}
+
+.navbar .nav > li > a:focus {
+	color:  #000;
+}
+
+/* .navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand :hover {
+    color: #ff0000; 
+} */
+
+/* #forcewhite{
+	color: white;
+} */
 
 /* Responsive Styles */
 @media (max-width: 767px) {
