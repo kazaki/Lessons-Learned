@@ -26,7 +26,7 @@ REST.prototype.connectMysql = function() {
         host     : 'localhost',
         user     : 'root',
         password : 'root',
-        database : 'altran_db',
+        database : 'public',
         debug    :  false
     });
     self.configureExpress(pool);

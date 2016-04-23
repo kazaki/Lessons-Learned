@@ -37,8 +37,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     });
 
     router.get("/users",function(req,res){
-
-        var query = "SELECT * FROM altran_db.users";
+        
+        var query = "SELECT * FROM public.users";
         var table = ["users"];
 
         query = mysql.format(query,table);
@@ -57,11 +57,11 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 
         var user_id = req.params.user_id;
 
-        var query = "SELECT * FROM users WHERE iduser = ? ";
-        var table = ["users","iduser",req.params.user_id];
-        process.stdout.write("hello: " + req.params.user_id);
+        var query = "SELECT * FROM public.users WHERE idusers = ? ";
+        
+        //process.stdout.write("hello: " + req.params.user_id);
 
-        query = mysql.format(query,table);
+        query = mysql.format(query,user_id);
 
         connection.query(query,function(err,rows){
             if(err) {
@@ -74,7 +74,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 
      router.put("/users",function(req,res){
 
-        var query = "UPDATE users SET ? WHERE email = ?";
+        var query = "UPDATE public.users SET ? WHERE email = ?";
 
         var table = ["users","password",md5(req.body.password),"email",req.body.email];
 
@@ -93,8 +93,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 
      router.delete("/users/:email",function(req,res){
 
-        var query = "DELETE from users WHERE email = ?";
-        var table = ["users","email",req.params.email];
+        var query = "DELETE from public.users WHERE email = ?";
+        var table = req.params.email;
 
         query = mysql.format(query,table);
 
@@ -135,10 +135,10 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 
     router.get("/lessons",function(req,res){
 
-        var query = "SELECT * FROM altran_db.lessonsLearned";
-        var table = ["lessonsLearned"];
+        var query = "SELECT * FROM public.lessonsLearned";
+        //var table = ["lessonsLearned"];
 
-        query = mysql.format(query,table);
+        //query = mysql.format(query,table);
         connection.query(query,function(err,rows){
 
             if(err) {
