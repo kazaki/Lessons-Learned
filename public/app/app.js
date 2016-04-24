@@ -1,12 +1,14 @@
 
-
-var app = angular.module('lessonslearned', ['ngRoute', 'ngCookies', 'ngAnimate', 'ui.bootstrap']);
+/**
+* Create the module and call the requires
+*/
+var app = angular.module('lessonslearned', ['ngRoute', 'ngCookies', 'ngAnimate', 'lessonslearned.controllers']);
 
 /**
- * Configure the Routes
- */
+ * Configure the Routes */
 
-app.config(['$routeProvider', function ($routeProvider, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+  //$locationProvider.html5Mode(true);
   $routeProvider
     // Home
     .when("/", {
@@ -45,7 +47,5 @@ app.config(['$routeProvider', function ($routeProvider, $locationProvider) {
     .otherwise("/404", {
       templateUrl: "views/404.html", 
       controller: "PageCtrl"});
-
-     $locationProvider.html5Mode(true);
 
 }]);
