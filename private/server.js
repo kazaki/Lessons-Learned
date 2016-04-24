@@ -9,9 +9,6 @@ var rest = require("./REST.js");
 
 var app  = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 
 function REST(){
     var self = this;
@@ -34,6 +31,11 @@ REST.prototype.connectMysql = function() {
 
 REST.prototype.configureExpress = function(connection) {
       var self = this;
+
+      app.use(bodyParser.json());  
+      app.use(bodyParser.urlencoded({  
+      extended: true  
+      }));  
 
       var router = express.Router();
 
