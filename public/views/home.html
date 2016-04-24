@@ -1,30 +1,60 @@
 <link rel="stylesheet" href="styles/home.css">
 
-<div id="homeTitle" class="container">
-	<p class="unselectable">Lessons Learned</p>
+<div ng-if="!loggedIn()">
+	<div id="homeTitle" class="container">
+		<p class="unselectable">Lessons Learned</p>
+	</div>
+
+	<div class="section">
+
+		<div class="container">
+			<div class="card card-container">
+				<form class="form-signin">
+					<input style="display:none" type="text" name="fakeusernameremembered"/>
+					<input style="display:none" type="password" name="fakepasswordremembered"/>
+					<input id="inputUsername" type="text" class="form-control" name="fakeusernameremembered" placeholder="Username" required autofocus >
+					<input id="inputPassword" type="password"  class="form-control" name="fakepasswordremembered" placeholder="Password" required >
+					<div id="remember" class="checkbox">
+						<label>
+							<input type="checkbox" value="remember-me"> Remember me
+						</label>
+					</div>
+					<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+				</form><!-- /form -->
+				<a href="#" class="forgot-password">
+					Forgot the password?
+				</a>
+			</div><!-- /card-container -->
+		</div><!-- /container -->
+
+	</div>
+	<!-- /.section -->
 </div>
 
-<div class="section">
+<div ng-if="loggedIn()">
 
-	<div class="container">
-		<div class="card card-container">
-			<form class="form-signin">
-				<input style="display:none" type="text" name="fakeusernameremembered"/>
-				<input style="display:none" type="password" name="fakepasswordremembered"/>
-				<input id="inputUsername" type="text" class="form-control" name="fakeusernameremembered" placeholder="Username" required autofocus >
-				<input id="inputPassword" type="password"  class="form-control" name="fakepasswordremembered" placeholder="Password" required >
-				<div id="remember" class="checkbox">
-					<label>
-						<input type="checkbox" value="remember-me"> Remember me
-					</label>
-				</div>
-				<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-			</form><!-- /form -->
-			<a href="#" class="forgot-password">
-				Forgot the password?
-			</a>
-		</div><!-- /card-container -->
-	</div><!-- /container -->
-
+	<div id="toolbox" class="container">
+		<div class="row text-center">
+			<div class="col-lg-4 col-xs-6">
+				<a href="url"><i class="fa fa-users" /><br>Manage Users</a>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<a href="url"><i class="fa fa-search"/><br>Search Lessons</a>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<a href="url"><i class="fa fa-list-alt"/><br>Manage Projects</a>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<a href="url"><i class="fa fa-clock-o"></i><br>Project Queue</a>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<a href="url"><i class="fa fa-file-o" /><br>Search Projects</a>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<a href="url"><i class="fa fa-cog" /><br>Settings</a>
+			</div>
+		</div>
+	</div>
+	
 </div>
-<!-- /.section -->
+
