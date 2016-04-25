@@ -8,7 +8,7 @@ var app = angular.module('lessonslearned', ['ngRoute', 'ngCookies', 'ngAnimate',
  * Configure the Routes */
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-  //$locationProvider.html5Mode(true);
+ // $locationProvider.html5Mode(true);
   $routeProvider
     // Home
     .when("/", {
