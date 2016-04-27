@@ -1,36 +1,88 @@
 var mysql = require("mysql");
+var jwt = require('jsonwebtoken');
+var crypto = require('crypto');
+var assert = require('assert');
 
-function REST_ROUTER(router,connection,md5) {
+var config = require("./utils.js");
+
+
+function REST_ROUTER(router,connection) {
     var self = this;
-    self.handleRoutes(router,connection,md5);
+
+    self.handlePublicRoutes(router,connection);
+
+    router.use(function(req, res, next) {
+
+  // check header or url parameters or post parameters for token
+	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+	  // decode token
+	  if (token) {
+
+	    // verifies secret and checks exp
+	    jwt.verify(token, config.key, function(err, decoded) {      
+	      if (err) {
+	        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+	      } else {
+	        // if everything is good, save to request for use in other routes
+	        req.decoded = decoded;    
+	        next();
+	      }
+	    });
+
+	  } else {
+
+	    // if there is no token
+	    // return an error
+	    return res.status(403).send({ 
+	        success: false, 
+	        message: 'No token provided.' 
+	    });
+	    
+	  }
+	});
+
+    self.handlePrivateRoutes(router,connection);
+
 }
 
-REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 
-    router.get("/",function(req,res){
+REST_ROUTER.prototype.handlePublicRoutes= function(router,connection) {
 
-    	res.json({"Message" : "Hello World !"});
+	router.get("/",function(req,res){
+
+        res.json({"Message" : "Hello World !"});
     });
+
+}
+
+REST_ROUTER.prototype.handlePrivateRoutes= function(router,connection) {
 
     router.post("/users",function(req,res){
 
         var query;
-
-        //get data
-        var data = {
-            name:req.body.name,
-            email:req.body.email,
-            password:req.body.password
+        var unhashedPassword = req.body.password;
+        //get user data
+        var user = {
+        	email:req.body.email,
+            name:req.body.name
          };
 
-         process.stdout.write("hello: " + req.body.name);
+       	user.password = crypto //protect from rainbow table attacks
+        .createHmac("md5",config.key)
+        .update(unhashedPassword)
+        .digest('hex');
 
-        connection.query("INSERT INTO public.users set ? ", data, function(err,rows){
+        connection.query("INSERT INTO public.users set ? ", user, function(err,rows){
 
             if(err) {
+
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+                process.stdout.write("ERRO: " + err);
             } else {
-                res.json({"Error" : false, "Message" : "User Added !"});
+                res.json({"Error" : false, "Message" : "User Added !", user: user,
+                    token: jwt.sign(user, config.secret, {expiresIn: 3600})
+                });
             }
 
         });
@@ -59,7 +111,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 
         var query = "SELECT * FROM public.users WHERE idusers = ? ";
         
-        //process.stdout.write("hello: " + req.params.user_id);
+        process.stdout.write("hello: " + req.params.user_id);
 
         query = mysql.format(query,user_id);
 
@@ -72,26 +124,79 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     });
 
-     router.put("/users",function(req,res){
+    router.post("/authenticate",function(req,res){
 
-        var query = "UPDATE public.users SET ? WHERE email = ?";
+        var email = req.body.email;
+        var pass = crypto //protect from rainbow table attacks
+        .createHmac("md5",config.key)
+        .update(req.body.password)
+        .digest('hex');
 
-        var table = ["users","password",md5(req.body.password),"email",req.body.email];
+        process.stdout.write("asdasdasdas: " + pass);
+
+        var query = "SELECT * FROM public.users WHERE email = ? ";
+
+        query = mysql.format(query,email);
+
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({ success: false, message: 'Authentication failed. User not found.' });
+            } else {
+
+            	if(rows[0].password != pass){
+
+			        process.stdout.write("hello: " + rows[0].password);
+
+            		res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+      			} else {
+
+      				process.stdout.write("hello: " + rows[0].password);
+
+      			payload = {
+                    email: email,
+                    role: rows[0].permission
+                };
+
+                var token = jwt.sign(payload, config.secret, {
+          		expiresInMinutes: 1440 // expires in 24 hours
+        		});
+
+        		 res.json({
+		          success: true,
+		          message: 'Enjoy your token!',
+		          token: token
+		        });
+            	}
+            }
+        });
+    });
+
+    router.put("/users",function(req,res){
+
+        var query = "UPDATE public.users SET password = ? WHERE email = ?"; //FALTA VER SE A PASS TA BEM?
+
+		var newpass = crypto //protect from rainbow table attacks
+        .createHmac("md5",config.key)
+        .update(req.body.password)
+        .digest('hex');
+
+        var table = [newpass,req.body.email];
 
         query = mysql.format(query,table);
 
         connection.query(query,function(err,rows){
 
             if(err) {
+            	console.log(err);
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Updated the password for email "+req.body.email});
+                res.json({"Error" : false, "Message" : "Updated the password for email "+ req.body.email});
             }
 
         });
     });
 
-     router.delete("/users/:email",function(req,res){
+    router.delete("/users/:email",function(req,res){
 
         var query = "DELETE from public.users WHERE email = ?";
         var table = req.params.email;
@@ -109,7 +214,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     });
 
-     router.post("/lessons",function(req,res){
+    router.post("/lessons",function(req,res){
 
         var query;
 
@@ -181,7 +286,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     });
 
-     router.put("/lessons",function(req,res){
+    router.put("/lessons",function(req,res){
 
         var query = "UPDATE public.lessonslearned SET ? WHERE idLessonsLearned = ?";
 
@@ -200,7 +305,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     });
 
-     router.put("/lesson",function(req,res){
+    router.put("/lesson",function(req,res){
 
         var query = "UPDATE public.lessonstext SET ? WHERE idLessonLearned = ?";
 
@@ -219,7 +324,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     });
 
-     router.delete("/lessons/:lessons_id",function(req,res){
+    router.delete("/lessons/:lessons_id",function(req,res){
 
         var query = "DELETE from public.lessonslearned WHERE idLessonsLearned = ?";
         var table = req.params.lessons_id;
@@ -237,5 +342,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     });
 }
+
+
 
 module.exports = REST_ROUTER;

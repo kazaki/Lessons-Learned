@@ -1,11 +1,14 @@
 var express = require("express");
 var mysql   = require("mysql");
 var bodyParser  = require("body-parser");
-var expressValidator = require('express-validator')
-var md5 = require('MD5');
+var expressValidator = require('express-validator');
+var morgan = require('morgan');
 
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 var rest = require("./REST.js");
+
+var port = 3000;
 
 var app  = express();
 
@@ -18,7 +21,7 @@ function REST(){
 REST.prototype.connectMysql = function() {
     var self = this;
     var pool      =    mysql.createPool({
-       connectionLimit : 50,
+        connectionLimit : 100,
         waitForConnection: true,
         host     : 'localhost',
         user     : 'root',
@@ -26,12 +29,13 @@ REST.prototype.connectMysql = function() {
         database : 'public',
         debug    :  false
     });
-    self.configureExpress(pool);
+    self.configuration(pool);
 }
 
-REST.prototype.configureExpress = function(connection) {
+REST.prototype.configuration = function(connection) {
       var self = this;
 
+      app.use(morgan('combined')); //logger
       app.use(bodyParser.json());  
       app.use(bodyParser.urlencoded({  
       extended: true  
@@ -41,14 +45,14 @@ REST.prototype.configureExpress = function(connection) {
 
       app.use('/api', router);
 
-      var rest_router = new rest(router,connection,md5);
+      var rest_router = new rest(router,connection);
 
       self.startServer();
 }
 
 REST.prototype.startServer = function() {
-      app.listen(3000,function(){
-          console.log("All right ! I am alive at Port 3000.");
+      app.listen(port,function(){
+          console.log("All right ! I am alive at Port: " + port + ".");
       });
 }
 
