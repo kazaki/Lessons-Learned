@@ -19,6 +19,6 @@ angular.module('lessonslearned.controllers', ['lessonslearned.services'])
 	console.log("Page Controller reporting for duty.");
 
 	$scope.loggedIn = function() {
-		return true; //TODO
+		return false; //TODO
 	};
 });

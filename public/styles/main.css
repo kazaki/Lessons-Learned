@@ -8,18 +8,34 @@ For more info and more free Bootstrap 3 HTML themes, visit http://startbootstrap
 
 /* Global Styles */
 
-body, html {
+html {
     height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+	background-image: linear-gradient(rgb(124, 165, 182), rgb(12, 33, 97));
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(124, 165, 182), rgb(12, 33, 97));
-	font-family: Century Gothic, sans-serif;
+    background-attachment: fixed;
+	padding-top: 50px;
+    padding-bottom: 20px;
 }
 
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-	overflow:hidden;
+/* Footer Styles */
+footer {
+	font-weight: bold;
+	color: #fff;
+	/* position: absolute; */
+	width: 100%;
+	height: 60px;
+	margin-top:100px;
 }
+
+/* @media(min-height:600px) {
+	footer {
+		bottom: 0;
+	}
+} */
 
 .dropdown {
     cursor:pointer;
@@ -129,18 +145,6 @@ body {
     font-style: italic;
 }
 
-/* Footer Styles */
-footer {
-    font-size: 1.2vw;
-    position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 60px;
-	margin-bottom:-10px;
-	color: white;
-	font-weight: bold;
-}
-
 .unselectable {
 	-webkit-user-select: none; /* Chrome/Safari */        
 	-moz-user-select: none; /* Firefox */
@@ -163,7 +167,7 @@ footer {
 }
 .navbar-brand>img {
   height: 90%;
-  padding-top: 10px; /* firefox bug fix */
+  padding-top: 10px; 
   width: auto;
   border: 1px solid black;
 }
