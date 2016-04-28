@@ -1,5 +1,5 @@
 var mysql = require("mysql");
-var jwt = require('jsonwebtoken');
+var Promise = require('bluebird');
 var crypto = require('crypto');
 var assert = require('assert');
 
@@ -9,54 +9,51 @@ var config = require("./utils.js");
 function REST_ROUTER(router,connection) {
     var self = this;
 
-    self.handlePublicRoutes(router,connection);
-
-    router.use(function(req, res, next) {
-
-  // check header or url parameters or post parameters for token
-	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-	  // decode token
-	  if (token) {
-
-	    // verifies secret and checks exp
-	    jwt.verify(token, config.key, function(err, decoded) {      
-	      if (err) {
-	        return res.json({ success: false, message: 'Failed to authenticate token.' });    
-	      } else {
-	        // if everything is good, save to request for use in other routes
-	        req.decoded = decoded;    
-	        next();
-	      }
-	    });
-
-	  } else {
-
-	    // if there is no token
-	    // return an error
-	    return res.status(403).send({ 
-	        success: false, 
-	        message: 'No token provided.' 
-	    });
-	    
-	  }
-	});
-
-    self.handlePrivateRoutes(router,connection);
-
+    self.handleRoutes(router,connection);
 }
 
+REST_ROUTER.prototype.handleRoutes= function(router,connection) {
 
-REST_ROUTER.prototype.handlePublicRoutes= function(router,connection) {
-
-	router.get("/",function(req,res){
+    router.get("/",function(req,res){
 
         res.json({"Message" : "Hello World !"});
     });
 
-}
+    router.post("/authenticate",function(req,res){
 
-REST_ROUTER.prototype.handlePrivateRoutes= function(router,connection) {
+        var email = req.body.email;
+        var pass = crypto //protect from rainbow table attacks
+        .createHmac("md5",config.key)
+        .update(req.body.password)
+        .digest('hex');
+
+        var query = "SELECT * FROM public.users WHERE email = ? ";
+
+        query = mysql.format(query,email);
+
+        connection.query(query,function(err,rows){
+
+            if(err) {
+                res.json({ success: false, message: 'Authentication failed. User not found.' });
+            } else {
+
+                if(rows[0].password != pass){
+
+                    res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+                    
+                } else {
+
+                config.encode(rows[0].token,config.key).then(function(encode) {
+                    res.json({ success: true, message: 'User authenticated successfuly with email: ' + email +"." });
+                })
+                .catch(function (err){
+                    console.log(err);
+                    res.json({ success: false, message: 'Authentication failed!'});
+                });
+                }
+            }
+        });
+    });
 
     router.post("/users",function(req,res){
 
@@ -65,7 +62,8 @@ REST_ROUTER.prototype.handlePrivateRoutes= function(router,connection) {
         //get user data
         var user = {
         	email:req.body.email,
-            name:req.body.name
+            name:req.body.name,
+            token:crypto.randomBytes(20).toString('hex')
          };
 
        	user.password = crypto //protect from rainbow table attacks
@@ -76,12 +74,10 @@ REST_ROUTER.prototype.handlePrivateRoutes= function(router,connection) {
         connection.query("INSERT INTO public.users set ? ", user, function(err,rows){
 
             if(err) {
-
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
                 process.stdout.write("ERRO: " + err);
             } else {
-                res.json({"Error" : false, "Message" : "User Added !", user: user,
-                    token: jwt.sign(user, config.secret, {expiresIn: 3600})
+                res.json({"Error" : false, "Message" : "User Added !", user: user
                 });
             }
 
@@ -124,53 +120,7 @@ REST_ROUTER.prototype.handlePrivateRoutes= function(router,connection) {
         });
     });
 
-    router.post("/authenticate",function(req,res){
-
-        var email = req.body.email;
-        var pass = crypto //protect from rainbow table attacks
-        .createHmac("md5",config.key)
-        .update(req.body.password)
-        .digest('hex');
-
-        process.stdout.write("asdasdasdas: " + pass);
-
-        var query = "SELECT * FROM public.users WHERE email = ? ";
-
-        query = mysql.format(query,email);
-
-        connection.query(query,function(err,rows){
-            if(err) {
-                res.json({ success: false, message: 'Authentication failed. User not found.' });
-            } else {
-
-            	if(rows[0].password != pass){
-
-			        process.stdout.write("hello: " + rows[0].password);
-
-            		res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-      			} else {
-
-      				process.stdout.write("hello: " + rows[0].password);
-
-      			payload = {
-                    email: email,
-                    role: rows[0].permission
-                };
-
-                var token = jwt.sign(payload, config.secret, {
-          		expiresInMinutes: 1440 // expires in 24 hours
-        		});
-
-        		 res.json({
-		          success: true,
-		          message: 'Enjoy your token!',
-		          token: token
-		        });
-            	}
-            }
-        });
-    });
-
+    
     router.put("/users",function(req,res){
 
         var query = "UPDATE public.users SET password = ? WHERE email = ?"; //FALTA VER SE A PASS TA BEM?

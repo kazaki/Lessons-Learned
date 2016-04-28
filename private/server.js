@@ -8,6 +8,8 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 var rest = require("./REST.js");
 
+var permissions = require("./permissions.js");
+
 var port = 3000;
 
 var app  = express();
@@ -42,6 +44,8 @@ REST.prototype.configuration = function(connection) {
       }));  
 
       var router = express.Router();
+
+      app.use(permissions);
 
       app.use('/api', router);
 

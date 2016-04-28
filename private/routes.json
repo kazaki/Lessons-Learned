@@ -1,0 +1,22 @@
+{
+	"api":{
+		"all": [
+			"/api/authenticate",
+			"/api/users"
+		],
+
+		"logged": [
+			"/api/lessons"
+		],
+
+		"admin": [
+			
+		]
+	},
+
+	"views":{
+
+
+
+	}
+}

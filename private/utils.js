@@ -1,3 +1,5 @@
+var jwt = require('jsonwebtoken');
+
 module.exports = {
 
     'secret': 'jmvhDdDBMvqb=M@6h&QVA7x',
@@ -8,35 +10,56 @@ module.exports = {
 
     'hmac': 'SHA256',
 
-    validateToken: function(req, res, next) {
-    
+  // Function to encode an object to a string
+  encode:function (decoded, key) {
+    return new Promise(function (resolve, reject) {
+      var encoded = jwt.sign(decoded, key);
+      resolve(encoded);
+    });
+  },
 
-    	var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  // Function to decode an encoded string to an object (doesn't verify if the encoded string is valid)
+  decode:function (encoded) {
+    return new Promise(function (resolve, reject) {
+      var decoded = jwt.decode(encoded);
+      resolve(decoded);
+    });
+  },
 
-      // decode token
-        if (token) {
-
-          // verifies secret and checks exp
-          jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
-            if (err) {
-              return res.json({ success: false, message: 'Failed to authenticate token.' });    
-            } else {
-              // if everything is good, save to request for use in other routes
-              req.decoded = decoded;    
-              next();
-            }
-          });
-
+  // Function to verify if the encoded string is valid
+  verify:function (encoded,key) {
+    return new Promise(function (resolve, reject) {
+      jwt.verify(encoded, key, function (err, decoded) {
+        if (err) {
+          reject(err);
         } else {
-
-          // if there is no token
-          // return an error
-          return res.status(403).send({ 
-              success: false, 
-              message: 'No token provided.' 
-          });
-    
+          resolve(decoded);
         }
-  }
+      });
+    });
+  },
+
+  verifySession:function (cookie) {
+        return new Promise(function (resolve, reject) {
+            jwt.verify(cookie)
+                .then(function (token) {
+                   var query = "SELECT * FROM public.users WHERE token = ? ";
+
+                    query = mysql.format(query,token);
+
+                    connection.query(query,function(err,rows){})
+                        .then(function (rows) {
+                            resolve(rows[0].id);
+                        })
+                        .catch(function (err) {
+                            reject(err);
+                        });
+                })
+                .catch(function (err) {
+                    reject(err);
+                });
+        });
+
+    }
 
 };
