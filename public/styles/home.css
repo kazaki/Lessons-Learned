@@ -138,12 +138,12 @@
 
 #toolbox {
 	margin-top: 100px;
-    font-size: 4vw;
+   /* font-size:3vw;*/
 }
 
 #toolbox  a {
 	font-weight:bold;
-	font-size: 30px;
+	font-size: 2vw;
 	color: white;
 	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 	font-style: italic;
@@ -160,7 +160,7 @@
 
 #toolbox .fa {
 	margin-bottom: 10px;
-	font-size: 100px;
+	font-size: 10vw;
 	color: white;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
