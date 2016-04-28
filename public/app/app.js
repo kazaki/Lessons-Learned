@@ -15,6 +15,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       templateUrl: "views/home.html",
       controller: "PageCtrl"})
     // Pages
+    .when("/collapsedone", {
+      templateUrl: "views/collapsedone.html",
+      controller: "PageCtrl"})
+
     .when("/about", {
       templateUrl: "views/about.html", 
       controller: "PageCtrl"})
