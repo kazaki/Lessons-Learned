@@ -1,4 +1,7 @@
-var jwt = require('jsonwebtoken');
+(function (){
+var jwt = require('jsonwebtoken'),
+    database = require('../database/database');
+
 
 module.exports = {
 
@@ -63,3 +66,4 @@ module.exports = {
     }
 
 };
+}());

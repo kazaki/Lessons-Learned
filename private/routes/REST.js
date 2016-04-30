@@ -1,8 +1,7 @@
-var mysql = require("mysql");
 var Promise = require('bluebird');
 var crypto = require('crypto');
 var assert = require('assert');
-
+var database = require('./database/database');
 var config = require("./utils.js");
 
 

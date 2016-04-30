@@ -1,68 +1,58 @@
-var express = require("express");
-var mysql   = require("mysql");
-var bodyParser  = require("body-parser");
-var expressValidator = require('express-validator');
-var morgan = require('morgan');
-
-var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-
-var rest = require("./REST.js");
-
-var permissions = require("./permissions.js");
-
-var port = 3000;
-
-var app  = express();
+(function () {
+    var express = require("express"),
+        database = require("./database/database"),
+        bodyParser  = require("body-parser"),
+        cookieParser = require('cookie-parser'),
+        http = require('http').Server(server),
+        morgan = require('morgan'),
+        permissions = require("./middleware/permissions"),
+        path = require('path'),
+        port = 8080,
+        server = express();
 
 
-function REST(){
-    var self = this;
-    self.connectMysql();
-};
+// Create connection to the database
+database.connect()
+        .then(function () {
+            // Sending the error to the log file
+            console.log('@server.js: Connected to database.');
+        })
+        .catch(function (err) {
+            // Sending the error to the log file
+            console.log('@server.js: Can\'t connect to database.');
+            console.log(err);
+        });
+        
+// Sets the folder where are the files are static
+server.use(express.static(path.resolve(__dirname, '../public/')));
 
-REST.prototype.connectMysql = function() {
-    var self = this;
-    var pool      =    mysql.createPool({
-        connectionLimit : 100,
-        waitForConnection: true,
-        host     : 'localhost',
-        user     : 'root',
-        password : 'root',
-        database : 'public',
-        debug    :  false
-    });
-    self.configuration(pool);
-}
+// Sets the folder where the views are
+server.set('views', path.resolve(__dirname, '../public/'));
 
-REST.prototype.configuration = function(connection) {
-      var self = this;
+// Sets the view engine to HTML
+    server.set('view engine', 'html');
+        
+// Calls the router where all routes are called. This is done so the 'server.js' file is cleaner and more maintainable.
+require('./routes/router')(server);
 
-      app.use(morgan('combined')); //logger
-      app.use(bodyParser.json());  
-      app.use(bodyParser.urlencoded({  
-      extended: true  
-      }));  
+// Allows the server to read cookies
+server.use(cookieParser());
 
-      var router = express.Router();
+// Allows the server to read JSON files
+server.use(bodyParser.urlencoded({
+    extended: false
+}));
+server.use(bodyParser.json());
 
-      app.use(permissions);
+// Outputs simple log information to the console.
+server.use(morgan('dev'));
 
-      app.use('/api', router);
+// Middleware to check if view requested is allowed to render
+server.use(permissions);
 
-      var rest_router = new rest(router,connection);
+// Starts the server using port 8080
+http.listen(port, function () {
+    console.log('Server listening to port '+ port);
+});
 
-      self.startServer();
-}
-
-REST.prototype.startServer = function() {
-      app.listen(port,function(){
-          console.log("All right ! I am alive at Port: " + port + ".");
-      });
-}
-
-REST.prototype.stop = function(err) {
-    console.log("ISSUE WITH MYSQL n" + err + " EXITING!");
-    process.exit(1);
-}
-
-new REST();
+}());
