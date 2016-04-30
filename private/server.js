@@ -3,11 +3,11 @@
         database = require("./database/database"),
         bodyParser  = require("body-parser"),
         cookieParser = require('cookie-parser'),
-        http = require('http').Server(server),
+        http = require('http'),
         morgan = require('morgan'),
         permissions = require("./middleware/permissions"),
         path = require('path'),
-        port = 8080,
+        port = 3000,
         server = express();
 
 
@@ -30,7 +30,7 @@ server.use(express.static(path.resolve(__dirname, '../public/')));
 server.set('views', path.resolve(__dirname, '../public/'));
 
 // Sets the view engine to HTML
-    server.set('view engine', 'html');
+server.set('view engine', 'html');
         
 // Calls the router where all routes are called. This is done so the 'server.js' file is cleaner and more maintainable.
 require('./routes/router')(server);
@@ -50,9 +50,18 @@ server.use(morgan('dev'));
 // Middleware to check if view requested is allowed to render
 server.use(permissions);
 
-// Starts the server using port 8080
-http.listen(port, function () {
-    console.log('Server listening to port '+ port);
+//We need a function which handles requests and send response
+function handleRequest(request, response){
+    response.end('It Works!! Path Hit: ' + request.url);
+}
+
+//Create a server
+var sasa = http.createServer(handleRequest);
+
+//Lets start our server
+sasa.listen(port, function(){
+    //Callback triggered when server is successfully listening. Hurray!
+    console.log("Server listening on: http://localhost:%s", port);
 });
 
 }());
