@@ -3,12 +3,13 @@
         database = require("./database/database"),
         bodyParser  = require("body-parser"),
         cookieParser = require('cookie-parser'),
-        http = require('http'),
+        server = express(),
+        http = require('http').Server(server),
         morgan = require('morgan'),
         permissions = require("./middleware/permissions"),
         path = require('path'),
-        port = 3000,
-        server = express();
+        port = 8080;
+        
 
 
 // Create connection to the database
@@ -50,16 +51,8 @@ server.use(morgan('dev'));
 // Middleware to check if view requested is allowed to render
 server.use(permissions);
 
-//We need a function which handles requests and send response
-function handleRequest(request, response){
-    response.end('It Works!! Path Hit: ' + request.url);
-}
-
-//Create a server
-var sasa = http.createServer(handleRequest);
-
 //Lets start our server
-sasa.listen(port, function(){
+server.listen(port, function(){
     //Callback triggered when server is successfully listening. Hurray!
     console.log("Server listening on: http://localhost:%s", port);
 });

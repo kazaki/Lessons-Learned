@@ -21,10 +21,11 @@
                 //.then(function (userId) {
                     database.getUser()
                         .then(function (user) {
-                            res.status(200).send("done");
+                            res.status(200).send(user);
+                            console.log(user);
                         })
                         .catch(function (err) {
-                            res.status(406).send('Could not retrieve user information');
+                            res.status(406).send(err);
                         });
                /* })
                 .catch(function () {
