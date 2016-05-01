@@ -6,7 +6,7 @@
         cookie = require("./utils");
 
     module.exports = function(req, res, next) {
-
+/*
         var i;
 
         if (req.url.split('/')[1] == 'api') {
@@ -101,5 +101,7 @@
             // END REGION: Views permissions (logged)
 
         }
+        */
+        next();
 }
 }());
