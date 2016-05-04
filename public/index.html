@@ -16,11 +16,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="ALTRAN">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/">
+    <base href="/lessonslearned/public/">
     <!-- Vendor: Bootstrap Stylesheets http://getbootstrap.com -->
     <link href="styles/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="styles/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- Our Website CSS Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+	
 </head>
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
@@ -28,9 +32,9 @@
 <![endif]-->
 <body>
 <!-- ng-if="loggedIn()" --> 
-<!-- <div ng-include='"app/views/templates/header.html"'></div>-->
+<div ng-include='"app/views/templates/header.html"'></div>
 <div ng-view></div>
-<!-- <div ng-include='"app/views/templates/footer.html"'></div> -->
+<div ng-include='"app/views/templates/footer.html"'></div>
 
 <script src="scripts/jquery.min.js"></script>
 <script src="scripts/bootstrap.min.js"></script>

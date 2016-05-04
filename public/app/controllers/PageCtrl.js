@@ -8,7 +8,7 @@
 		 console.log('Page loaded.');
 		 
 	$scope.loggedIn = function() {
-		return false; //TODO
+		return true; //TODO
 	};
 
 	 };
