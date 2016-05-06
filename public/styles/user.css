@@ -1,0 +1,13 @@
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+    font-weight: bold;
+
+}
+
+.btn{
+	color: black !important;
+	font-weight: bold;
+	background: #3399FF;
+	border: 2px solid black;
+}

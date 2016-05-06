@@ -14,7 +14,7 @@ app.config( function ($routeProvider,$locationProvider) {
   $routeProvider
     // Home
     .when("/", {
-      templateUrl: "app/views/home.html",
+      templateUrl: "app/views/user_management.html",
       controller: "PageCtrl"})
 
     // else 404
