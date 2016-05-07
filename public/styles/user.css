@@ -1,13 +1,43 @@
+body{
+	color:black;
+}
 table {
     border-collapse: separate;
     border-spacing: 0 1em;
     font-weight: bold;
 
 }
+#happy{
+	color:white;
+	position: absolute;
+	top:13vw;
+	right:14vw;
 
+}
+#tex{
+color:black;
+ }
+form{
+color:white; 
+margin: 0 auto; 
+width:150px;
+
+}
+#avatares{
+	float:left;
+}
+#avatar{
+	position:absolute;
+	top:500px;
+	left:190px;
+}
+img{
+	position:absolute;
+}
 .btn{
-	color: black !important;
+	color: white !important;
 	font-weight: bold;
-	background: #3399FF;
+	background: #428bca;
 	border: 2px solid black;
 }
+​
