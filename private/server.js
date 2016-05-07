@@ -9,9 +9,9 @@
         permissions = require("./middleware/permissions"),
         path = require('path'),
         port = 8080;
-        
 
 
+/*
 // Create connection to the database
 database.connect()
         .then(function () {
@@ -23,7 +23,8 @@ database.connect()
             console.log('@server.js: Can\'t connect to database.');
             console.log(err);
         });
-        
+
+*/
 // Sets the folder where are the files are static
 server.use(express.static(path.resolve(__dirname, '../public/')));
 
@@ -48,7 +49,7 @@ server.use(morgan('dev'));
 
 // Middleware to check if view requested is allowed to render
 server.use(permissions);
-        
+
 // Calls the router where all routes are called. This is done so the 'server.js' file is cleaner and more maintainable.
 require('./routes/router')(server);
 
