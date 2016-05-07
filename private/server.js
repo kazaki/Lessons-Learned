@@ -11,7 +11,7 @@
         port = 8080;
 
 
-/*
+
 // Create connection to the database
 database.connect()
         .then(function () {
@@ -24,7 +24,7 @@ database.connect()
             console.log(err);
         });
 
-*/
+
 // Sets the folder where are the files are static
 server.use(express.static(path.resolve(__dirname, '../public/')));
 
