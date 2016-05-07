@@ -55,13 +55,15 @@
                 HOME: 'Home',
                 EXPORT: 'Export',
                 EXPORT_TO_PDF: 'Export to PDF file',
-                EXPORT_TO_CSV: 'Export to CSV file'
+                EXPORT_TO_CSV: 'Export to CSV file',
+                ADD_USER: 'Add user'
             })
             .translations('pt', {
                 HOME: 'Começar',
                 EXPORT: 'Exportar',
                 EXPORT_TO_PDF: 'Exportar para ficheiro PDF',
-                EXPORT_TO_CSV: 'Exportar para ficheiro CSV'
+                EXPORT_TO_CSV: 'Exportar para ficheiro CSV',
+                ADD_USER: 'Adicionar utilizador'
             })
         $translateProvider.preferredLanguage('pt');
     }]);
