@@ -7,7 +7,8 @@
     var app = angular.module('lessonslearned', [
         'ngRoute',
         'ngCookies',
-        'pascalprecht.translate'
+        'pascalprecht.translate',
+        'ui.bootstrap'
     ]);
 
     /**
@@ -21,20 +22,28 @@
                 controller: "PageCtrl"
             })
 
-        .when("/user_management", {
+            // Management side
+            .when("/user_management", {
                 templateUrl: "app/views/admin/user_management.html",
                 controller: "PageCtrl"
             })
+
+            .when("/users", {
+                templateUrl: "app/views/admin/user_list.html",
+                controller: "UserListCtrl"
+            })
+
             .when("/listll", {
                 templateUrl: "app/views/list_ll.html",
                 controller: "PageCtrl"
             })
 
-        .otherwise({
-            redirectTo: '404'
-        });
+            .otherwise({
+                redirectTo: '404'
+            });
 
         // Enabling HTML5 mode so that the URL doesn't show up with hashtags
+        //$locationProvider.html5Mode({ enabled: true, requireBase: false });
         $locationProvider.html5Mode(true);
 
     });

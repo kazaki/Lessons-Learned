@@ -5,6 +5,14 @@
  * General styles
  */
 
+body {
+    height: 100%;
+    margin: 0;
+    background-attachment: fixed;
+    background-image: linear-gradient(rgb(124, 165, 182), rgb(12, 33, 97));
+    background-repeat: no-repeat;
+}
+
 .card-container.card {
     max-width: 350px;
     padding: 40px 40px;
