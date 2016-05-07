@@ -44,15 +44,13 @@ module.exports = {
 
   verifySession:function (cookie) {
         return new Promise(function (resolve, reject) {
+          console.log("........");
             jwt.verify(cookie)
                 .then(function (token) {
-                   var query = "SELECT * FROM public.users WHERE token = ? ";
-
-                    query = mysql.format(query,token);
-
-                    connection.query(query,function(err,rows){})
+                    database.getUserByToken(token)
                         .then(function (rows) {
-                            resolve(rows[0].id);
+                          console.log(token);
+                            resolve(rows.id);
                         })
                         .catch(function (err) {
                             reject(err);

@@ -6,21 +6,17 @@
         cookie = require("./utils");
 
     module.exports = function(req, res, next) {
-/*
+
         var i;
 
         if (req.url.split('/')[1] == 'api') {
 
             // START REGION: API permissions (all)
-            console.log("REQ:" + req.url);
-
             for (i = 0; i < routes.api.all.length; i++) {
-                console.log("ROUTES:" + routes.api.all[i]);
                 if (routes.api.all[i].indexOf(req.url) > -1) {
                     break;
                 }
             }
-
             if (i != routes.api.all.length) {
                 next();
             } else {
@@ -101,7 +97,6 @@
             // END REGION: Views permissions (logged)
 
         }
-        */
         next();
 }
 }());

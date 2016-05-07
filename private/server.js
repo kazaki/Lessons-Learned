@@ -32,9 +32,6 @@ server.set('views', path.resolve(__dirname, '../public/'));
 
 // Sets the view engine to HTML
 server.set('view engine', 'html');
-        
-// Calls the router where all routes are called. This is done so the 'server.js' file is cleaner and more maintainable.
-require('./routes/router')(server);
 
 // Allows the server to read cookies
 server.use(cookieParser());
@@ -50,6 +47,9 @@ server.use(morgan('dev'));
 
 // Middleware to check if view requested is allowed to render
 server.use(permissions);
+        
+// Calls the router where all routes are called. This is done so the 'server.js' file is cleaner and more maintainable.
+require('./routes/router')(server);
 
 //Lets start our server
 server.listen(port, function(){

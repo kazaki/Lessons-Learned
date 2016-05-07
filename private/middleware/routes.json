@@ -2,7 +2,7 @@
 	"api":{
 		"all": [
 			"/api/authenticate",
-			"/api/users"
+			"/api/user"
 		],
 
 		"logged": [
