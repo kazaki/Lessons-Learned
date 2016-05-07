@@ -1,41 +1,64 @@
 <link rel="stylesheet" href="../../styles/user.css">
 <div class="section">
 
-    <div class="container">
+    <div class="container" >
 
-       <table class="table">
-    <tbody>
-    <tr class="info">
-        <td> <span class="glyphicon glyphicon-user" aria-hidden="true"> </td>
-        <td>NOME</td>
-        <td>USERNAME</td>
-        <td>EMAIL</td>
-        <td>PROJETO</td>
-        <td> <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </td>
-      </tr>
-    <tr class="info">
-      <td> <span class="glyphicon glyphicon-user" aria-hidden="true"> </td>
-        <td>NOME</td>
-        <td>USERNAME</td>
-        <td>EMAIL</td>
-        <td>PROJETO</td>
-        <td> <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </td>
-      </tr>
-       <tr class="info">
-      <td> <span class="glyphicon glyphicon-user" aria-hidden="true"> </td>
-        <td>NOME</td>
-        <td>USERNAME</td>
-        <td>EMAIL</td>
-        <td>PROJETO</td>
-        <td> <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </td>
+    <div id="avatares">
 
-      </tr>
-    </tbody>
-  </table>
-        <!-- /.row -->
-        <div style="text-align:center;">
-        <button type="button" class="btn btn-primary" id="gobutton" >ADD USER</button>
+<form class="text-center" method="post" enctype="multipart/form-data">
+        <img src="http://coolspotters.com/files/photos/1086234/kesha-gallery.jpg">  
+        <input id="avatar" name="avatar" type="file" class="btn file-loading">
+
+    <!-- include other inputs if needed and include a form submit (save) button -->
+</form>
+
+</div>
+      <div id="happy" style="float:right">
+      <label for="inputEmail3" class="control-label" style="text-align:center">PROJECTS</label>
+      <textarea id="tex" class="col-md-12" rows="10" placeholder="PROJECTS"> 
+      </textarea>
+</div>
+      <form class="form-horizontal" >
+  <div class="form-group" >
+    <label for="inputEmail3" class="control-label">NOME</label>
+    <div>
+      <input type="text" class="form-control" placeholder="Nome" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class=" control-label">USERNAME</label>
+    <div>
+      <input type="text" class="form-control"  placeholder="Username" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="control-label">PASSWORD</label>
+    <div>
+      <input type="password" class="form-control" placeholder="Password" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class="control-label">Nº DE FUNCIONARIO</label>
+    <div>
+      <input type="text" class="form-control"  placeholder="Nº funcionario" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class="control-label">TIPO DE CONTA</label>
+    <div>
+      <input type="text" class="form-control"  placeholder="Tipo conta" required>
+    </div>
+  </div>
+    </div>
+  </div>
+   <div style="text-align:center;">
+        <button type="button" class="btn btn-primary" id="gobutton" >CREATE</button>
+        <button type="button" class="btn btn-primary" id="gobutton" >CANCEL</button>
         </div>
+</form>
+      
+        <!-- /.row -->
+       
     </div>
     <!-- /.container -->
 
