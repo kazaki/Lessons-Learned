@@ -31,6 +31,7 @@ server.use(express.static(path.resolve(__dirname, '../public/')));
 server.set('views', path.resolve(__dirname, '../public/'));
 
 // Sets the view engine to HTML
+server.engine('html', require('ejs').renderFile);
 server.set('view engine', 'html');
 
 // Allows the server to read cookies
@@ -51,6 +52,9 @@ server.use(permissions);
 // Calls the router where all routes are called. This is done so the 'server.js' file is cleaner and more maintainable.
 require('./routes/router')(server);
 
+server.get('*', function(req, res){
+    res.render('index.html');
+});
 //Lets start our server
 server.listen(port, function(){
     //Callback triggered when server is successfully listening. Hurray!

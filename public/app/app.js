@@ -9,17 +9,19 @@ var app = angular.module('lessonslearned', ['ngRoute', 'ngCookies']);
 /**
  * Configure the Routes */
 
-app.config( function ($routeProvider,$locationProvider) {
+app.config(function ($routeProvider,$locationProvider) {
   
   $routeProvider
-    // Home
     .when("/", {
+      templateUrl: "app/views/home.html",
+      controller: "PageCtrl"})
+      
+    .when("/user_management", {
       templateUrl: "app/views/user_management.html",
       controller: "PageCtrl"})
-
-    // else 404
+      
     .otherwise({
-     redirectTo: '/'});
+     redirectTo: '404'});
       
    // Enabling HTML5 mode so that the URL doesn't show up with hashtags
     $locationProvider.html5Mode(true);

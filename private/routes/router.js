@@ -11,6 +11,11 @@
         server.get('/', function (req, res) {
             res.render('index');
         });
+        
+        server.get('/user_management', function (req, res) {
+            res.render('index');
+        });
+        
         // Route to send forbidden view
         server.get('/forbidden', function (req, res) {
             res.render('index');

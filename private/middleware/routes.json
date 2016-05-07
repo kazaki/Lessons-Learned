@@ -15,7 +15,13 @@
 	},
 
 	"views":{
-
+		"all": [
+			"/",
+			"/user_management"
+		],
+		"logged": [],
+		"admin": [],
+		"advanced": []
 
 
 	}
