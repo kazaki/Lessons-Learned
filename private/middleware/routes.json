@@ -1,8 +1,11 @@
 {
 	"api":{
 		"all": [
-			"/api/authenticate",
-			"/api/user"
+			"/api/login",
+			"/api/users",
+			"/api/createuser",
+			"/api/updateuseremail",
+			"/api/lessons"
 		],
 
 		"logged": [

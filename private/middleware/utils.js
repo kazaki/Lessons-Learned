@@ -5,14 +5,6 @@ var jwt = require('jsonwebtoken'),
 
 module.exports = {
 
-    'secret': 'jmvhDdDBMvqb=M@6h&QVA7x',
-
-    'key': 'saoisvesHdLLAJrB6T',
-
-    'algorithm': 'md5',
-
-    'hmac': 'SHA256',
-
   // Function to encode an object to a string
   encode:function (decoded, key) {
     return new Promise(function (resolve, reject) {
