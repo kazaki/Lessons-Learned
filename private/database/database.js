@@ -180,7 +180,24 @@
                             console.log(email);
                             reject(err);
                         } else {
-                            resolve('Deleted User');
+                            resolve('Deleted User by Email.');
+                        }
+                    });   
+             });
+    }
+
+    exports.deleteUserByID = function(iduser){
+         return new Promise(function (resolve, reject) {
+         var query = "DELETE from public.users WHERE idusers = ?";
+
+            query = mysql.format(query,iduser);
+
+            client.query(query,function(err,result){
+                        if (err) {
+                            console.log(iduser);
+                            reject(err);
+                        } else {
+                            resolve('Deleted User by ID.');
                         }
                     });   
              });
@@ -209,7 +226,7 @@
 
     exports.getLessons = function(){
          return new Promise(function (resolve, reject) { 
-         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2 where t1.idLessonsLearned = t2.idLessonLearned";
+         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3 where t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -223,7 +240,7 @@
 
     exports.getLessonByID = function(idlesson){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2 WHERE idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned";
+         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3 WHERE idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned";
          query = mysql.format(query,idlesson);
          client.query(query,function (err, result) {
                     if (err) {
@@ -234,6 +251,167 @@
                 });   
          });
     }
+
+    exports.deleteLessonByID = function(iduser){
+         return new Promise(function (resolve, reject) {
+         var query = "DELETE from public.lessonsLearned WHERE idLessonsLearned = ?";
+
+            query = mysql.format(query,iduser);
+
+            client.query(query,function(err,result){
+                        if (err) {
+                            console.log(iduser);
+                            reject(err);
+                        } else {
+                            resolve('Deleted User by ID.');
+                        }
+                    });   
+             });
+    }
+
+    exports.updateLessonFieldByID = function (businessSector, idLesson) {
+        return new Promise(function (resolve, reject) {
+            client.query('UPDATE public.lessonsLearned SET businessSector = ? WHERE idLesson = ?',  [businessSector, idLesson ],
+                function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('Updated lesson with id: ' + idLesson);
+                    }
+                });
+        });
+    }
+
+    exports.updateLessonTextByID = function (action, situation, result, idLesson) {
+        return new Promise(function (resolve, reject) {
+            client.query('UPDATE public.lessonstext SET situation = ?, result = ?, action = ? WHERE idLesson = ?',  [action, situation, result, idLesson ],
+                function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('Updated lesson fields for the lesson with id: ' + idLesson);
+                    }
+                });
+        });
+    }
+
+    exports.updateLessonTechByID = function (technology, idLesson) {
+        return new Promise(function (resolve, reject) {
+            client.query('UPDATE public.technologies SET technology = ? WHERE idLessonsLearned = ?',  [technology, idLesson ],
+                function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('Updated lessons tech for the lesson with id: ' + idLesson);
+                    }
+                });
+        });
+    }
+
+    exports.insertLesson = function (businessSector,dateCreated,maker,project,datetime,situation,action,result,technology) { 
+        return new Promise(function (resolve, reject) {
+
+                client.query('INSERT INTO public.lessonsLearned SET ?', {businessSector: businessSector, dateCreated: dateCreated, maker: maker, project: project},
+                    function (err, result) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                                client.query('INSERT INTO public.lessonstext SET ?', {idLessonLearned: result.insertId, datetime: datetime, situation: situation, action: action, result: result},
+                                    function (err2, result2) {
+                                        if (err2) {
+                                            reject(err2);
+                                        } else {
+                                            client.query('INSERT INTO public.technologies SET ?', {idLessonsLearned: result.insertId, technology: technology},
+                                                    function (err3, result3) {
+                                                        if (err3) {
+                                                            reject(err3);
+                                                        } else {
+
+                                                        resolve(result.insertId);
+
+                                                        }
+                                                    });
+                                            }
+                                    });
+                            }
+                    });        
+                });
+    }
+
+    exports.updateLessonStateByID = function(idlesson,state){
+        return new Promise(function (resolve, reject) {
+            client.query('UPDATE public.lessonsLearned SET status = ? WHERE idLesson = ?',  [state, idLesson ],
+                function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('Updated lesson with id: ' + idLesson + 'to: ' + state);
+                    }
+                });
+        });
+    }
+
+    <!------------------------------------------------------------------------------------------------ Project ------------------------------------------------------------->
+
+    exports.getProjects = function(){
+         return new Promise(function (resolve, reject) { 
+         var query = "SELECT * FROM public.project";
+         query = mysql.format(query);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });   
+         });
+    }
+
+    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected,deliveringModel,numberConsultants) {
+        return new Promise(function (resolve, reject) {
+
+                client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: manager, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, deliveringModel: deliveringModel, numberConsultants: numberConsultants},
+                    function (err, result) {
+                        if (err) {
+                            reject(err);
+                        } else {
+
+                        resolve(result.insertId);
+                        }
+                    });
+                });
+    }
+
+    exports.updateProjectDateByID = function(idproject,date){
+        return new Promise(function (resolve, reject) {
+            client.query('UPDATE public.project SET dateEnd = ? WHERE idproject = ?',  [date, idproject ],
+                function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('Updated project date of ending with id: ' + idproject + 'to: ' + date);
+                    }
+                });
+        });
+    }
+
+    <!------------------------------------------------------------------------------------------------ Technology ------------------------------------------------------------->
+
+
+    exports.getTechnologies = function(){
+         return new Promise(function (resolve, reject) { 
+         var query = "SELECT * FROM public.technologies";
+         query = mysql.format(query);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });   
+         });
+    }
+
 
 }());
 

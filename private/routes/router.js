@@ -152,6 +152,30 @@
                 });
         });
 
+        server.delete("/api/deleteuser/:iduser",function(req,res){
+
+            var iduser = req.params.iduser;
+
+            console.log(iduser);
+
+            database.deleteUserByID(iduser)
+                .then(function() {
+
+                    res.status(200);
+
+                })
+                .catch(function (err) {
+
+                    console.log(err);
+
+                    // Send the Response with message error
+                    res.status(406).json({
+                        message_class: 'error',
+                        message: "No such user with that id."
+                    });
+
+                });
+        });
 
         server.put("/api/updateuseremail",function(req,res){
 
@@ -208,30 +232,227 @@
 
          server.get("/lessons/:lesson_id",function(req,res){
 
-             database.getLessonByID()
+             var lesson_id = req.params.lesson_id;
+
+             database.getLessonByID(lesson_id)
                .then(function (lesson) {
                     res.status(200).send(lesson);
                 })
                 .catch(function (err) {
-                    res.status(406).send('Could not retrieve LL information');
+                    res.status(406).send('Could not retrieve LL information with that id.');
                 });        
         });
 
-         <!------------------------------------------------------------------ TODO ---------------------------------------------------------------------------------------------------->
-
          server.delete("/api/deletelesson/:idlesson",function(req,res){
-        });
 
-         server.put('/api/updatelessonfield', function (req, res) {
+             var idlesson = req.params.idlesson;
+
+             console.log(idlesson);
+
+             database.deleteLessonByID(idlesson)
+                .then(function() {
+
+                    res.status(200);
+
+                })
+                .catch(function (err) {
+
+                    console.log(err);
+
+                    // Send the Response with message error
+                    res.status(406).json({
+                        message_class: 'error',
+                        message: "No such lesson with that id."
+                    });
+
+                });
+         });
+
+         server.put('/api/updatelessonfield/:idLesson', function (req, res) {
+
+             var businessSector = req.body.businessSector.toLowerCase();
+             var idLesson = req.params.idlesson;
+
+                database.updateLessonFieldByID(businessSector,idLesson)
+                    .then(function() {
+
+                        res.status(200);
+                    })
+                    .catch(function (err) {
+
+                        console.log(err);
+                        // Send the Response with message error
+                        res.status(406).json({
+                            message_class: 'error',
+                            message: "No such lesson with that id."
+                        });
+
+                    });
 
          });
 
-         server.put("/api/updatelessontext",function(req,res){
+         server.put("/api/updatelessontext/:idLesson",function(req,res){
+
+                 var datetime = new Date();
+                 var situation = req.body.situation;
+                 var action = req.body.action;
+                 var result = req.body.result;
+
+                 var idLesson = req.params.idlesson;
+
+                 database.updateLessonTextByID(action, situation, result, idLesson)
+                    .then(function() {
+
+                        res.status(200);
+                    })
+                    .catch(function (err) {
+
+                        console.log(err);
+
+                        // Send the Response with message error
+                        res.status(406).json({
+                            message_class: 'error',
+                            message: "No such lesson with that id."
+                        });
+
+                    });
 
          });
 
          server.post("/api/createlesson",function(req,res){
-         });
-    };
 
+                var businessSector = req.body.businessSector;
+                var dateCreated = new Date();
+                var maker = req.body.maker;
+                var project = req.body.project;
+
+                var datetime = new Date();
+                var situation = req.body.situation;
+                var action = req.body.action;
+                var result = req.body.result;
+
+                var technology = req.body.technology;
+
+                database.insertLesson(businessSector,dateCreated,maker,project,datetime,situation,action,result,technology)
+                    .then(function (lesson) {
+                        res.sendStatus(200);
+                    })
+                    .catch(function (err) {
+                        // Sending the error to the log file
+                        console.log('Error inserting lesson to database');
+                        console.log(err);
+                    
+                    });
+         });
+
+         server.put("/api/updatelessonstate/:idLesson"), function(req, res){
+
+             var state = req.body.state.toLowerCase();
+             var idLesson = req.params.idlesson;
+
+              if(state == 'draft' || state == 'submited' || state == 'approved' || state == 'inactive'){
+
+                database.updateLessonStateByID(idLesson,state)
+                    .then(function() {
+
+                        res.status(200);
+                    })
+                    .catch(function (err) {
+
+                        console.log(err);
+                        // Send the Response with message error
+                        res.status(406).json({
+                            message_class: 'error',
+                            message: "No such lesson with that id."
+                        });
+
+                    });
+
+             }
+
+             else{
+                res.status(406).json({
+                            message_class: 'error',
+                            message: "Incorrect state! Choose one of the following: draft|submited|approved|inactive."
+                });
+             }
+        }  
+
+        <!------------------------------------------------------------------ PROJECT ---------------------------------------------------------------------------------------------------->
+
+        server.get('/api/projects', function (req, res) {
+            
+                database.getProjects()
+                   .then(function (projects) {
+                        res.status(200).send(projects);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Could not retrieve projects information');
+                    });
+        });
+
+        server.post("/api/createproject",function(req,res){
+
+                var type = req.body.type;
+                var name = req.body.name;
+                var manager = req.body.manager;
+
+                var dateBeginning = req.body.dateBeginning;
+                var dateEndExpected = req.body.dateEndExpected;
+
+                var deliveringModel = req.body.deliveringModel;
+                var numberConsultants = req.body.numberConsultants;
+
+                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,deliveringModel,numberConsultants)
+                    .then(function (project) {
+                        res.sendStatus(200);
+                    })
+                    .catch(function (err) {
+                        // Sending the error to the log file
+                        console.log('Error inserting project to database');
+                        console.log(err);
+                    
+                    });
+         });
+
+        server.put("/api/updatedateProject/:idproject",function(req,res){
+
+                 var date = req.body.date;
+
+                 var idproject = req.params.idproject;
+
+                 database.updateProjectDateByID(idproject,date)
+                    .then(function() {
+
+                        res.status(200);
+                    })
+                    .catch(function (err) {
+
+                        console.log(err);
+                        // Send the Response with message error
+                        res.status(406).json({
+                            message_class: 'error',
+                            message: "No such project with that id."
+                        });
+
+                    });
+
+         });
+
+        <!------------------------------------------------------------------ Technologies ---------------------------------------------------------------------------------------------------->
+
+
+        server.get('/api/technologies', function (req, res) {
+            
+                database.getTechnologies()
+                   .then(function (techs) {
+                        res.status(200).send(techs);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Could not retrieve technologies information');
+                    });
+        });
+
+
+    };
 } ());
