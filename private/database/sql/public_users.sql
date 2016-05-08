@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`idusers`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `idusers_UNIQUE` (`idusers`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='table for storing user information';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='table for storing user information';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'123@123.com','Ricardo Reis','123456','0','',0),(4,'123@gmail.com','Francisco','y9NYrKijNmIcim4u2OuiXg==','0','',0),(6,'Xico@gmail.com','XicoMane','��!�7%�m����~��','0','',0),(8,'zecas@gmail.com','XicoMane','��!�7%�m����~��','0','',0),(10,'sasa@gmail.com','olaaa','��!�7%�m����~��','0','',0),(11,'terere@gmail.com','olaaa','��!�7%�m����~��','0','',0),(13,'aaaaa@gmail.com','olaaa','��!�7%�m����~��','0','',0),(14,'bb@gmail.com','LEL','f������TU�<ߖ','0','',0),(15,'Francis@gmail.com','Francis','N�⡥2�I��a9�','0','',0),(16,'try3333@gmail.com','trye90000','N�⡥2�I��a9�','0','',0),(17,'teste9000@gmail.com','trye90000','25f9e794323b453885f5181f1b624d0b','0','',0),(18,'asdasdasdas@gmail.com','trye90000','d3e835d7a1f116e1325172aeeaf98ff9','0','',0),(20,'to@gmail.com','to','dbd29db27f5c5bd1d81104c64b1de112','0','',0);
+INSERT INTO `users` VALUES (22,'francisco@altran.pt','Francisco','$2a$10$E1Sg4vInuoRyUVGzUO0r.eAHlRdsPvLVkRsSa2eUNPxVUdP2lEuMK','0','5ac70c58102a4f18e0a3d0ad2a0e6a3cc0e6f817',0),(23,'antonio@altran.pt','Antonio','$2a$10$QeRIZFuLU8fwVtclwJwTZ.WN114gnn5Ff3Sa5PqdWfGh48pS5J0d2','0','9482541cec29fbabdc695b59068f234f6059f8a4',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-28 16:48:41
+-- Dump completed on 2016-05-08 19:00:37
