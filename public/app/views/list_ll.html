@@ -1,19 +1,105 @@
+<link rel="stylesheet" href="styles/list_ll.css">
 <div class="section">
 
     <div class="container">
         <div class="card card-container">
 
             <div class="list-group" id="lessonslist">
-                <a href="#" class="list-group-item ">{{ 'HOME' | translate }} </a>
-                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item">Morbi leo risus</a>
-                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item">Vestibulum at eros</a>
+                <a href="#" class="list-group-item ">
+                    <span class="lessonslistTitle ">{{ 'HOME' | translate }}</span>
+                    <span class="lessonslistSubmitter ">
+                    <small> Submitted by: </small>
+
+                                  Submitter
+                                </span>
+
+                    <div class="pull-right">
+                      
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary">Project name</button>
+                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
+                        </div>
+
+
+                    </div>
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="lessonslistTitle ">Dapibus ac facilisis in </span>
+
+                    <span class="lessonslistSubmitter ">
+                  <small> Submitted by: </small>
+
+                                Submitter
+                              </span>
+                    <div class="pull-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary">Project name</button>
+                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
+                        </div>
+
+
+                    </div>
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="lessonslistTitle "> Morbi leo risus </span>
+                    <span class="lessonslistSubmitter ">
+                  <small> Submitted by: </small>
+
+                                Submitter
+                              </span>
+                    <div class="pull-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary">Project name</button>
+                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
+                        </div>
+
+
+                    </div>
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="lessonslistTitle "> Porta ac consectetur ac </span>
+                    <span class="lessonslistSubmitter ">
+                  <small> Submitted by: </small>
+
+                                Submitter
+                              </span>
+                    <div class="pull-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary">Project name</button>
+                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
+                        </div>
+
+
+                    </div>
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="lessonslistTitle "> Vestibulum at eros </span>
+                    <span class="lessonslistSubmitter ">
+                  <small> Submitted by: </small>
+
+                                Submitter
+                              </span>
+                    <div class="pull-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary">Project name</button>
+                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
+                        </div>
+
+
+                    </div>
+                    <br/>
+                </a>
             </div>
             <!-- Single button -->
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ 'EXPORT' | translate }}<span class="caret"></span>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="glyphicon glyphicon-floppy-save"></i> {{ 'EXPORT' | translate }}
+
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="#">{{ 'EXPORT_TO_PDF' | translate }} </a></li>

@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    $('#lessonslist a').on('click', function() {
+    $('#lessonslist .addLesson').on('click', function() {
         console.log("clicked");
-        $(this).toggleClass('active');
+        $(this).closest('a').toggleClass('active');
     });
 
 });

@@ -6,9 +6,9 @@
 	 var  PageCtrl = function($scope, $routeParams, $window, services) {
 
 		 console.log('Page loaded.');
-		 
+
 	$scope.loggedIn = function() {
-		return true; //TODO
+		return false; //TODO
 	};
 
 	 };

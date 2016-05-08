@@ -4,6 +4,15 @@
 /*
  * General styles
  */
+ @font-face {
+     font-family: 'HelveticaFree'; /*a name to be used later*/
+     src: url('../fonts/LiberationSans-Regular.ttf'); /*URL to font*/
+ }
+
+ @font-face {
+     font-family: 'HelveticaFreeBold'; /*a name to be used later*/
+     src: url('../fonts/LiberationSans-Bold.ttf'); /*URL to font*/
+ }
 
 body {
     height: 100%;
@@ -11,6 +20,7 @@ body {
     background-attachment: fixed;
     background-image: linear-gradient(rgb(124, 165, 182), rgb(12, 33, 97));
     background-repeat: no-repeat;
+    font-family: HelveticaFree;
 }
 
 .card-container.card {
@@ -32,7 +42,7 @@ body {
  * Card component
  */
 .card {
-    background-color: #F7F7F7;
+    background-color: white;
     /* just in case there no content*/
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
@@ -82,11 +92,26 @@ body {
     box-sizing: border-box;
 }
 
-.form-signin #inputUsername,
+.form-signin #inputEmail,
 .form-signin #inputPassword {
     direction: ltr;
     height: 44px;
     font-size: 16px;
+    font-weight:bold;
+    background-image: linear-gradient(rgb(124, 165, 182), rgb(12, 33, 97));
+    background-origin: inherit;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    outline-color:white;
+    color:white;
+    border-radius: 0px;
+    font-family: HelveticaFree;
+    text-align:center;
+
+}
+.form-control::-moz-placeholder {
+    color: white;
+    opacity: 0.5;
 }
 
 .form-signin input[type=email],
@@ -115,8 +140,12 @@ body {
     height: 36px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    border-radius: 3px;
-    border: none;
+    border-radius: 0px;
+    border-color: #3A6991;
+    color: #3A6991;
+    background-image: none;
+    background-color:#ffffff;
+    border-width:4px;
 }
 
 .forgot-password {
@@ -132,13 +161,11 @@ body {
 
 #homeTitle {
 	color: #333333;
-	font-family: Century Gothic, sans-serif;
+	font-family: HelveticaFreeBold,Century Gothic, sans-serif;
 	font-size: 6vw;
 	font-size: 8vmin;
 	color: white;
 	font-weight: bold;
-	font-style: italic;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	text-align: center;
 	line-height: 100px;
 	margin-top: 30px;
@@ -146,7 +173,7 @@ body {
 
 #toolbox {
 	margin-top: 9vw;
-	-webkit-user-select: none; /* Chrome/Safari */        
+	-webkit-user-select: none; /* Chrome/Safari */
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+ */
 }
@@ -183,5 +210,3 @@ body {
 #toolbox .col-lg-4  {
 	margin-bottom: 80px;
 }
-
-
