@@ -18,10 +18,14 @@
 
 	"views":{
 		"all": [
-			"/"
+			"/",
+			"/user_management",
+			"/users",
+			"/listll",
+			"/forbidden"
 		],
 		"logged": [
-			"/user_management"
+			
 		],
 		"admin": [],
 		"advanced": []

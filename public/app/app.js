@@ -37,9 +37,14 @@
                 templateUrl: "app/views/list_ll.html",
                 controller: "PageCtrl"
             })
+            
+            .when("/forbidden",{
+                templateUrl: "app/views/forbidden.html",
+                controller: "PageCtrl"
+            })
 
             .otherwise({
-                redirectTo: '404'
+                redirectTo: '/'
             });
 
         // Enabling HTML5 mode so that the URL doesn't show up with hashtags

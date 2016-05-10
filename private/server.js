@@ -52,6 +52,7 @@ server.use(permissions);
 
 // Calls the router where all routes are called. This is done so the 'server.js' file is cleaner and more maintainable.
 require('./routes/router')(server);
+        
 
 //Lets start our server
 server.listen(port, function(){

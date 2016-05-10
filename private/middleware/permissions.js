@@ -83,6 +83,9 @@
                             next();
                         }
 
+                    })
+                    .catch(function(err){
+                         res.redirect('/forbidden');
                     });
 
             }
