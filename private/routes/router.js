@@ -52,10 +52,9 @@
         });
 
         server.post('/api/login', function (req, res) {
-            
             var user = {
-                email: req.body.email.toLowerCase(),
-                password: req.body.password
+                email: req.headers.email.toLowerCase(),
+                password: req.headers.password
             };
 
             database.confirmLoginByEmail(user)

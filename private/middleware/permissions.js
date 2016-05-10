@@ -20,13 +20,11 @@
             if (i != routes.api.all.length) {
                 next();
             } else {
-
                 // END REGION: API permissions (all)
 
                 // START REGION: API permissions (logged)
-               /*cookie.verifySession(req.cookies.session)
+               cookie.verifySession(req.cookies.session)
                     .then(function (userId) {
-
                         for (i = 0; i < routes.api.logged.length; i++) {
                             if (req.url.indexOf(routes.api.logged[i]) > -1) {
                                 break;
@@ -44,10 +42,54 @@
                     .catch(function (err) {
                         return res.sendStatus(403);
                     });
-*/          
+          
             }
 
             // END REGION: API permissions (logged)
+
+        }
+        else {
+
+             // START REGION: Views permissions (all)
+
+            for (i = 0; i < routes.views.all.length; i++) {
+                if (routes.views.all[i].indexOf(req.url) > -1) {
+                    break;
+                }
+            }
+
+            if (i != routes.views.all.length) {
+                next();
+            } else {
+
+                // END REGION: Views permissions (all)
+
+                // START REGION: Views permissions (logged)
+
+                cookie.verifySession(req.cookies.session)
+                    .then(function (userId) {
+
+                        for (i = 0; i < routes.views.logged.length; i++) {
+                            if (req.url.indexOf(routes.views.logged[i]) > -1) {
+                                break;
+                            }
+                        }
+
+                        if (i == routes.views.logged.length) {
+                            if (res.statusCode == null) {
+                                res.redirect('/forbidden');
+                            }
+                        } else {
+                            next();
+                        }
+
+                    });
+
+            }
+
+            // END REGION: Views permissions (logged)
+
+        
 
         }
 }

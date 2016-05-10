@@ -43,6 +43,7 @@ module.exports = {
                         .then(function (rows) {
                           console.log(token);
                             resolve(rows.id);
+                            console.log("id:" +rows.id);
                         })
                         .catch(function (err) {
                             reject(err);
