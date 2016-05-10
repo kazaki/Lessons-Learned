@@ -226,7 +226,7 @@
 
     exports.getLessons = function(){
          return new Promise(function (resolve, reject) { 
-         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3 where t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned";
+         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3 WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -240,8 +240,37 @@
 
     exports.getLessonByID = function(idlesson){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3 WHERE idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned";
+         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3 WHERE t1.idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned";
          query = mysql.format(query,idlesson);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });   
+         });
+    }
+
+    exports.getLessonByStatus = function(status){
+         return new Promise(function (resolve, reject) {
+         var query = "SELECT * FROM public.lessonsLearned WHERE status = ? ";
+         query = mysql.format(query,status);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });   
+         });
+    }
+
+    exports.getLessonByKeyword = function(keyword){
+         return new Promise(function (resolve, reject) {
+         var searchit = '%' + keyword +'%';
+         var query = "SELECT t1.maker,t1.project,t1.status,t1.dateCreated FROM public.lessonsLearned as t1, public.lessonstext as t2 WHERE t1.idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned AND (t2.situation Like ? OR t2.action LIKE ? OR t2.result LIKE ?)";
+         query = mysql.format(query,idlesson,searchit,searchit,searchit);
          client.query(query,function (err, result) {
                     if (err) {
                         reject(err);

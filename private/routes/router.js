@@ -4,6 +4,8 @@
      var database = require('../database/database'),
          utils = require('../middleware/utils'),
          crypto = require('crypto'),
+         StreamSearch = require('streamsearch'),
+         inspect = require('util').inspect,
          validator = require("email-validator");
     // Main router where all routes are called. This is done so the project code is cleaner and more maintainable.
     module.exports = function (server) {
@@ -227,6 +229,32 @@
                     })
                     .catch(function (err) {
                         res.status(406).send('Could not retrieve LL information');
+                    });
+        });
+
+        server.get('/api/searchlessons', function (req, res) {
+            
+                var keyword = req.params.keyword;
+
+                database.getLessonByKeyword(keyword)
+                   .then(function (lessons) {
+                        res.status(200).send(lessons);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Search by keyword ' + keyword + ' returned nothing.');
+                    });
+        });
+
+        server.get('/api/lessonsByStatus', function (req, res) {
+            
+                var status = req.params.status;
+
+                database.getLessonByStatus(status)
+                   .then(function (lessons) {
+                        res.status(200).send(lessons);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Could not retrieve LLs with that state.');
                     });
         });
 
