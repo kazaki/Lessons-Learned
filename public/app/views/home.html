@@ -10,17 +10,16 @@
 		<div class="container">
 			<div class="card card-container">
 				<form class="form-signin">
-					<input style="display:none" type="email" name="fakeemailremembered"/>
+					<input style="display:none" type="text" name="fakeusernameremembered"/>
 					<input style="display:none" type="password" name="fakepasswordremembered"/>
-					<input id="inputEmail" type="email" class="form-control" name="fakeemailremembered" placeholder="EMAIL" required autofocus >
-					<input id="inputPassword" type="password"  class="form-control" name="fakepasswordremembered" placeholder="PASSWORD" required >
+					<input id="inputUsername" type="text" class="form-control" name="fakeusernameremembered" placeholder="Username" required autofocus >
+					<input id="inputPassword" type="password"  class="form-control" name="fakepasswordremembered" placeholder="Password" required >
 					<div id="remember" class="checkbox">
 						<label>
 							<input type="checkbox" value="remember-me"> Remember me
 						</label>
 					</div>
-					<br/><br/>
-					<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">LOGIN</button>
+					<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
 				</form><!-- /form -->
 				<a href="#" class="forgot-password">
 					Forgot the password?
@@ -36,7 +35,7 @@
 <div ng-if="loggedIn()" id="toolbox" class="container">
 	<div class="row text-center">
 		<div class="col-lg-4 col-xs-6 col-md-4">
-			<a href="users"><i class="fa fa-users" /><br>Manage<br>Users</a>
+			<a href="url"><i class="fa fa-users" /><br>Manage<br>Users</a>
 		</div>
 		<div class="col-lg-4 col-xs-6 col-md-4">
 			<a href="url"><i class="fa fa-search"/><br>Search<br>Lessons</a>
