@@ -25,10 +25,9 @@ DROP TABLE IF EXISTS `lessonstext`;
 CREATE TABLE `lessonstext` (
   `idlessonsText` int(11) NOT NULL AUTO_INCREMENT,
   `idLessonLearned` int(11) NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `situation` varchar(1000) DEFAULT NULL,
-  `action` varchar(1000) DEFAULT NULL,
-  `result` varchar(1000) DEFAULT NULL,
+  `situation` varchar(1000) NOT NULL,
+  `action` varchar(1000) NOT NULL,
+  `result` varchar(1000) NOT NULL,
   PRIMARY KEY (`idlessonsText`),
   KEY `idLesson_idx` (`idLessonLearned`),
   CONSTRAINT `idLesson` FOREIGN KEY (`idLessonLearned`) REFERENCES `lessonslearned` (`idLessonsLearned`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-08 19:00:37
+-- Dump completed on 2016-05-13  0:22:17

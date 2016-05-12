@@ -31,7 +31,30 @@ var userServices = function ($q, $http, $cookies, $window) {
                     deferred.reject(err);
                 });
 
-        };    
+        }; 
+
+        this.createLL = function(lesson, remember) {
+
+            return $http.post('/api/createlesson', lesson)
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+
+        };
+
+         // Function to logout a user
+        this.logout = function() {
+
+            $cookies.remove('session', {
+                path: '/'
+            });
+
+            $window.location.href = '/';
+
+        };   
    
 };
 

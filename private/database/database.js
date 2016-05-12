@@ -56,6 +56,20 @@
          });
     }
 
+    exports.getManagers = function(){
+         return new Promise(function (resolve, reject) {
+         var query = "SELECT * FROM public.users WHERE permission = ?";
+         query = mysql.format(query,2);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });   
+         });
+    }
+
     exports.getUserByToken = function(token){
          return new Promise(function (resolve, reject) {
          var query = "SELECT * FROM public.users WHERE token = ?";
@@ -222,7 +236,7 @@
 
     exports.getLessons = function(){
          return new Promise(function (resolve, reject) { 
-         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3 WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned";
+         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3, public.lesson_tech as t4, public.project as t5 WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned AND t4.idlesson = t1.idLessonsLearned AND t1.project = t5.idproject";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -236,7 +250,7 @@
 
     exports.getLessonByID = function(idlesson){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3 WHERE t1.idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned";
+         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3, public.lesson_tech as t4, public.project as t5 WHERE t1.idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned AND t4.idlesson = t1.idLessonsLearned  AND t1.project = t5.idproject";
          query = mysql.format(query,idlesson);
          client.query(query,function (err, result) {
                     if (err) {
@@ -250,7 +264,7 @@
 
     exports.getLessonByStatus = function(status){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.lessonsLearned WHERE status = ? ";
+         var query = "SELECT * FROM public.lessonsLearned as t1, public.project as t2 WHERE t1.status = ? AND t1.project = t2.idproject";
          query = mysql.format(query,status);
          client.query(query,function (err, result) {
                     if (err) {
@@ -265,8 +279,8 @@
     exports.getLessonByKeyword = function(keyword){
          return new Promise(function (resolve, reject) {
          var searchit = '%' + keyword +'%';
-         var query = "SELECT t1.maker,t1.project,t1.status,t1.dateCreated FROM public.lessonsLearned as t1, public.lessonstext as t2 WHERE t1.idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned AND (t2.situation Like ? OR t2.action LIKE ? OR t2.result LIKE ?)";
-         query = mysql.format(query,idlesson,searchit,searchit,searchit);
+         var query = "SELECT t1.maker,t1.status,t1.dateCreated FROM public.lessonsLearned as t1, public.lessonstext as t2 WHERE t1.idLessonsLearned = t2.idLessonLearned AND (t2.situation Like ? OR t2.action LIKE ? OR t2.result LIKE ?)";
+         query = mysql.format(query,searchit,searchit,searchit);
          client.query(query,function (err, result) {
                     if (err) {
                         reject(err);
@@ -333,20 +347,47 @@
         });
     }
 
-    exports.insertLesson = function (businessSector,dateCreated,maker,project,datetime,situation,action,result,technology) { 
+    exports.insertLesson = function (dateCreated,maker,project,datetime,situation,action,result,technology) { 
         return new Promise(function (resolve, reject) {
 
-                client.query('INSERT INTO public.lessonsLearned SET ?', {businessSector: businessSector, dateCreated: dateCreated, maker: maker, project: project},
+        if(project != null){
+         var query = "Select idproject FROM public.project Where name = ?";
+         query = mysql.format(query,project);
+         client.query(query,function (err4, result4) {
+                    if (err4) {
+                            reject(result4);
+                        } else {
+                            console.log('project consulted');
+                        }
+                }); 
+        }
+
+        var query = "Select idtechnologies FROM public.technologies Where technology = ?";
+         query = mysql.format(query,technology);
+         client.query(query,function (err5, result5) {
+                    if (err5) {
+                            reject(result5);
+                        } else {
+                            console.log('technology consulted');
+                        }
+                });
+
+        client.query('Select idusers FROM public.users Where name = ?',{name:maker},
                     function (err, result) {
                         if (err) {
                             reject(err);
                         } else {
-                                client.query('INSERT INTO public.lessonstext SET ?', {idLessonLearned: result.insertId, datetime: datetime, situation: situation, action: action, result: result},
+                        client.query('INSERT INTO public.lessonsLearned SET ?', {dateCreated: dateCreated, maker: result[0].idusers, project: result4[0].idproject},
+                            function (err1, result1) {
+                                if (err1) {
+                                    reject(err1);
+                                } else {
+                                client.query('INSERT INTO public.lessonstext SET ?', {idLessonLearned: result1.insertId, situation: situation, action: action, result: result},
                                     function (err2, result2) {
                                         if (err2) {
                                             reject(err2);
                                         } else {
-                                            client.query('INSERT INTO public.technologies SET ?', {idLessonsLearned: result.insertId, technology: technology},
+                                            client.query('INSERT INTO public.lesson_tech SET ?', {idLessonsLearned: result.insertId, technology: result5[0].idtechnologies},
                                                     function (err3, result3) {
                                                         if (err3) {
                                                             reject(err3);
@@ -359,8 +400,10 @@
                                             }
                                     });
                             }
-                    });        
-                });
+                    }); 
+                }       
+            });
+        });
     }
 
     exports.updateLessonStateByID = function(idlesson,state){
@@ -392,10 +435,10 @@
          });
     }
 
-    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected,deliveringModel,numberConsultants) {
+    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected,deliveringModel,numberConsultants, daysDuration) {
         return new Promise(function (resolve, reject) {
 
-                client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: manager, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, deliveringModel: deliveringModel, numberConsultants: numberConsultants},
+                client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: manager, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, deliveringModel: deliveringModel, numberConsultants: numberConsultants , daysDuration:daysDuration},
                     function (err, result) {
                         if (err) {
                             reject(err);
@@ -435,6 +478,20 @@
                     }
                 });   
          });
+    }
+
+    exports.addTechnology = function(technology){
+         return new Promise(function (resolve, reject) { 
+        client.query('INSERT INTO public.technologies SET ?', {technology: technology },
+            function (err, result) {
+                if (err) {
+                    reject(err);
+                } else {
+
+                resolve(result.insertId);
+                }
+            });
+        });  
     }
 
 

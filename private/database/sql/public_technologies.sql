@@ -24,11 +24,8 @@ DROP TABLE IF EXISTS `technologies`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `technologies` (
   `idtechnologies` int(11) NOT NULL AUTO_INCREMENT,
-  `idLessonsLearned` int(11) NOT NULL,
   `technology` varchar(45) NOT NULL,
-  PRIMARY KEY (`idtechnologies`),
-  KEY `idLessons_idx` (`idLessonsLearned`),
-  CONSTRAINT `idLessons` FOREIGN KEY (`idLessonsLearned`) REFERENCES `lessonslearned` (`idLessonsLearned`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`idtechnologies`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-08 19:00:37
+-- Dump completed on 2016-05-13  0:22:17

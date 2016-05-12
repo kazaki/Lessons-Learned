@@ -7,10 +7,6 @@
 
 		 console.log('Page loaded.');
 
-	$scope.loggedIn = function() {
-		return false; //TODO
-	};
-
 	 };
 	 // Injecting modules used for better minifing later on
     PageCtrl.$inject = ['$scope', 'services'];

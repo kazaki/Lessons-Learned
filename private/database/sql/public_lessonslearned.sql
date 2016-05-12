@@ -24,15 +24,16 @@ DROP TABLE IF EXISTS `lessonslearned`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lessonslearned` (
   `idLessonsLearned` int(11) NOT NULL AUTO_INCREMENT,
-  `buisnessSector` varchar(100) NOT NULL,
-  `dateCreated` datetime NOT NULL,
-  `maker` int(11) DEFAULT NULL,
+  `manager` int(11) NOT NULL,
   `project` int(11) DEFAULT NULL,
   `status` varchar(45) NOT NULL,
+  `creationdate` datetime NOT NULL,
+  `aproveddate` datetime DEFAULT NULL,
   PRIMARY KEY (`idLessonsLearned`),
-  KEY `idUser_idx` (`maker`),
+  KEY `idUser_idx` (`manager`),
   KEY `idProject_idx` (`project`),
-  CONSTRAINT `idProject` FOREIGN KEY (`project`) REFERENCES `project` (`idprojetc`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idManager` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `idProject` FOREIGN KEY (`project`) REFERENCES `project` (`idprojetc`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-08 19:00:37
+-- Dump completed on 2016-05-13  0:22:17

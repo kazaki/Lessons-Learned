@@ -4,17 +4,26 @@
 */
 var services = function ($q, $http) {
     var deferred = $q.defer();
-    /* exemplo
-    this.getChallenges = function () {
-            return $http.get('/api/challenges/open')
-                .success(function (res) {
+     // Function to retrieve technologies
+        this.getTechnologies = function() {
+            return $http.get('/api/technologies')
+                .success(function(res) {
                     deferred.resolve(res);
                 })
-                .error(function (err) {
+                .error(function(err) {
                     deferred.reject(err);
                 });
         };
-        */
+        // Function to retrieve people who can be project managers
+        this.getManagers = function() {
+            return $http.get('/api/managers')
+                .success(function(res) {
+                    deferred.resolve(res);
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
 };
 
 // Injecting modules used for better minifing later on

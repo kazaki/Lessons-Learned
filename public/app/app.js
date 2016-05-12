@@ -32,6 +32,11 @@
                 controller: "AdminCtrl"
             })
 
+            .when("/create_project", {
+                templateUrl: "app/views/admin/create_project.html",
+                controller: "AdminCtrl"
+            })
+
             .when("/users", {
                 templateUrl: "app/views/admin/user_list.html",
                 controller: "UserListCtrl"
@@ -40,6 +45,11 @@
             .when("/listll", {
                 templateUrl: "app/views/list_ll.html",
                 controller: "PageCtrl"
+            })
+
+            .when("/create_ll", {
+                templateUrl: "app/views/create_ll.html",
+                controller: "CreateLLCtrl"
             })
             
             .when("/forbidden",{

@@ -23,12 +23,20 @@
         server.get('/user_management', function (req, res) {
             res.render('index');
         });
+
+        server.get('/create_project', function (req, res) {
+            res.render('index');
+        });
         
         server.get('/users', function (req, res) {
             res.render('index');
         });
         
         server.get('/listll', function (req, res) {
+            res.render('index');
+        });
+
+        server.get('/create_ll', function (req, res) {
             res.render('index');
         });
         
@@ -47,6 +55,18 @@
                 })
                 .catch(function (err) {
                     res.status(406).send('Could not retrieve users information');
+                });
+
+        });
+
+        server.get('/api/managers', function (req, res) {
+            
+            database.getManagers()
+               .then(function (user) {
+                    res.status(200).send(user);
+                })
+                .catch(function (err) {
+                    res.status(406).send('Could not retrieve Managers information');
                 });
 
         });
@@ -360,7 +380,6 @@ console.log(user.password);
 
          server.post("/api/createlesson",function(req,res){
 
-                var businessSector = req.body.businessSector;
                 var dateCreated = new Date();
                 var maker = req.body.maker;
                 var project = req.body.project;
@@ -372,7 +391,7 @@ console.log(user.password);
 
                 var technology = req.body.technology;
 
-                database.insertLesson(businessSector,dateCreated,maker,project,datetime,situation,action,result,technology)
+                database.insertLesson(dateCreated,maker,project,datetime,situation,action,result,technology)
                     .then(function (lesson) {
                         res.sendStatus(200);
                     })
@@ -441,8 +460,9 @@ console.log(user.password);
 
                 var deliveringModel = req.body.deliveringModel;
                 var numberConsultants = req.body.numberConsultants;
+                var daysDuration = req.body.daysDuration;
 
-                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,deliveringModel,numberConsultants)
+                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,deliveringModel,numberConsultants,daysDuration)
                     .then(function (project) {
                         res.sendStatus(200);
                     })
@@ -491,6 +511,33 @@ console.log(user.password);
                         res.status(406).send('Could not retrieve technologies information');
                     });
         });
+
+         server.get('/api/technologies', function (req, res) {
+            
+                database.getTechnologies()
+                   .then(function (techs) {
+                        res.status(200).send(techs);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Could not retrieve technologies information');
+                    });
+        });
+
+         server.post("/api/technologies",function(req,res){
+
+                var technology = req.body.technology;
+
+                database.addTechnology(technology)
+                    .then(function (project) {
+                        res.sendStatus(200);
+                    })
+                    .catch(function (err) {
+                        // Sending the error to the log file
+                        console.log('Error inserting technology to database');
+                        console.log(err);
+                    
+                    });
+         });
 
 
     };

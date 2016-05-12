@@ -5,87 +5,18 @@
     
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
 
-<form class="form-horizontal">
+<form ng-submit="addLesson(lesson)" class="form-horizontal">
 <fieldset>
-
-<style type="text/css">
-.col-md-6 label { padding-bottom: :20px }
-</style>
 
 <!-- Form Name -->
 <legend>Criação de Lesson Learned</legend>
 <br>
-<!-- Select Basic -->
 <div class="form-group">
-  <div class="col-md-6">
-  <label class="col-md-6 control-label" for="textarea">Setor Negócio</label>
+  <div class="col-md-4" ng-repeat="technology in technologies track by $index">
+  <label class="col-md-4 control-label" for="textarea">Tecnologias</label>
     <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-      <option value="3">Option three</option>
+      <option value="{{ technology.nome }}"> {{ technology.nome }} </option>
     </select>
-  </div>
-  <div class="col-md-6">
-  <label class="col-md-6 control-label" for="textarea">Tipo Projeto</label>
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="1"> ADM2 </option>
-      <option value="2"> ADM3 </option>
-      <option value="3"> ADM4 </option>
-    </select>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <div class="col-md-4">
-  <label class="col-md-6 control-label" for="textarea">Nome Projeto</label>
-    <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
-  </div>
-  <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Modelo Entrega</label>
-    <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
-  </div>
-  <div class="col-md-4">
-  <label class="col-md-8 control-label" for="textarea">Gestor Responsável</label>
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="1"> Gestor1 </option>
-      <option value="2"> Gestor2 </option>
-      <option value="3"> Gestor3 </option>
-    </select>
-  </div>
-</div>
-
-<div class="form-group">
-  <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Início</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
-  </div>
-  <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Fim Expectável</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
-  </div>
-  <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Data Fim</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
-  </div>
-</div>
-
-<div class="form-group">
-  <div class="col-md-4">
-  <label class="col-md-4 control-label" for="textarea">Text Area</label>
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="1"> Gestor1 </option>
-      <option value="2"> Gestor2 </option>
-      <option value="3"> Gestor3 </option>
-    </select>
-  </div>
-  <div class="col-md-4">
-    <label class="col-md-4 control-label" for="textarea">Text Area</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
-  </div>
-  <div class="col-md-4">
-  <label class="col-md-4 control-label" for="textarea">Text Area</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
   </div>
 </div>
 

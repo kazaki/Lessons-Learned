@@ -16,34 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `lesson_tech`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `lesson_tech`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `idusers` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `password` varchar(256) NOT NULL,
-  `permission` varchar(45) NOT NULL DEFAULT '0' COMMENT '0 normal\n\n1 other \n\n2 admin',
-  `token` varchar(200) NOT NULL,
-  `avatar` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idusers`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `idusers_UNIQUE` (`idusers`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='table for storing user information';
+CREATE TABLE `lesson_tech` (
+  `idlesson_tech` int(11) NOT NULL,
+  `idlesson` int(11) NOT NULL,
+  `idtech` int(11) NOT NULL,
+  PRIMARY KEY (`idlesson_tech`),
+  KEY `idlesson_idx` (`idlesson`),
+  KEY `idtechless_idx` (`idtech`),
+  CONSTRAINT `idlestech` FOREIGN KEY (`idlesson`) REFERENCES `lessonslearned` (`idLessonsLearned`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `idtechless` FOREIGN KEY (`idtech`) REFERENCES `technologies` (`idtechnologies`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `lesson_tech`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (22,'francisco@altran.pt','Francisco','$2a$10$E1Sg4vInuoRyUVGzUO0r.eAHlRdsPvLVkRsSa2eUNPxVUdP2lEuMK','0','5ac70c58102a4f18e0a3d0ad2a0e6a3cc0e6f817',0),(23,'antonio@altran.pt','Antonio','$2a$10$QeRIZFuLU8fwVtclwJwTZ.WN114gnn5Ff3Sa5PqdWfGh48pS5J0d2','0','9482541cec29fbabdc695b59068f234f6059f8a4',0);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `lesson_tech` WRITE;
+/*!40000 ALTER TABLE `lesson_tech` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lesson_tech` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

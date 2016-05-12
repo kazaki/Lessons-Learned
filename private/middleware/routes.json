@@ -2,7 +2,9 @@
 	"api":{
 		"all": [
 			"/api/login",
-			"/api/createuser"		
+			"/api/createuser",
+			"/api/managers",
+			"/api/technologies"		
 		],
 
 		"logged": [
@@ -28,9 +30,11 @@
 			"/home",
 			"/user_management",
 			"/listll",
-			"/users"
+			"/users",
+			"/create_project"
 		],
 		"advanced": [
+			"/create_ll"
 			
 		]
 

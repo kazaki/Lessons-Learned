@@ -26,15 +26,16 @@ CREATE TABLE `project` (
   `idprojetc` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `manager` int(11) DEFAULT NULL,
-  `dateBeginning` datetime DEFAULT NULL,
+  `manager` int(11) NOT NULL,
+  `dateBeginning` datetime NOT NULL,
   `dateEndExpected` datetime DEFAULT NULL,
   `dateEnd` datetime DEFAULT NULL,
-  `deliveringModel` varchar(45) DEFAULT NULL,
-  `numberConsultants` int(11) DEFAULT NULL,
+  `deliveringModel` varchar(45) NOT NULL,
+  `numberConsultants` int(11) NOT NULL,
+  `daysDuration` int(11) DEFAULT NULL,
   PRIMARY KEY (`idprojetc`),
   KEY `idUsers_idx` (`manager`),
-  CONSTRAINT `idUsers` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `idUsers` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-08 19:00:37
+-- Dump completed on 2016-05-13  0:22:17
