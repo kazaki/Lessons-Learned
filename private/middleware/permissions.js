@@ -73,22 +73,55 @@
                 // START REGION: Views permissions (logged)
 
                 cookie.verifySession(req.cookies.session)
-                    .then(function (userId) {
+                    .then(function (permission) {
+                        switch(permission){
+                            case 0:
+                                for (i = 0; i < routes.views.logged.length; i++) {
+                                    if (req.url.indexOf(routes.views.logged[i]) > -1) {
+                                        break;
+                                    }
+                                }
 
-                        for (i = 0; i < routes.views.logged.length; i++) {
-                            if (req.url.indexOf(routes.views.logged[i]) > -1) {
-                                break;
-                            }
+                                if (i == routes.views.logged.length) {
+                                    if (res.statusCode == null) {
+                                        res.redirect('/forbidden');
+                                    }
+                                } else {
+                                    next();
+                                }
+                            break;
+                            case 1:
+                                for (i = 0; i < routes.views.advanced.length; i++) {
+                                    if (req.url.indexOf(routes.views.advanced[i]) > -1) {
+                                        break;
+                                    }
+                                }
+
+                                if (i == routes.views.advanced.length) {
+                                    if (res.statusCode == null) {
+                                        res.redirect('/forbidden');
+                                    }
+                                } else {
+                                    next();
+                                }
+                            break;
+                            case 2:
+                                for (i = 0; i < routes.views.admin.length; i++) {
+                                    if (req.url.indexOf(routes.views.admin[i]) > -1) {
+                                        break;
+                                    }
+                                }
+
+                                if (i == routes.views.admin.length) {
+                                    if (res.statusCode == null) {
+                                        res.redirect('/forbidden');
+                                    }
+                                } else {
+                                    next();
+                                }
+                            break;
+                        
                         }
-
-                        if (i == routes.views.logged.length) {
-                            if (res.statusCode == null) {
-                                res.redirect('/forbidden');
-                            }
-                        } else {
-                            next();
-                        }
-
                     })
                     .catch(function(err){
                          res.redirect('/forbidden');

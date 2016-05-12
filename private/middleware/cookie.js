@@ -12,7 +12,8 @@
                 .then(function (token) {
                     database.getUserByToken(token)
                         .then(function (rows) {
-                            resolve(rows.idusers);
+                            console.log(rows);
+                            resolve(rows.permission);
                         })
                         .catch(function (err) {
                             reject(err);
