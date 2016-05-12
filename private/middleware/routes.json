@@ -19,6 +19,7 @@
 	"views":{
 		"all": [
 			"/",
+			"/home",
 			"/user_management",
 			"/users",
 			"/listll",

@@ -18,8 +18,12 @@
 
         $routeProvider
             .when("/", {
+                templateUrl: "app/views/login.html",
+                controller: "LoginCtrl"
+            })
+             .when("/home", {
                 templateUrl: "app/views/home.html",
-                controller: "PageCtrl"
+                controller: "HomeCtrl"
             })
 
             // Management side

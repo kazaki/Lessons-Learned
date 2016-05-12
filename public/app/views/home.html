@@ -1,38 +1,9 @@
 <link rel="stylesheet" href="styles/home.css">
 
-<div ng-if="!loggedIn()">
-	<div id="homeTitle" class="container">
-		<p class="unselectable">Lessons Learned</p>
-	</div>
 
-	<div class="section">
+<div ng-include='"app/views/templates/header.html"'></div>
 
-		<div class="container">
-			<div class="card card-container">
-				<form class="form-signin">
-					<input style="display:none" type="text" name="fakeusernameremembered"/>
-					<input style="display:none" type="password" name="fakepasswordremembered"/>
-					<input id="inputUsername" type="text" class="form-control" name="fakeusernameremembered" placeholder="Username" required autofocus >
-					<input id="inputPassword" type="password"  class="form-control" name="fakepasswordremembered" placeholder="Password" required >
-					<div id="remember" class="checkbox">
-						<label>
-							<input type="checkbox" value="remember-me"> Remember me
-						</label>
-					</div>
-					<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-				</form><!-- /form -->
-				<a href="#" class="forgot-password">
-					Forgot the password?
-				</a>
-			</div><!-- /card-container -->
-		</div><!-- /container -->
-
-	</div>
-	<!-- /.section -->
-</div>
-
-
-<div ng-if="loggedIn()" id="toolbox" class="container">
+<div id="toolbox" class="container">
 	<div class="row text-center">
 		<div class="col-lg-4 col-xs-6 col-md-4">
 			<a href="url"><i class="fa fa-users" /><br>Manage<br>Users</a>
@@ -54,3 +25,5 @@
 		</div>
 	</div>
 </div>
+
+    <div ng-include='"app/views/templates/footer.html"'></div>

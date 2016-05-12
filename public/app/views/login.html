@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="styles/home.css">
+
+
+<div ng-include='"app/views/templates/header.html"'></div>
+
+<div id="homeTitle" class="container">
+		<p class="unselectable">Lessons Learned</p>
+	</div>
+
+	<div class="section">
+
+		<div class="container">
+			<div class="card card-container">
+				<form ng-submit="login(user,remember)" class="form-signin">
+					<input style="display:none" type="email" name="fakeusernameremembered"/>
+					<input style="display:none" type="password" name="fakepasswordremembered"/>
+					<input id="inputUsername" ng-model="user.email" type="text" class="form-control" name="fakeusernameremembered" placeholder="Username" required autofocus >
+					<input id="inputPassword" ng-model="user.password" type="password"  class="form-control" name="fakepasswordremembered" placeholder="Password" required >
+					<input type="checkbox" id="remember" ng-model="remember" value="false">
+                    <label for="remember">Remember me</label>
+					<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+				</form><!-- /form -->
+				<a href="#" class="forgot-password">
+					Forgot the password?
+				</a>
+			</div><!-- /card-container -->
+		</div><!-- /container -->
+
+	</div>
+    
+    <div ng-include='"app/views/templates/footer.html"'></div>

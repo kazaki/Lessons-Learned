@@ -16,6 +16,10 @@
             res.render('index');
         });
         
+        server.get('/home', function (req, res) {
+            res.render('index');
+        });
+        
         server.get('/user_management', function (req, res) {
             res.render('index');
         });
@@ -61,8 +65,8 @@
 
         server.post('/api/login', function (req, res) {
             var user = {
-                email: req.headers.email.toLowerCase(),
-                password: req.headers.password
+                email: req.body.email.toLowerCase(),
+                password: req.body.password
             };
 
             database.confirmLoginByEmail(user)
