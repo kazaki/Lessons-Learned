@@ -29,7 +29,7 @@
             // Management side
             .when("/user_management", {
                 templateUrl: "app/views/admin/user_management.html",
-                controller: "PageCtrl"
+                controller: "AdminCtrl"
             })
 
             .when("/users", {

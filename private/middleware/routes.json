@@ -1,13 +1,13 @@
 {
 	"api":{
 		"all": [
-			"/api/login"			
+			"/api/login",
+			"/api/createuser"		
 		],
 
 		"logged": [
 			"/api/lessons",
 			"/api/users",
-			"/api/createuser",
 			"/api/updateuseremail"
 		],
 
@@ -19,14 +19,14 @@
 	"views":{
 		"all": [
 			"/",
-			"/home",
+			
 			"/user_management",
 			"/users",
 			"/listll",
 			"/forbidden"
 		],
 		"logged": [
-			
+			"/home"
 		],
 		"admin": [],
 		"advanced": []

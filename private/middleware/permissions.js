@@ -3,10 +3,9 @@
     'use strict';
 
     var routes = require("./routes"),
-        cookie = require("./utils");
+        cookie = require("./cookie");
 
     module.exports = function(req, res, next) {
-
         var i;
 
         if (req.url.split('/')[1] == 'api') {
@@ -49,6 +48,13 @@
 
         }
         else {
+            
+            cookie.verifySession(req.cookies.session)
+                .catch(function (err) {
+                    if (res.statusCode == null) {
+                        res.redirect('/forbidden');
+                    }
+                });
 
              // START REGION: Views permissions (all)
 

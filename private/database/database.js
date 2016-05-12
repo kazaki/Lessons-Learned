@@ -128,24 +128,20 @@
 
     exports.insertUser = function (email, password,name) {
         return new Promise(function (resolve, reject) {
-            console.log('CARALHO');
             bcrypt.hash(password, null, null, function (err, hash) {
                 if (err) {
-                    console.log('CARALHO');
                     reject(err);
                 } else {
                     crypto.randomBytes(20, function (err, buf) {
                         if (err) {
-                            console.log('fuck');
                             reject(err);
                         } else {
                             client.query('INSERT INTO public.users SET ?', {email: email, name: name, password: hash, token: buf.toString('hex')},
                                 function (err, result) {
                                     if (err) {
-                                        console.log('fuck');
                                         reject(err);
                                     } else {
-                                        console.log('fds');
+                                        console.log("olaaa");
                                         resolve(result.insertId);
                                     }
                                 });

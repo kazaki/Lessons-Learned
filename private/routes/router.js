@@ -68,11 +68,11 @@
                 email: req.body.email.toLowerCase(),
                 password: req.body.password
             };
-
+console.log(user.password);
             database.confirmLoginByEmail(user)
                 .then(function (user) {
-
-                    jwt.encode(user.token)
+                    console.log(user.token);
+                    utils.encode(user.token)
                         .then(function (encoded) {
                             res.status(200).json(encoded);
                         })
@@ -98,13 +98,13 @@
 
         server.post('/api/createuser', function (req, res) {
             
-            var email = req.body.email;
+            var email = req.body.email.toLowerCase();
             var pass = req.body.password;
             var name = req.body.name;
 
             console.log(email + pass + name);
 
-            if(!validator.validate(email.toLowerCase())){
+            if(!validator.validate(email)){
                 // Check if email is valid. 
                 res.status(400).json({
                     message_class: 'error',
@@ -114,14 +114,14 @@
 
             else{
 
-            database.insertUser(req.body.email.toLowerCase(), req.body.password,name)
+            database.insertUser(email, pass, name)
                 .then(function (user_id) {
                     res.sendStatus(200);
                 })
                 .catch(function (err) {
 
                         // If the e-mail is already in use
-                        if (err.code == '23505') {
+                        if (err.sqlState == '23000') {
 
                             // Send the Response with message error
                             res.status(406).json({

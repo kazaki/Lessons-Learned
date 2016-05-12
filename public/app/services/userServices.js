@@ -22,7 +22,7 @@ var userServices = function ($q, $http, $cookies, $window) {
                         expires: exp
                     });
 
-                    $window.location.href = '/dashboard';
+                    $window.location.href = '/home';
 
                     deferred.resolve('Success');
 
