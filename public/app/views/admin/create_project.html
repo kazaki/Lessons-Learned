@@ -33,16 +33,16 @@
 
 <div class="form-group">
   <div class="col-md-4">
-    <label class="col-md-6 control-label">Início</label>
-     <input type="date" name="d" min="2011-08-01" max="2021-08-15" ng-model="project.dateBeginning">
+    <label class="col-md-6 control-label" for="textarea">Data Inicio</label>
+       <input ng-model="project.dateBeginning" type="date" value="{{ project.dateBeginning }}" class="form-control input-md" >
   </div>
   <div class="col-md-4">
     <label class="col-md-6 control-label" for="textarea">Fim Expectável</label>
-    <input ng-model="project.dateEndExpected" type="date" class="form-control input-md">
+       <input ng-model="project.dateEndExpected" type="date" value="{{ project.dateEndExpected }}" class="form-control input-md" >
   </div>
   <div class="col-md-4">
     <label class="col-md-6 control-label" for="textarea">Data Fim</label>
-    <input ng-model="project.dateEnd" id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
+       <input ng-model="project.dateEnd" type="date" value="{{ project.dateEnd }}" class="form-control input-md" >
   </div>
 </div>
 

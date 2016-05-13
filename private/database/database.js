@@ -443,9 +443,9 @@
                     if (err2) {
                         reject(err2);
                     } else {
-                        console.log(dateBeginning + 'loooooooool');
-                        console.log(dateEndExpected + 'loooooooool');
-                        console.log(dateEnd + 'loooooooool');
+                        console.log(dateBeginning + 'beg');
+                        console.log(dateEndExpected + 'endex');
+                        console.log(dateEnd + 'end');
                         client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: result2[0].idusers, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, dateEnd: dateEnd, deliveringModel: deliveringModel, numberConsultants: numberConsultants , daysDuration:daysDuration},
                             function (err, result) {
                                 if (err) {

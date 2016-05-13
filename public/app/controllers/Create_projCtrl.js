@@ -1,5 +1,5 @@
 (function(){
-	 var  Create_projCtrl = function($scope, genServices) {
+	 var  Create_projCtrl = function($scope, $filter, genServices) {
 
 		 console.log('Page loaded.');
 
@@ -17,18 +17,21 @@
                 alert(err.data.message);
 
             });
-            console.log('Page loaded.');
-         $scope.addProject = function(project){
-            console.log('Page loaded.');
+
+         $scope.addProject = function(project, filter){
+            project.dateBeginning = $filter('date')(project.dateBeginning, "yyyy-MM-dd"); // for conversion to string
+            project.dateEndExpected = $filter('date')(project.dateEndExpected, "yyyy-MM-dd"); // for conversion to string
+            project.dateEnd = $filter('date')(project.dateEnd, "yyyy-MM-dd"); // for conversion to string
+            
              genServices.createProject(project)
                 .then(function (res) {
                     console.log('loool');
-                    alert('troool' + res);
+                    alert(res);
 
                 })
                 .catch(function (err) {
                     console.log('loool');
-                    alert('troool' + err.data.message);
+                    alert(err.data.message);
 
                 });
          };
@@ -36,7 +39,7 @@
 
 	 };
 	 // Injecting modules used for better minifing later on
-    Create_projCtrl.$inject = ['$scope','genServices'];
+    Create_projCtrl.$inject = ['$scope', '$filter', 'genServices'];
 
     // Enabling the controller in the app
     angular.module('lessonslearned').controller('Create_projCtrl', Create_projCtrl);

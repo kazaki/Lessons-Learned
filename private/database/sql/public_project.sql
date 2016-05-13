@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `project`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project` (
-  `idprojetc` int(11) NOT NULL AUTO_INCREMENT,
+  `idproject` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `manager` int(11) NOT NULL,
@@ -33,10 +33,10 @@ CREATE TABLE `project` (
   `deliveringModel` varchar(45) NOT NULL,
   `numberConsultants` int(11) NOT NULL,
   `daysDuration` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idprojetc`),
+  PRIMARY KEY (`idproject`),
   KEY `idUsers_idx` (`manager`),
   CONSTRAINT `idUsers` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +45,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
+INSERT INTO `project` VALUES (1,' ADM3 ','asdas',24,'2016-05-24','2016-05-25','2016-05-30','adas',12321,3131);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-13 16:36:56
+-- Dump completed on 2016-05-13 22:34:09

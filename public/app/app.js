@@ -53,6 +53,11 @@
                 controller: "CreateLLCtrl"
             })
 
+            .when("/create_project", {
+                templateUrl: "app/views/admin/create_project.html",
+                controller: "CreateLLCtrl"
+            })
+
             .when("/forbidden",{
                 templateUrl: "app/views/forbidden.html",
                 controller: "PageCtrl"

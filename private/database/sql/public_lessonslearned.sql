@@ -33,7 +33,7 @@ CREATE TABLE `lessonslearned` (
   KEY `idUser_idx` (`manager`),
   KEY `idProject_idx` (`project`),
   CONSTRAINT `idManager` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `idProject` FOREIGN KEY (`project`) REFERENCES `project` (`idprojetc`) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT `idProject` FOREIGN KEY (`project`) REFERENCES `project` (`idproject`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-13 16:36:57
+-- Dump completed on 2016-05-13 22:34:10

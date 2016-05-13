@@ -457,12 +457,13 @@ console.log(user.password);
 
                 var dateBeginning = req.body.dateBeginning;
                 var dateEndExpected = req.body.dateEndExpected;
+                var dateEnd = req.body.dateEnd;
 
                 var deliveringModel = req.body.deliveringModel;
                 var numberConsultants = req.body.numberConsultants;
                 var daysDuration = req.body.daysDuration;
 
-                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,deliveringModel,numberConsultants,daysDuration)
+                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,dateEnd,deliveringModel,numberConsultants,daysDuration)
                     .then(function (project) {
                         res.sendStatus(200);
                     })
