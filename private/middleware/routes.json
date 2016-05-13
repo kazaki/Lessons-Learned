@@ -2,6 +2,7 @@
 	"api":{
 		"all": [
 			"/api/login",
+			"/api/verifysession",
 			"/api/createuser",
 			"/api/managers",
 			"/api/technologies"		

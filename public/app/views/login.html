@@ -8,9 +8,9 @@
 	</div>
 
 	<div class="section">
-
 		<div class="container">
 			<div class="card card-container">
+				<div ng-if="!hasSession.logged">
 				<form ng-submit="login(user,remember)" class="form-signin">
 					<input style="display:none" type="email" name="fakeusernameremembered"/>
 					<input style="display:none" type="password" name="fakepasswordremembered"/>
@@ -24,6 +24,15 @@
 					Forgot the password?
 				</a>
 			</div><!-- /card-container -->
+			<div ng-if="hasSession.logged">
+				Deseja continuar como
+				<a href="#" class="forgot-password">
+					 {{hasSession.data.name}}
+				</a><br>
+				<a href="#">Loggout</a>
+			</div>
+			</div>
+			
 		</div><!-- /container -->
 
 	</div>

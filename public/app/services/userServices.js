@@ -22,7 +22,7 @@ var userServices = function ($q, $http, $cookies, $window) {
                         expires: exp
                     });
 
-                    $window.location.href = '/home';
+                    //$window.location.href = '/home';
 
                     deferred.resolve('Success');
 
@@ -32,6 +32,16 @@ var userServices = function ($q, $http, $cookies, $window) {
                 });
 
         }; 
+        
+        this.logged = function(){
+            return $http.get('/api/verifysession')
+                .success(function(res) {
+                    deferred.resolve(res.data);
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
 
         this.createLL = function(lesson, remember) {
 
