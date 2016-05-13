@@ -1,59 +1,76 @@
-<br>
-<br>
-<div class="container">
-  <div class="row clearfix">
-    
+<div ng-include='"app/views/templates/header.html"'></div>
+<div class="container"><br>
+  <div class="row clearfix">    
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
 
-<form ng-submit="addLesson(lesson)" class="form-horizontal">
-<fieldset>
+      <form ng-submit="addLesson(lesson)" class="form-horizontal">
+        <fieldset>
+        <!-- Form Name -->
+        <legend>Criação de Lesson Learned</legend>
+        <br>
+        <div class="form-group">
+          <label class="col-md-6 control-label" for="technologies">{{ 'SELECT_TECHS' | translate }}</label>
+          <select id="technologies" multiple="true" ng-model="lesson.technologies" ng-options="technology.technology for technology in technologies"></select>
+        </div><br>
 
-<!-- Form Name -->
-<legend>Criação de Lesson Learned</legend>
-<br>
-<div class="form-group">
-  <div class="col-md-4" ng-repeat="technology in technologies track by $index">
-  <label class="col-md-4 control-label" for="textarea">Tecnologias</label>
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="{{ technology.nome }}"> {{ technology.nome }} </option>
-    </select>
-  </div>
-</div>
+        <!-- 
+        <div class="form-group">
+          <label class="col-md-6 control-label" for="manager">{{ 'SELECT_MANAGER' | translate }}</label>
+          <select id="manager" ng-model="lesson.manager">
+            <option value="">{{ 'SELECT' | translate }}</option>
+            <option ng-repeat="manager in managers" value="{{ manager.idusers }}">{{ manager.name }}</option>
+          </select>
+        </div><br>
 
-  <!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-6 control-label" for="textarea">Text Area</label>
-  <div class="col-md-12">                     
-    <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
-  </div>
-</div>
+        <div class="form-group">
+          <label class="col-md-6 control-label" for="client">{{ 'SELECT_CLIENT' | translate }}</label>
+          <input type="text" class="form-control" ng-model="lesson.client" id="client" placeholder="{{ 'CLIENT' | translate }}">
+        </div><br> -->
 
-<div class="form-group">
-  <label class="col-md-6 control-label" for="textarea">Text Area</label>
-  <div class="col-md-12">                     
-    <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
-  </div>
-</div>
+        <div class="form-group">
+          <label class="col-md-6 control-label" for="project">{{ 'SELECT_PROJECT' | translate }}</label>
+          <select id="project" ng-model="lesson.project">
+            <option value="">{{ 'NONE' | translate }}</option>
+            <option ng-repeat="project in projects" value="{{ project.name }}">{{ project.name }}</option>
+          </select>
+        </div><br>
 
-<div class="form-group">
-  <label class="col-md-6 control-label" for="textarea">Text Area</label>
-  <div class="col-md-12">                     
-    <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
-  </div>
-</div>
+          <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-6 control-label" for="textarea">{{ 'DESCRIPTION' | translate }}</label>
+          <div class="col-md-12">                     
+            <textarea rows="15" class="ll form-control" id="textarea" ng-trim="false" name="textarea" max-length="9999" ng-model="lesson.description" required>default text</textarea>
+            <span>{{ 9999 - lesson.description.length}} {{ 'CHARS_LEFT' | translate }}</span>
+          </div>
+        </div>
 
-<!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-3 control-label" for="button1id"></label>
-  <div class="col-md-12">
-    <button id="button1id" name="button1id" class="btn btn-success">Ok</button>
-    <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
-  </div>
-</div>
+        <div class="form-group">
+          <label class="col-md-6 control-label" for="textarea">{{ 'ACTION_TAKEN' | translate }}</label>
+          <div class="col-md-12">                     
+            <textarea rows="15" class="ll form-control" id="textarea" ng-trim="false" name="textarea" max-length="9999" ng-model="lesson.actionTaken" required>default text</textarea>
+            <span>{{ 9999 - lesson.actionTaken.length}} {{ 'CHARS_LEFT' | translate }}</span>
+          </div>
+        </div>
 
-</fieldset>
-</form>
-    </div>
-    
+        <div class="form-group">
+          <label class="col-md-6 control-label" for="textarea">{{ 'RESULT_DESCRIPTION' | translate }}</label>
+          <div class="col-md-12">                     
+            <textarea rows="15" class="ll form-control" id="textarea" ng-trim="false" name="textarea" max-length="9999" ng-model="lesson.results" required>default text</textarea>
+            <span>{{ 9999 - lesson.results.length}} {{ 'CHARS_LEFT' | translate }}</span>
+          </div>
+        </div>
+
+        <!-- Button (Double) -->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="button1id"></label>
+          <div class="col-md-12">
+            <button type="submit" id="button1id" name="button1id" class="btn btn-success">Ok</button>
+            <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
+          </div>
+        </div>
+
+        </fieldset>
+      </form>
+    </div>    
   </div>
 </div>

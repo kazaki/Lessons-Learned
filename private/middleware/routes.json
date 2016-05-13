@@ -2,6 +2,7 @@
 	"api":{
 		"all": [
 			"/api/login",
+			"/api/verifysession",
 			"/api/createuser",
 			"/api/managers",
 			"/api/technologies"
@@ -21,20 +22,23 @@
 	"views":{
 		"all": [
 			"/",
-			"/forbidden"
-		],
-		"logged": [
-			"/listll"
-		],
-		"admin": [
+			"/forbidden",
+			"/listll",
 			"/home",
 			"/user_management",
 			"/listll",
 			"/users",
-			"/create_project"
+			"/create_project",
+			"/create_ll"
+		],
+		"logged": [
+
+		],
+		"admin": [
+
 		],
 		"advanced": [
-			"/create_ll"
+
 
 		]
 

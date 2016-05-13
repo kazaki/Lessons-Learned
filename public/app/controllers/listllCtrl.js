@@ -3,7 +3,7 @@
 * Create the controller
 */
 (function(){
-	 var  listllCtrl = function($scope, $routeParams, $window,services) {
+	 var  listllCtrl = function($scope, $routeParams, $window, llServices) {
 
 		 console.log('Page loaded.');
 
@@ -19,7 +19,7 @@
 
 	 };
 	 // Injecting modules used for better minifing later on
-   listllCtrl.$inject = ['$scope', 'services'];
+   listllCtrl.$inject = ['$scope', 'llServices'];
 
 
 

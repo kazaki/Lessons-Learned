@@ -6,18 +6,20 @@
 	    $scope.login = function(user,remember){
              userServices.login(user, remember)
                 .then(function (res) {
-                    alert(res);
+                    alert(JSON.stringify(res));
+                    
                    // $scope.itemsLogin.pop();
                     //$scope.itemsLogin.push();
                 })
                 .catch(function (err) {
-                    alert(err.data.message);
+                    alert(JSON.stringify(err.data.message));
                     //$scope.itemsLogin.pop();
                     //$scope.itemsLogin.push(err.data.message);
                 });
             
         };
-
+        
+       
 	 };
 	 // Injecting modules used for better minifing later on
     LoginCtrl.$inject = ['$scope', '$routeParams', '$window','userServices'];

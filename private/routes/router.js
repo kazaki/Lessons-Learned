@@ -3,6 +3,7 @@
     'use strict';
      var database = require('../database/database'),
          utils = require('../middleware/utils'),
+         cookie = require('../middleware/cookie'),
          crypto = require('crypto'),
          StreamSearch = require('streamsearch'),
          inspect = require('util').inspect,
@@ -114,6 +115,20 @@ console.log(user.password);
 
                 });
 
+        });
+        
+        server.get('/api/verifysession', function (req, res){
+             if (req.cookies.session) {
+                cookie.verifySession(req.cookies.session)
+                    .then(function (user) {
+                        res.status(200).json(user);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Could not verify session');
+                    });
+            } else {
+                res.status(404).send('Could not verify session');
+            }
         });
 
         server.post('/api/createuser', function (req, res) {
