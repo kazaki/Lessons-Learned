@@ -1,6 +1,8 @@
+<div ng-include='"app/views/templates/header.html"'></div>
+
 <div class="container-fluid"><br>
 	<div class="container">
-		<div id="userbox" class="row panel panel-default bg-blue">
+		<div id="userbox" class="row panel panel-default bg-blue" ng-repeat="user in users">
 			<div class="panel-body box-shadow--2dp">
 
 				<div class="col-lg-2 col-md-1 col-sm-1 col-xs-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
@@ -8,50 +10,22 @@
 				</div>
 
 				<div class="col-lg-1 col-md-2 col-sm-1 col-xs-6 col-lg-push-9 col-md-push-9 col-sm-push-10 clearfix">
-					<button type="button" class="btn btn-primary btn-circle pull-right btn-lg box-shadow--2dp" ng-click="editUser(1)"><i class="glyphicon glyphicon-pencil"></i></button>
+					<button type="button" class="btn btn-primary btn-circle pull-right btn-lg box-shadow--2dp" ng-click="editUser(user.idusers)"><i class="glyphicon glyphicon-pencil"></i></button>
 				</div>
 
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-lg-pull-1 col-md-pull-1">
-				  	<span class="hidden-xs vertical-center">Altran Altran</span>
-				  	<span class="hidden-lg hidden-md hidden-sm text-center">Altran Altran</span>
+				  	<span class="hidden-xs vertical-center">{{ user.name }}</span>
+				  	<span class="hidden-lg hidden-md hidden-sm text-center">{{ user.name }}</span>
 				</div>
 
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-lg-pull-1 col-md-pull-1">
-				  	<span class="hidden-xs vertical-center">altran2016</span>
-				  	<span class="hidden-lg hidden-md hidden-sm text-center">altran2016</span>
+				  	<span class="hidden-xs vertical-center">{{ user.name }}</span>
+				  	<span class="hidden-lg hidden-md hidden-sm text-center">{{ user.name }}</span>
 			  	</div>
 
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-lg-pull-1 col-md-pull-1">
-					<span class="hidden-xs vertical-center">altran2106@altran.pt</span>
-				  	<span class="hidden-lg hidden-md hidden-sm text-center">altran2106@altran.pt</span>	  	
-				</div>
-			</div>
-		</div>
-
-		<div id="userbox" class="row panel panel-default bg-blue">
-			<div class="panel-body box-shadow--2dp">
-
-				<div class="col-lg-2 col-md-1 col-sm-1 col-xs-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
-					<img src="images/user_light_small.png" alt="User" class="pull-left img-circle">
-				</div>
-
-				<div class="col-lg-1 col-md-2 col-sm-1 col-xs-6 col-lg-push-9 col-md-push-9 col-sm-push-10 clearfix">
-					<button type="button" class="btn btn-primary btn-circle pull-right btn-lg box-shadow--2dp" ng-click="editUser(2)"><i class="glyphicon glyphicon-pencil"></i></button>
-				</div>
-
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-lg-pull-1 col-md-pull-1">
-				  	<span class="hidden-xs vertical-center">Altran Altran</span>
-				  	<span class="hidden-lg hidden-md hidden-sm text-center">Altran Altran</span>
-				</div>
-
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-lg-pull-1 col-md-pull-1">
-				  	<span class="hidden-xs vertical-center">altran2016</span>
-				  	<span class="hidden-lg hidden-md hidden-sm text-center">altran2016</span>
-			  	</div>
-
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-lg-pull-1 col-md-pull-1">
-					<span class="hidden-xs vertical-center">altran2106@altran.pt</span>
-				  	<span class="hidden-lg hidden-md hidden-sm text-center">altran2106@altran.pt</span>	  	
+					<span class="hidden-xs vertical-center">{{ user.email }}</span>
+				  	<span class="hidden-lg hidden-md hidden-sm text-center">{{ user.email }}</span>	  	
 				</div>
 			</div>
 		</div>
@@ -74,3 +48,4 @@
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
 </script>
+<div ng-include='"app/views/templates/footer.html"'></div>
