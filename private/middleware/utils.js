@@ -24,7 +24,6 @@ module.exports = {
 
   // Function to verify if the encoded string is valid
   verify:function (encoded) {
-    console.log("wefoewkfowkefefwefewf");
     return new Promise(function (resolve, reject) {
       jwt.verify(encoded, key, function (err, decoded) {
         if (err) {

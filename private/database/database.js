@@ -78,7 +78,9 @@
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(result);
+                        delete result[0]['password'];
+                        delete result[0]['idusers'];
+                        resolve(result[0]);
                     }
                 });   
          });
