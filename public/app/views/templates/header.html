@@ -1,4 +1,4 @@
-<nav id="navbar1" class="navbar navbar-inverse navbar-fixed-top unselectable" role="navigation" ng-controller="HeaderCtrl" >
+<nav id="navbar1" class="navbar navbar-inverse navbar-fixed-top unselectable" role="navigation" ng-controller="GlobalCtrl" >
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-            <a href="#/"><img width="100px" src="images/logo_transparent.gif"></a>
+            <a href="/"><img src="images/logo_transparent.gif"></a>
 			
         </div>
 
@@ -23,8 +23,8 @@
                 <li><a href="/#/contact">Contact</a>
                 </li>
 				<li><a href="http://www.altran.pt" target="_blank">ALTRAN.pt</a> -->
-				<li><a href="" ><b><i class="fa fa-bell-o" aria-hidden="true"></i></b></a>
-				<li ng-if="loggedIn()" class="dropdown">
+				<li ng-if="getUser()"><a href="" ><i class="fa fa-bell-o" aria-hidden="true"></i></a> </li>
+				<li ng-if="getUser()" class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> EN </a>
 					<ul class="dropdown-menu">
 						<li><a href="#/">English</a>
@@ -36,7 +36,7 @@
 					</ul>
 				</li>
 				
-				<li ng-if="loggedIn()" class="dropdown">
+				<li ng-if="getUser()" class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> User </a>
 					<ul class="dropdown-menu">
 						<li><a href="#/profile">My Profile</a>

@@ -1,8 +1,7 @@
 (function () {
-/**
-* Create the module and call the requires
-*/
-var services = function ($q, $http) {
+
+'use strict';
+var genServices = function ($q, $http) {
     var deferred = $q.defer();
      // Function to retrieve technologies
         this.getTechnologies = function() {
@@ -24,12 +23,24 @@ var services = function ($q, $http) {
                     deferred.reject(err);
                 });
         };
+
+        // Function to create a project
+        this.createProject = function(project) {
+
+            return $http.post('/api/createproject', project)
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
 };
 
 // Injecting modules used for better minifing later on
-    services.$inject = ['$q', '$http'];
+    genServices.$inject = ['$q', '$http'];
 
     // Enabling the service in the app
-    angular.module('lessonslearned').service('services', services);
+    angular.module('lessonslearned').service('genServices', genServices);
 
 }());

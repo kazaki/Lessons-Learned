@@ -26,7 +26,7 @@ CREATE TABLE `technologies` (
   `idtechnologies` int(11) NOT NULL AUTO_INCREMENT,
   `technology` varchar(45) NOT NULL,
   PRIMARY KEY (`idtechnologies`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `technologies` (
 
 LOCK TABLES `technologies` WRITE;
 /*!40000 ALTER TABLE `technologies` DISABLE KEYS */;
+INSERT INTO `technologies` VALUES (1,'Java'),(2,'dot.Net'),(3,'HTML'),(4,'Definicao de processos'),(5,'Siebel'),(6,'Oracle'),(7,'SharePoint');
 /*!40000 ALTER TABLE `technologies` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-13  0:22:17
+-- Dump completed on 2016-05-13 16:36:57
