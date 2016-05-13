@@ -15,6 +15,18 @@ var adminServices = function ($q, $http, $cookies, $window) {
                     deferred.reject(err);
                 });
         };
+
+        // Function to get all users
+        this.getUsers = function() {
+
+            return $http.get('/api/users')
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
    
 };
 
