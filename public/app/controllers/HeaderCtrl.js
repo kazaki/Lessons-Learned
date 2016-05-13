@@ -3,7 +3,7 @@
 * Create the controller
 */
 (function(){
-	 var  PageCtrl = function($scope, $routeParams, $window, services) {
+	 var  HeaderCtrl = function($scope, $routeParams, $window, services) {
 
 		 console.log('Page loaded.');
 		 
@@ -13,10 +13,10 @@
 
 	 };
 	 // Injecting modules used for better minifing later on
-    PageCtrl.$inject = ['$scope', 'services'];
+    HeaderCtrl.$inject = ['$scope', 'services'];
 	
 	
 
     // Enabling the controller in the app
-    angular.module('lessonslearned').controller('PageCtrl', PageCtrl);
+    angular.module('lessonslearned').controller('HeaderCtrl', HeaderCtrl);
 }());
