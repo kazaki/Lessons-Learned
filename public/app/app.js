@@ -8,7 +8,8 @@
         'ngRoute',
         'ngCookies',
         'pascalprecht.translate',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'angular-advanced-searchbox'
     ]);
 
     /**
@@ -44,14 +45,14 @@
 
             .when("/listll", {
                 templateUrl: "app/views/list_ll.html",
-                controller: "PageCtrl"
+                controller: "listllCtrl"
             })
 
             .when("/create_ll", {
                 templateUrl: "app/views/create_ll.html",
                 controller: "CreateLLCtrl"
             })
-            
+
             .when("/forbidden",{
                 templateUrl: "app/views/forbidden.html",
                 controller: "PageCtrl"
