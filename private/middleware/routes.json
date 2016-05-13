@@ -4,7 +4,7 @@
 			"/api/login",
 			"/api/createuser",
 			"/api/managers",
-			"/api/technologies"		
+			"/api/technologies"
 		],
 
 		"logged": [
@@ -14,7 +14,7 @@
 		],
 
 		"admin": [
-			
+
 		]
 	},
 
@@ -35,7 +35,7 @@
 		],
 		"advanced": [
 			"/create_ll"
-			
+
 		]
 
 

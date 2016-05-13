@@ -1,99 +1,38 @@
 <link rel="stylesheet" href="styles/list_ll.css">
+
+<div ng-include='"app/views/templates/header.html"'></div>
 <div class="section">
 
     <div class="container">
         <div class="card card-container">
 
+            <nit-advanced-searchbox ng-model="searchParams" parameters="availableSearchParams" placeholder="Search..."></nit-advanced-searchbox>
             <div class="list-group" id="lessonslist">
-                <a href="#" class="list-group-item ">
-                    <span class="lessonslistTitle ">{{ 'HOME' | translate }}</span>
-                    <span class="lessonslistSubmitter ">
-                    <small> Submitted by: </small>
+
+
+                <a href="#" class="list-group-item clearfix">
+                    <span class="lessonslistTitle list-group-item-text">{{ 'HOME' | translate }}</span>
+                    <span class="lessonslistSubmitter list-group-item-text">
+                    <small class="list-group-item-text"> Submitted by: </small>
 
                                   Submitter
                                 </span>
 
-                    <div class="pull-right">
-                      
+                    <span class="pull-right">
+
                         <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" class="btn btn-primary">Project name</button>
+                            <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-folder-open"></i></button>
                             <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
                             <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
                         </div>
 
 
-                    </div>
+                    </span>
                 </a>
-                <a href="#" class="list-group-item">
-                    <span class="lessonslistTitle ">Dapibus ac facilisis in </span>
-
-                    <span class="lessonslistSubmitter ">
-                  <small> Submitted by: </small>
-
-                                Submitter
-                              </span>
-                    <div class="pull-right">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" class="btn btn-primary">Project name</button>
-                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
-                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
-                        </div>
 
 
-                    </div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <span class="lessonslistTitle "> Morbi leo risus </span>
-                    <span class="lessonslistSubmitter ">
-                  <small> Submitted by: </small>
-
-                                Submitter
-                              </span>
-                    <div class="pull-right">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" class="btn btn-primary">Project name</button>
-                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
-                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
-                        </div>
 
 
-                    </div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <span class="lessonslistTitle "> Porta ac consectetur ac </span>
-                    <span class="lessonslistSubmitter ">
-                  <small> Submitted by: </small>
-
-                                Submitter
-                              </span>
-                    <div class="pull-right">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" class="btn btn-primary">Project name</button>
-                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
-                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
-                        </div>
-
-
-                    </div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <span class="lessonslistTitle "> Vestibulum at eros </span>
-                    <span class="lessonslistSubmitter ">
-                  <small> Submitted by: </small>
-
-                                Submitter
-                              </span>
-                    <div class="pull-right">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" class="btn btn-primary">Project name</button>
-                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
-                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
-                        </div>
-
-
-                    </div>
-                    <br/>
-                </a>
             </div>
             <!-- Single button -->
             <div class="btn-group">
