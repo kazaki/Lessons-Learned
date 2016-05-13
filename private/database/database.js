@@ -42,10 +42,10 @@
          });
     }
 
-    exports.getUserByID = function(idusers){
+    exports.getUserByID = function(iduser){
          return new Promise(function (resolve, reject) {
          var query = "SELECT * FROM public.users WHERE idusers = ?";
-         query = mysql.format(query,idusers);
+         query = mysql.format(query,iduser);
          client.query(query,function (err, result) {
                     if (err) {
                         reject(err);

@@ -72,9 +72,11 @@
 
         });
 
-        server.get("/users/:user_id",function(req,res){
+        server.get("/api/user",function(req,res){
 
-            database.getUserByID()
+            var iduser = req.headers.iduser;
+
+            database.getUserByID(iduser)
                .then(function (user) {
                     res.status(200).send(user);
                 })
@@ -89,7 +91,7 @@
                 email: req.body.email.toLowerCase(),
                 password: req.body.password
             };
-console.log(user.password);
+            console.log(user.password);
             database.confirmLoginByEmail(user)
                 .then(function (user) {
                     console.log(user.token);
@@ -175,9 +177,9 @@ console.log(user.password);
             }
         });
 
-        server.delete("/api/deleteuser/:email",function(req,res){
+        server.delete("/api/deleteuser",function(req,res){
 
-            var email = req.params.email.toLowerCase();
+            var email = req.body.email.toLowerCase();
 
             console.log(email);
 
@@ -200,9 +202,9 @@ console.log(user.password);
                 });
         });
 
-        server.delete("/api/deleteuser/:iduser",function(req,res){
+        server.delete("/api/deleteuser",function(req,res){
 
-            var iduser = req.params.iduser;
+            var iduser = req.body.iduser;
 
             console.log(iduser);
 
@@ -317,9 +319,9 @@ console.log(user.password);
                 });        
         });
 
-         server.delete("/api/deletelesson/:idlesson",function(req,res){
+         server.delete("/api/deletelesson",function(req,res){
 
-             var idlesson = req.params.idlesson;
+             var idlesson = req.body.idlesson;
 
              console.log(idlesson);
 
@@ -342,10 +344,10 @@ console.log(user.password);
                 });
          });
 
-         server.put('/api/updatelessonfield/:idLesson', function (req, res) {
+         server.put('/api/updatelessonfield', function (req, res) {
 
              var businessSector = req.body.businessSector.toLowerCase();
-             var idLesson = req.params.idlesson;
+             var idLesson = req.body.idlesson;
 
                 database.updateLessonFieldByID(businessSector,idLesson)
                     .then(function() {
@@ -365,14 +367,14 @@ console.log(user.password);
 
          });
 
-         server.put("/api/updatelessontext/:idLesson",function(req,res){
+         server.put("/api/updatelessontext",function(req,res){
 
                  var datetime = new Date();
                  var situation = req.body.situation;
                  var action = req.body.action;
                  var result = req.body.result;
 
-                 var idLesson = req.params.idlesson;
+                 var idLesson = req.body.idlesson;
 
                  database.updateLessonTextByID(action, situation, result, idLesson)
                     .then(function() {
@@ -418,10 +420,10 @@ console.log(user.password);
                     });
          });
 
-         server.put("/api/updatelessonstate/:idLesson"), function(req, res){
+         server.put("/api/updatelessonstate"), function(req, res){
 
              var state = req.body.state.toLowerCase();
-             var idLesson = req.params.idlesson;
+             var idLesson = req.body.idlesson;
 
               if(state == 'draft' || state == 'submited' || state == 'approved' || state == 'inactive'){
 
@@ -490,11 +492,11 @@ console.log(user.password);
                     });
          });
 
-        server.put("/api/updatedateProject/:idproject",function(req,res){
+        server.put("/api/updatedateProject",function(req,res){
 
                  var date = req.body.date;
 
-                 var idproject = req.params.idproject;
+                 var idproject = req.body.idproject;
 
                  database.updateProjectDateByID(idproject,date)
                     .then(function() {
@@ -518,17 +520,6 @@ console.log(user.password);
 
 
         server.get('/api/technologies', function (req, res) {
-            
-                database.getTechnologies()
-                   .then(function (techs) {
-                        res.status(200).send(techs);
-                    })
-                    .catch(function (err) {
-                        res.status(406).send('Could not retrieve technologies information');
-                    });
-        });
-
-         server.get('/api/technologies', function (req, res) {
             
                 database.getTechnologies()
                    .then(function (techs) {
