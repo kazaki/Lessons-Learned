@@ -3,17 +3,26 @@
 * Create the controller
 */
 (function(){
-	 var  GlobalCtrl = function($scope, $routeParams, $window, services) {
+	 var  GlobalCtrl = function($scope, $routeParams, $window, userServices) {
 
-		 console.log('Page loaded.');
+		 console.log('Page loaded11.');
 		 
-		 $scope.getUser = function() {
-			return true;
-		}
-
+		 $scope.hasSession="";
+         $scope.logged = function(){
+            userServices.logged()
+                .then(function(res){
+                    $scope.hasSession=res;
+                    $scope.hasSession.logged=true;
+                })
+                .catch( function (err){
+                    $scope.hasSession.logged=false;
+                });
+        };
+		
+		$scope.logged();
 	 };
 	 // Injecting modules used for better minifing later on
-    GlobalCtrl.$inject = ['$scope', 'services'];
+    GlobalCtrl.$inject = ['$scope', '$routeParams', '$window','userServices'];
 	
 	
 

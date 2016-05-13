@@ -55,7 +55,7 @@
 
             .when("/forbidden",{
                 templateUrl: "app/views/forbidden.html",
-                controller: "PageCtrl"
+                controller: "HomeCtrl"
             })
 
             .otherwise({

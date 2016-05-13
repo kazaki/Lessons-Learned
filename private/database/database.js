@@ -77,10 +77,14 @@
          client.query(query,function (err, result) {
                     if (err) {
                         reject(err);
-                    } else {
+                    } else if(result==[]){
+                        console.log(result);
                         delete result[0]['password'];
                         delete result[0]['idusers'];
                         resolve(result[0]);
+                    }
+                    else{
+                        reject("No users");
                     }
                 });   
          });
