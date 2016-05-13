@@ -7,7 +7,7 @@
 
 		 console.log('Page loaded.');
 		 
-		 $scope.loggedIn = function() {
+		 $scope.getUser = function() {
 			return true;
 		}
 
