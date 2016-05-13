@@ -4,7 +4,7 @@
 var adminServices = function ($q, $http, $cookies, $window) {
     var deferred = $q.defer();
     
-      // Function to login a user
+      // Function to create a user
         this.registerUser = function(user) {
 
             return $http.post('/api/createuser', user)
@@ -27,7 +27,7 @@ var adminServices = function ($q, $http, $cookies, $window) {
                     deferred.reject(err);
                 });
         };
-   
+
 };
 
 // Injecting modules used for better minifing later on

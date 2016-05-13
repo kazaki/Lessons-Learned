@@ -27,9 +27,9 @@ CREATE TABLE `project` (
   `type` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `manager` int(11) NOT NULL,
-  `dateBeginning` datetime NOT NULL,
-  `dateEndExpected` datetime DEFAULT NULL,
-  `dateEnd` datetime DEFAULT NULL,
+  `dateBeginning` date NOT NULL,
+  `dateEndExpected` date DEFAULT NULL,
+  `dateEnd` date DEFAULT NULL,
   `deliveringModel` varchar(45) NOT NULL,
   `numberConsultants` int(11) NOT NULL,
   `daysDuration` int(11) DEFAULT NULL,
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-13  0:22:17
+-- Dump completed on 2016-05-13 16:36:56

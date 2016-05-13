@@ -5,7 +5,7 @@
     
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
 
-<form ng-submit="addLesson(lesson)" class="form-horizontal">
+<form ng-submit="addProject(project)">
 <fieldset>
 
 <!-- Form Name -->
@@ -17,56 +17,56 @@
 <div class="form-group">
   <div class="col-md-4">
   <label class="col-md-6 control-label" for="textarea">Nome Projeto</label>
-    <input ng-model="lesson.name" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+    <input ng-model="project.name" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
   </div>
   <div class="col-md-4">
     <label class="col-md-6 control-label" for="textarea">Modelo Entrega</label>
-    <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+    <input ng-model="project.deliveringModel" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
   </div>
   <div class="col-md-4">
   <label class="col-md-8 control-label" for="textarea">Gestor Responsável</label>
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="1"> Gestor1 </option>
-      <option value="2"> Gestor2 </option>
-      <option value="3"> Gestor3 </option>
+    <select id="selectbasic" ng-model="project.manager" name="selectbasic" class="form-control">
+      <option  ng-repeat="manager in managers" value="{{ manager.name }}"> {{ manager.name  }} </option>
     </select>
   </div>
 </div>
 
 <div class="form-group">
   <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Início</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
+    <label class="col-md-6 control-label">Início</label>
+     <input type="date" name="d" min="2011-08-01" max="2021-08-15" ng-model="project.dateBeginning">
   </div>
   <div class="col-md-4">
     <label class="col-md-6 control-label" for="textarea">Fim Expectável</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
+    <input ng-model="project.dateEndExpected" type="date" class="form-control input-md">
   </div>
   <div class="col-md-4">
     <label class="col-md-6 control-label" for="textarea">Data Fim</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
+    <input ng-model="project.dateEnd" id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
   </div>
 </div>
 
 <div class="form-group">
   <div class="col-md-4">
-    <label class="col-md-4 control-label" for="textarea">Número Colaboradores</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
+    <label class="col-md-6 control-label" for="textarea">Número Colaboradores</label>
+    <input ng-model="project.numberConsultants" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
   </div>
   <div class="col-md-4">
-  <label class="col-md-4 control-label" for="textarea">Número Dias</label>
-    <input id="date" name="date" type="date" placeholder="placeholder" class="form-control input-md">
+    <label class="col-md-6 control-label" for="textarea">Número Dias</label>
+    <input ng-model="project.daysDuration" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+  </div>
+  <div class="col-md-4">
+  <label class="col-md-8 control-label" for="textarea">Tipo Projeto</label>
+    <select id="selectbasic" ng-model="project.type"  name="selectbasic" class="form-control">
+      <option id="AMD2"> ADM2 </option>
+      <option id="AMD3"> ADM3 </option>
+      <option id"ADM4"> ADM4 </option>
+    </select>
   </div>
 </div>
 
 <!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-3 control-label" for="button1id"></label>
-  <div class="col-md-12">
-    <button id="button1id" name="button1id" class="btn btn-success">Ok</button>
-    <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
-  </div>
-</div>
+  <button type="submit" class="btn btn-primary btn-outline center-block">Add Project</button>
 
 </fieldset>
 </form>

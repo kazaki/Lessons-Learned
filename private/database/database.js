@@ -435,19 +435,29 @@
          });
     }
 
-    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected,deliveringModel,numberConsultants, daysDuration) {
+    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected, dateEnd, deliveringModel,numberConsultants, daysDuration) {
         return new Promise(function (resolve, reject) {
+            var query = 'Select idusers FROM users WHERE name = ?';
+            query = mysql.format(query, manager);
+            client.query(query,function (err2, result2) {
+                    if (err2) {
+                        reject(err2);
+                    } else {
+                        console.log(dateBeginning + 'loooooooool');
+                        console.log(dateEndExpected + 'loooooooool');
+                        console.log(dateEnd + 'loooooooool');
+                        client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: result2[0].idusers, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, dateEnd: dateEnd, deliveringModel: deliveringModel, numberConsultants: numberConsultants , daysDuration:daysDuration},
+                            function (err, result) {
+                                if (err) {
+                                    reject(err);
+                                } else {
 
-                client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: manager, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, deliveringModel: deliveringModel, numberConsultants: numberConsultants , daysDuration:daysDuration},
-                    function (err, result) {
-                        if (err) {
-                            reject(err);
-                        } else {
-
-                        resolve(result.insertId);
-                        }
-                    });
+                                resolve(result.insertId);
+                                }
+                            });
+                    }
                 });
+        });
     }
 
     exports.updateProjectDateByID = function(idproject,date){

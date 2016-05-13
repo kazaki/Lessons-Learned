@@ -7,13 +7,9 @@
              adminServices.registerUser(user)
                 .then(function (res) {
                     alert(res);
-                   // $scope.itemsLogin.pop();
-                    //$scope.itemsLogin.push();
                 })
                 .catch(function (err) {
                     alert(err.data.message);
-                    //$scope.itemsLogin.pop();
-                    //$scope.itemsLogin.push(err.data.message);
                 });
          };
 	    

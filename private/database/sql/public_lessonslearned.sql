@@ -27,8 +27,8 @@ CREATE TABLE `lessonslearned` (
   `manager` int(11) NOT NULL,
   `project` int(11) DEFAULT NULL,
   `status` varchar(45) NOT NULL,
-  `creationdate` datetime NOT NULL,
-  `aproveddate` datetime DEFAULT NULL,
+  `creationdate` date NOT NULL,
+  `aproveddate` date DEFAULT NULL,
   PRIMARY KEY (`idLessonsLearned`),
   KEY `idUser_idx` (`manager`),
   KEY `idProject_idx` (`project`),
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-13  0:22:17
+-- Dump completed on 2016-05-13 16:36:57
