@@ -2,24 +2,24 @@
 	 var  LoginCtrl = function($scope, $routeParams, $window, userServices) {
 
 		 console.log('Page loaded.');
-
+         $scope.hasSession="";
+         $scope.items = [];
+         
 	    $scope.login = function(user,remember){
              userServices.login(user, remember)
                 .then(function (res) {
-                    //alert(JSON.stringify(res));
                     $window.location.href = '/';
-                   // $scope.itemsLogin.pop();
-                    //$scope.itemsLogin.push();
+                    $scope.items.pop();
+                    $scope.items.push();
                 })
                 .catch(function (err) {
-                    //alert(JSON.stringify(err.data.message));
-                    //$scope.itemsLogin.pop();
-                    //$scope.itemsLogin.push(err.data.message);
+                    $scope.items.pop();
+                    $scope.items.push(err.data.message);
+                    
                 });
             
         };
         
-         $scope.hasSession="";
          $scope.logged = function(){
             userServices.logged()
                 .then(function(res){
@@ -34,6 +34,10 @@
             userServices.logout();
         };
 		
+         $scope.pop = function () {
+            $scope.items.pop();
+        };
+        
 		$scope.logged();
         
        
