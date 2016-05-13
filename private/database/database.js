@@ -1,12 +1,12 @@
 (function() {
 
     'use strict';
-    var Promise = require('bluebird'), 
+    var Promise = require('bluebird'),
         mysql = require("mysql"),
         crypto = require('crypto'),
         bcrypt = require('bcrypt-nodejs'),
         client;
-                
+
     exports.connect = function(){
         return new Promise(function(resolve, reject) {
             client = mysql.createPool({
@@ -26,10 +26,10 @@
                 }
         });
     }
-    
+
     <!------------------------------------------------------------------------------------------------ USERS ------------------------------------------------------------->
     exports.getUser = function(){
-         return new Promise(function (resolve, reject) { 
+         return new Promise(function (resolve, reject) {
          var query = "SELECT * FROM public.users";
          query = mysql.format(query);
          client.query(query,function (err, result) {
@@ -38,7 +38,7 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
@@ -52,7 +52,7 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
@@ -66,7 +66,7 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
@@ -86,10 +86,10 @@
                     else{
                         reject("No users");
                     }
-                });   
+                });
          });
     }
- 
+
     exports.checkPasswordbyEmail = function(email, password){
          return new Promise(function (resolve, reject) {
          client.query('SELECT password FROM users WHERE ?', {email: email},
@@ -107,7 +107,7 @@
                             } else if (res) {
                                 console.log('NICE');
                                 resolve();
-                                
+
                             } else{
                                 console.log('CRA*');
                                 reject('Wrong password.');
@@ -142,9 +142,9 @@
                             reject('No users found with such email.');
                         }
                     }
-                });   
+                });
          });
-    }   
+    }
 
     exports.insertUser = function (email, password,name) {
         return new Promise(function (resolve, reject) {
@@ -171,7 +171,7 @@
             });
         });
     }
-  
+
     exports.updateUser = function(email){
          return new Promise(function (resolve, reject) {
          client.query('UPDATE public.users SET ? WHERE email = ?', [{name: name, password: hash, token: buf.toString('hex')}],
@@ -181,7 +181,7 @@
                     } else {
                         resolve('Deleted User with email: ' + email);
                     }
-                });   
+                });
          });
     }
 
@@ -198,7 +198,7 @@
                         } else {
                             resolve('Deleted User by Email.');
                         }
-                    });   
+                    });
              });
     }
 
@@ -215,10 +215,10 @@
                         } else {
                             resolve('Deleted User by ID.');
                         }
-                    });   
+                    });
              });
     }
-    
+
       // Function to update a user email
     exports.updateUserByEmail = function (name, hashedpass, email) {
         return new Promise(function (resolve, reject) {
@@ -241,8 +241,8 @@
     <!------------------------------------------------------------------------------------------------ Lessons ------------------------------------------------------------->
 
     exports.getLessons = function(){
-         return new Promise(function (resolve, reject) { 
-         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3, public.lesson_tech as t4, public.project as t5 WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t3.idLessonsLearned AND t4.idlesson = t1.idLessonsLearned AND t1.project = t5.idproject";
+         return new Promise(function (resolve, reject) {
+         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3, public.lesson_tech as t4,  public.project as t5  WHERE t1.idLessonsLearned = t2.idLessonLearned  AND t1.idLessonsLearned = t4.idlesson AND t4.idlesson = t1.idLessonsLearned  AND t1.project = t5.idproject";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -250,7 +250,7 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
@@ -264,7 +264,7 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
@@ -278,7 +278,7 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
@@ -293,7 +293,7 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
@@ -310,7 +310,7 @@
                         } else {
                             resolve('Deleted User by ID.');
                         }
-                    });   
+                    });
              });
     }
 
@@ -353,7 +353,7 @@
         });
     }
 
-    exports.insertLesson = function (dateCreated,maker,project,datetime,situation,action,result,technology) { 
+    exports.insertLesson = function (dateCreated,maker,project,datetime,situation,action,result,technology) {
         return new Promise(function (resolve, reject) {
 
         if(project != null){
@@ -365,7 +365,7 @@
                         } else {
                             console.log('project consulted');
                         }
-                }); 
+                });
         }
 
         var query = "Select idtechnologies FROM public.technologies Where technology = ?";
@@ -406,8 +406,8 @@
                                             }
                                     });
                             }
-                    }); 
-                }       
+                    });
+                }
             });
         });
     }
@@ -428,7 +428,7 @@
     <!------------------------------------------------------------------------------------------------ Project ------------------------------------------------------------->
 
     exports.getProjects = function(){
-         return new Promise(function (resolve, reject) { 
+         return new Promise(function (resolve, reject) {
          var query = "SELECT * FROM public.project";
          query = mysql.format(query);
          client.query(query,function (err, result) {
@@ -437,7 +437,7 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
@@ -483,7 +483,7 @@
 
 
     exports.getTechnologies = function(){
-         return new Promise(function (resolve, reject) { 
+         return new Promise(function (resolve, reject) {
          var query = "SELECT * FROM public.technologies";
          query = mysql.format(query);
          client.query(query,function (err, result) {
@@ -492,12 +492,12 @@
                     } else {
                         resolve(result);
                     }
-                });   
+                });
          });
     }
 
     exports.addTechnology = function(technology){
-         return new Promise(function (resolve, reject) { 
+         return new Promise(function (resolve, reject) {
         client.query('INSERT INTO public.technologies SET ?', {technology: technology },
             function (err, result) {
                 if (err) {
@@ -507,9 +507,8 @@
                 resolve(result.insertId);
                 }
             });
-        });  
+        });
     }
 
 
 }());
-
