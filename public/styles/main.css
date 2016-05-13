@@ -167,11 +167,10 @@ footer {
   padding-left: 15px;
   margin-left: 15px;
 }
-.navbar-brand>img {
-  height: 90%;
-  padding-top: 10px; 
-  width: auto;
-  border: 1px solid black;
+
+.navbar-header > a > img {
+	width:100px;
+	margin-left:20px;
 }
 
 .navbar .nav > li > a {

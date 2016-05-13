@@ -3,7 +3,7 @@
 * Create the controller
 */
 (function(){
-	 var  HeaderCtrl = function($scope, $routeParams, $window, services) {
+	 var  GlobalCtrl = function($scope, $routeParams, $window, services) {
 
 		 console.log('Page loaded.');
 		 
@@ -13,10 +13,10 @@
 
 	 };
 	 // Injecting modules used for better minifing later on
-    HeaderCtrl.$inject = ['$scope', 'services'];
+    GlobalCtrl.$inject = ['$scope', 'services'];
 	
 	
 
     // Enabling the controller in the app
-    angular.module('lessonslearned').controller('HeaderCtrl', HeaderCtrl);
+    angular.module('lessonslearned').controller('GlobalCtrl', GlobalCtrl);
 }());
