@@ -304,9 +304,9 @@ console.log(user.password);
                     });
         });
 
-         server.get("/lessons/:lesson_id",function(req,res){
+         server.get("/api/lesson",function(req,res){
 
-             var lesson_id = req.params.lesson_id;
+             var lesson_id = req.headers.lesson_id;
 
              database.getLessonByID(lesson_id)
                .then(function (lesson) {
