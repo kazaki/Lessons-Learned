@@ -22,8 +22,7 @@
 	"views":{
 		"all": [
 			"/",
-			"/forbidden",
-			"/create_ll"
+			"/forbidden"
 		],
 		"logged": [
 			"/listll"
