@@ -76,14 +76,42 @@
                 EXPORT: 'Export',
                 EXPORT_TO_PDF: 'Export to PDF file',
                 EXPORT_TO_CSV: 'Export to CSV file',
-                ADD_USER: 'Add user'
+                ADD_USER: 'Add user',
+
+                SELECT: 'Select...',
+                CLIENT: 'Client',
+                SELECT_CLIENT: 'Project\'s Client',
+                NONE: 'None',
+
+                //Create LL
+                SELECT_TECHS: 'Select Technologies',
+                SELECT_MANAGER: 'Select Project Manager',
+                SELECT_PROJECT: 'Select Project',
+                DESCRIPTION: 'Description of the situation',
+                ACTION_TAKEN: 'Action taken',
+                RESULT_DESCRIPTION: 'Results observed',
+                CHARS_LEFT: 'characters left'
             })
             .translations('pt', {
                 HOME: 'Começar',
                 EXPORT: 'Exportar',
                 EXPORT_TO_PDF: 'Exportar para ficheiro PDF',
                 EXPORT_TO_CSV: 'Exportar para ficheiro CSV',
-                ADD_USER: 'Adicionar utilizador'
+                ADD_USER: 'Adicionar utilizador',
+
+                SELECT: 'Selecionar...',
+                CLIENT: 'Cliente',
+                SELECT_CLIENT: 'Cliente',
+                NONE: 'Nenhum',
+
+                //Create LL
+                SELECT_TECHS: 'Selecionar Tecnologias',
+                SELECT_MANAGER: 'Selecionar Gestor de Projeto',
+                SELECT_PROJECT: 'Selecionar Projeto',
+                DESCRIPTION: 'Descrição da situação',
+                ACTION_TAKEN: 'Descrição da ação tomada',
+                RESULT_DESCRIPTION: 'Descrição do resultado',
+                CHARS_LEFT: 'caracteres restantes'
             })
         $translateProvider.preferredLanguage('pt');
     }]);
