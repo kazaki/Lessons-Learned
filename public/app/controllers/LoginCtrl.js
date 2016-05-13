@@ -6,18 +6,35 @@
 	    $scope.login = function(user,remember){
              userServices.login(user, remember)
                 .then(function (res) {
-                    alert(JSON.stringify(res));
-                    
+                    //alert(JSON.stringify(res));
+                    $window.location.href = '/';
                    // $scope.itemsLogin.pop();
                     //$scope.itemsLogin.push();
                 })
                 .catch(function (err) {
-                    alert(JSON.stringify(err.data.message));
+                    //alert(JSON.stringify(err.data.message));
                     //$scope.itemsLogin.pop();
                     //$scope.itemsLogin.push(err.data.message);
                 });
             
         };
+        
+         $scope.hasSession="";
+         $scope.logged = function(){
+            userServices.logged()
+                .then(function(res){
+                    $scope.hasSession=res;
+                    $scope.hasSession.logged=true;
+                })
+                .catch( function (err){
+                    $scope.hasSession.logged=false;
+                });
+        };
+        $scope.logout = function(){
+            userServices.logout();
+        };
+		
+		$scope.logged();
         
        
 	 };

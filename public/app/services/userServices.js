@@ -57,7 +57,7 @@ var userServices = function ($q, $http, $cookies, $window) {
 
          // Function to logout a user
         this.logout = function() {
-
+console.log($cookies);
             $cookies.remove('session', {
                 path: '/'
             });
