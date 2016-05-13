@@ -4,7 +4,8 @@
 			"/api/login",
 			"/api/createuser",
 			"/api/managers",
-			"/api/technologies"
+			"/api/technologies",
+			"/api/projects"
 		],
 
 		"logged": [
@@ -21,7 +22,8 @@
 	"views":{
 		"all": [
 			"/",
-			"/forbidden"
+			"/forbidden",
+			"/create_ll"
 		],
 		"logged": [
 			"/listll"
