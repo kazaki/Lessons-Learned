@@ -78,6 +78,13 @@
             .useSanitizeValueStrategy('escape')
             .translations('en', { //TODO: Translations from each language on different files
                 HOME: 'Home',
+                USERS: 'Users',
+                LESSONS: 'Lessons Learned',
+                STATS: 'Statistics',
+                IN_WAIT: 'In Wait',
+                AUDIT_TRAIL: 'Audit Trail',
+                SETTINGS: 'Settings',
+
                 EXPORT: 'Export',
                 EXPORT_TO_PDF: 'Export to PDF file',
                 EXPORT_TO_CSV: 'Export to CSV file',
@@ -99,6 +106,13 @@
             })
             .translations('pt', {
                 HOME: 'Começar',
+                USERS: 'Utilizadores',
+                LESSONS: 'Lições Aprendidas',
+                STATS: 'Estatísticas',
+                IN_WAIT: 'À espera de aprovação',
+                AUDIT_TRAIL: 'Audit Trail',
+                SETTINGS: 'Configurações',
+
                 EXPORT: 'Exportar',
                 EXPORT_TO_PDF: 'Exportar para ficheiro PDF',
                 EXPORT_TO_CSV: 'Exportar para ficheiro CSV',
