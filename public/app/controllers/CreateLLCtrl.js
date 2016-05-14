@@ -1,9 +1,11 @@
 (function(){
-	 var  CreateLLCtrl = function($scope, llServices) {
+	 var  CreateLLCtrl = function($scope, genServices, llServices, userServices) {
 
-		 console.log('Page loaded.');
+        $scope.technologies = [];
+        $scope.projects = [];
+        var manager = null;
 
-         llServices.getTechnologies()
+        genServices.getTechnologies()
             .then(function (techs) {
                 $scope.technologies = techs.data;
             })
@@ -11,15 +13,7 @@
                 alert(err.data);
             });
 
-         llServices.getManagers()
-            .then(function (mans) {
-                $scope.managers = mans.data;
-            })
-            .catch(function (err) {
-                alert(err.data);
-            });
-
-        llServices.getProjects()
+        genServices.getProjects()
             .then(function (projects) {
                 $scope.projects = projects.data;
             })
@@ -27,17 +21,44 @@
                 alert(err.data);
             });
 
+        userServices.logged()
+                .then(function (result) {
+                    manager = result.data.name;
+                })
+                .catch(function (err) {
+                    alert(err.data);
+                });
+
         $scope.addLesson = function(lesson) {
-            alert(lesson.technologies[0].technology + ' ' + lesson.technologies[0].idtechnologies);
+            /*alert(lesson.technologies[0].technology + ' ' + lesson.technologies[0].idtechnologies);
             alert(lesson.actionTaken);
-            alert(lesson.description);
-            alert(lesson.results);
+            alert(lesson.situation);
+            alert(lesson.result);*/
+
+            var ll = 
+             {
+                 "project": lesson.project,
+                 "technologies": lesson.technologies,
+                 "actionTaken": lesson.actionTaken,
+                 "situation": lesson.situation,
+                 "result": lesson.result,
+                 "maker": manager
+             };
+
+            llServices.createLL(ll)
+                .then(function (result) {
+                    alert("Inserted!");
+                    console.log(JSON.stringify(result));
+                })
+                .catch(function (err) {
+                    alert(err.data);
+                });
         }
             
 
 	 };
 	 // Injecting modules used for better minifing later on
-    CreateLLCtrl.$inject = ['$scope','llServices'];
+    CreateLLCtrl.$inject = ['$scope', 'genServices', 'llServices', 'userServices'];
 
     // Enabling the controller in the app
     angular.module('lessonslearned').controller('CreateLLCtrl', CreateLLCtrl);

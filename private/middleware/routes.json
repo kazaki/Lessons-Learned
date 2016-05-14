@@ -5,7 +5,9 @@
 			"/api/verifysession",
 			"/api/createuser",
 			"/api/managers",
-			"/api/technologies"
+			"/api/technologies",
+			"/api/projects",
+			"/api/createlesson"
 		],
 
 		"logged": [

@@ -355,6 +355,9 @@
     exports.insertLesson = function (dateCreated,maker,project,datetime,situation,action,result,technology) {
         return new Promise(function (resolve, reject) {
 
+        var projectID = null;
+        var resultDesc = result;
+
         if(project != null){
          var query = "Select idproject FROM public.project Where name = ?";
          query = mysql.format(query,project);
@@ -363,21 +366,71 @@
                             reject(result4);
                         } else {
                             console.log('project consulted');
+                            projectID = result4[0].idproject;
                         }
                 });
         }
+        else {
+            projectID = null;
+        }
 
-        var query = "Select idtechnologies FROM public.technologies Where technology = ?";
-         query = mysql.format(query,technology);
-         client.query(query,function (err5, result5) {
+        var arrayTechs = [];
+        technology.forEach(function(tech) {
+            var query = "Select idtechnologies FROM public.technologies Where technology = ?";
+            query = mysql.format(query,tech.technology);
+            client.query(query,function (err5, result5) {
                     if (err5) {
                             reject(result5);
                         } else {
-                            console.log('technology consulted');
+                            console.log("technology consulted");
+                            arrayTechs.push(result5[0].idtechnologies);
                         }
                 });
+        });
 
-        client.query('Select idusers FROM public.users Where name = ?',{name:maker},
+        var query = "Select idusers FROM public.users Where name = ?";
+        query = mysql.format(query,maker);
+        client.query(query, function(err, result) {
+            if (err) {
+                reject(err);
+            } else {
+                client.query('INSERT INTO public.lessonsLearned SET ?', {creationdate: dateCreated, manager: result[0].idusers, project: projectID, status: 'inactive'},
+                        function (err1, result1) {
+                            if (err1) {
+                                reject(err1);
+                            } else {
+                                console.log("Lesson inserted: " + JSON.stringify(result1));
+
+                                client.query('INSERT INTO public.lessonstext SET ?', {idLessonLearned: result1.insertId, situation: situation, action: action, result: resultDesc},
+                                    function (err2, result2) {
+                                        if (err2) {
+                                            reject(err2);
+                                        } else {
+                                            var sql = "INSERT INTO public.lesson_tech (idLesson, idTech) VALUES ?";
+                                            var values = [];
+                                            arrayTechs.forEach(function(tech) {
+                                                var val = [result1.insertId,tech];
+                                                values.push(val);
+                                            });
+
+                                            console.log(values);
+                                            client.query(sql,[values],function (err5, result5) {
+                                                if (err5) {
+                                                    console.log("Error inserting lesson");
+                                                        reject("error")
+                                                    } else {
+                                                        console.log("Success inserting lesson");
+                                                        resolve(result.insertId);
+                                                    }
+                                            });
+                                        }
+                                    });
+                            }
+                        });
+            }            
+        });
+
+        /*client.query('Select idusers FROM public.users Where name = ?',{name:maker},
                     function (err, result) {
                         if (err) {
                             reject(err);
@@ -407,7 +460,7 @@
                             }
                     });
                 }
-            });
+            });*/
         });
     }
 

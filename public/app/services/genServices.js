@@ -23,7 +23,16 @@ var genServices = function ($q, $http) {
                     deferred.reject(err);
                 });
         };
-
+        // Function to retrieve the list of existing projects
+        this.getProjects = function() {
+            return $http.get('/api/projects')
+                .success(function(res) {
+                    deferred.resolve(res);
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
         // Function to create a project
         this.createProject = function(project) {
 

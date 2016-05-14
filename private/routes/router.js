@@ -402,17 +402,20 @@
 
                 var datetime = new Date();
                 var situation = req.body.situation;
-                var action = req.body.action;
+                var action = req.body.actionTaken;
                 var result = req.body.result;
 
-                var technology = req.body.technology;
+                var technologies = req.body.technologies;
 
-                database.insertLesson(dateCreated,maker,project,datetime,situation,action,result,technology)
+                technologies.forEach(function(tech) {
+                    console.log(tech);
+                })
+                database.insertLesson(dateCreated,maker,project,datetime,situation,action,result,technologies)
                     .then(function (lesson) {
                         res.sendStatus(200);
                     })
                     .catch(function (err) {
-                        // Sending the error to the log file
+                        // TODO Sending the error to the log file
                         console.log('Error inserting lesson to database');
                         console.log(err);
                     

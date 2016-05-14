@@ -102,7 +102,10 @@
                 DESCRIPTION: 'Description of the situation',
                 ACTION_TAKEN: 'Action taken',
                 RESULT_DESCRIPTION: 'Results observed',
-                CHARS_LEFT: 'characters left'
+                CHARS_LEFT: 'characters left',
+                SUBMIT: 'Submit',
+                SAVE_DRAFT: 'Save as draft',
+                CANCEL: 'Cancel'
             })
             .translations('pt', {
                 HOME: 'Começar',
@@ -130,7 +133,10 @@
                 DESCRIPTION: 'Descrição da situação',
                 ACTION_TAKEN: 'Descrição da ação tomada',
                 RESULT_DESCRIPTION: 'Descrição do resultado',
-                CHARS_LEFT: 'caracteres restantes'
+                CHARS_LEFT: 'caracteres restantes',
+                SUBMIT: 'Submeter',
+                SAVE_DRAFT: 'Guardar rascunho',
+                CANCEL: 'Cancelar'
             })
         $translateProvider.preferredLanguage('pt');
     }]);
