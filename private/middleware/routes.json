@@ -34,7 +34,8 @@
 			"/listll",
 			"/users",
 			"/create_project",
-			"/create_ll"
+			"/create_ll",
+			"/view_ll"
 		],
 		"logged": [
 

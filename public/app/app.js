@@ -22,6 +22,7 @@
                 templateUrl: "app/views/login.html",
                 controller: "LoginCtrl"
             })
+			
              .when("/home", {
                 templateUrl: "app/views/home.html",
                 controller: "HomeCtrl"
@@ -57,7 +58,17 @@
                 templateUrl: "app/views/admin/create_project.html",
                 controller: "CreateLLCtrl"
             })
+			
+			.when("/create_project", {
+                templateUrl: "app/views/admin/create_project.html",
+                controller: "CreateLLCtrl"
+            })
 
+			.when("/view_ll", {
+                templateUrl: "app/views/view_ll.html",
+                controller: "ViewLLCtrl"
+            })
+			
             .when("/forbidden",{
                 templateUrl: "app/views/forbidden.html",
                 controller: "HomeCtrl"
