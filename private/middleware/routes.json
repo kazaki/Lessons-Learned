@@ -7,11 +7,14 @@
 			"/api/managers",
 			"/api/technologies",
 			"/api/projects",
-			"/api/createlesson"
+			"/api/createlesson",
+			"/api/lessons",
+			"/api/user",
+			"/api/searchlessons"
 		],
 
 		"logged": [
-			"/api/lessons",
+
 			"/api/users",
 			"/api/updateuseremail"
 		],

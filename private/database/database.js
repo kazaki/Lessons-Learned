@@ -241,7 +241,7 @@
 
     exports.getLessons = function(){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3, public.lesson_tech as t4,  public.project as t5  WHERE t1.idLessonsLearned = t2.idLessonLearned  AND t1.idLessonsLearned = t4.idlesson AND t4.idlesson = t1.idLessonsLearned  AND t1.project = t5.idproject AND t3.idtechnologies = t4.idtech";
+         var query = "SELECT idLessonsLearned,status,creationdate,aproveddate,situation,action,result,technology,type,t5.name as title,t6.name FROM public.lessonslearned as t1, public.lessonstext as t2, public.technologies as t3,public.lesson_tech as t4,public.project as t5 ,public.users as t6  WHERE t1.idLessonsLearned = t2.idLessonLearned   AND t1.idLessonsLearned = t4.idlesson  AND t4.idlesson = t1.idLessonsLearned   AND t1.project = t5.idproject  AND t3.idtechnologies = t4.idtech AND t1.manager =t6.idusers";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -427,7 +427,7 @@
                                     });
                             }
                         });
-            }            
+            }
         });
 
         /*client.query('Select idusers FROM public.users Where name = ?',{name:maker},

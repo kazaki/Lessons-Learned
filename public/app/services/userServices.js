@@ -1,10 +1,10 @@
-(function () {
+(function() {
 
-'use strict';
-var userServices = function ($q, $http, $cookies, $window) {
-    var deferred = $q.defer();
-    
-      // Function to login a user
+    'use strict';
+    var userServices = function($q, $http, $cookies, $window) {
+        var deferred = $q.defer();
+
+        // Function to login a user
         this.login = function(user, remember) {
 
             return $http.post('/api/login', user)
@@ -31,9 +31,9 @@ var userServices = function ($q, $http, $cookies, $window) {
                     deferred.reject(err);
                 });
 
-        }; 
-        
-        this.logged = function(){
+        };
+
+        this.logged = function() {
             return $http.get('/api/verifysession')
                 .success(function(res) {
                     deferred.resolve(res.data);
@@ -55,20 +55,40 @@ var userServices = function ($q, $http, $cookies, $window) {
 
         };
 
-         // Function to logout a user
+        // Function to logout a user
         this.logout = function() {
-console.log($cookies);
+            console.log($cookies);
             $cookies.remove('session', {
                 path: '/'
             });
 
             $window.location.href = '/';
 
-        };   
-   
-};
+        };
 
-// Injecting modules used for better minifing later on
+        this.getUserById = function(userid) {
+            var config = {
+                headers: {
+
+                    'iduser': userid
+                }
+            };
+
+            return $http.get('/api/user', config)
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+
+        };
+
+
+
+    };
+
+    // Injecting modules used for better minifing later on
     userServices.$inject = ['$q', '$http', '$cookies', '$window'];
 
     // Enabling the service in the app
