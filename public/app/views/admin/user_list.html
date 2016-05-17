@@ -2,7 +2,19 @@
 
 <div class="container-fluid"><br>
 	<div class="container">
-		<div id="userbox" class="row panel panel-default bg-blue" ng-repeat="user in users">
+		<!-- search -->
+		<div class="row">
+			<div class="input-group stylish-input-group">
+                <input type="text" class="form-control"  placeholder="Search..." ng-model="search.filter">
+                <span class="input-group-addon">
+                    <button type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>  
+                </span>
+        	</div>
+    	</div><br>
+        <!-- user list -->
+		<div id="userbox" class="row panel panel-default bg-blue" ng-repeat="user in (users | filter:search.filter).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) ">
 			<div class="panel-body box-shadow--2dp">
 
 				<div class="col-lg-3 col-md-2 col-sm-2 col-xs-6 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
@@ -29,6 +41,7 @@
 				</div>
 			</div>
 		</div>
+		<uib-pagination total-items="users.length" items-per-page="itemsPerPage" ng-model="currentPage" max-size="5" boundary-links="true" class="pagination-sm" first-text="{{ 'FIRST' | translate }}" last-text="{{ 'LAST' | translate }}" next-text="{{ 'NEXT' | translate }}" previous-text="{{ 'PREVIOUS' | translate }}"></uib-pagination>
 		<div class="text-center">
 			<a href="/user_management" type="button" class="btn btn-primary btn-outline">{{ 'ADD_USER' | translate | uppercase }}</a>
 		</div>

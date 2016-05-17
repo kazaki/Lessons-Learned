@@ -106,6 +106,12 @@
                 SELECT_CLIENT: 'Project\'s Client',
                 NONE: 'None',
 
+                //Pagination buttons
+                FIRST: 'First',
+                LAST: 'Last',
+                NEXT: 'Next',
+                PREVIOUS: 'Previous',
+
                 //Create LL
                 SELECT_TECHS: 'Select Technologies',
                 SELECT_MANAGER: 'Select Project Manager',
@@ -136,6 +142,12 @@
                 CLIENT: 'Cliente',
                 SELECT_CLIENT: 'Cliente',
                 NONE: 'Nenhum',
+
+                //Pagination buttons
+                FIRST: 'Início',
+                LAST: 'Fim',
+                NEXT: 'Próximo',
+                PREVIOUS: 'Anterior',
 
                 //Create LL
                 SELECT_TECHS: 'Selecionar Tecnologias',
