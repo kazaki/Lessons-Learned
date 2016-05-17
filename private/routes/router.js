@@ -399,6 +399,7 @@
                 var dateCreated = new Date();
                 var maker = req.body.maker;
                 var project = req.body.project;
+                var status = req.body.status;
 
                 var datetime = new Date();
                 var situation = req.body.situation;
@@ -410,7 +411,7 @@
                 technologies.forEach(function(tech) {
                     console.log(tech);
                 })
-                database.insertLesson(dateCreated,maker,project,datetime,situation,action,result,technologies)
+                database.insertLesson(dateCreated,maker,project,datetime,situation,action,result,technologies, status)
                     .then(function (lesson) {
                         res.sendStatus(200);
                     })

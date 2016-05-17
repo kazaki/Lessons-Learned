@@ -29,12 +29,13 @@
                     alert(err.data);
                 });
 
-        $scope.addLesson = function(lesson) {
+        $scope.createLesson = function(lesson, draft) {
             /*alert(lesson.technologies[0].technology + ' ' + lesson.technologies[0].idtechnologies);
             alert(lesson.actionTaken);
             alert(lesson.situation);
             alert(lesson.result);*/
 
+            var status = draft? 'draft' : 'active';
             var ll = 
              {
                  "project": lesson.project,
@@ -42,7 +43,8 @@
                  "actionTaken": lesson.actionTaken,
                  "situation": lesson.situation,
                  "result": lesson.result,
-                 "maker": manager
+                 "maker": manager,
+                 "status": status
              };
 
             llServices.createLL(ll)
@@ -53,8 +55,7 @@
                 .catch(function (err) {
                     alert(err.data);
                 });
-        }
-            
+        }            
 
 	 };
 	 // Injecting modules used for better minifing later on

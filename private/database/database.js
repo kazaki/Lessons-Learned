@@ -352,23 +352,23 @@
         });
     }
 
-    exports.insertLesson = function (dateCreated,maker,project,datetime,situation,action,result,technology) {
+    exports.insertLesson = function (dateCreated,maker,project,datetime,situation,action,result,technology,status) {
         return new Promise(function (resolve, reject) {
 
         var projectID = null;
         var resultDesc = result;
 
-        if(project != null){
-         var query = "Select idproject FROM public.project Where name = ?";
-         query = mysql.format(query,project);
-         client.query(query,function (err4, result4) {
-                    if (err4) {
-                            reject(result4);
-                        } else {
-                            console.log('project consulted');
-                            projectID = result4[0].idproject;
-                        }
-                });
+        if(project != null && project && project.length > 0){
+             var query = "Select idproject FROM public.project Where name = ?";
+             query = mysql.format(query,project);
+             client.query(query,function (err4, result4) {
+                        if (err4) {
+                                reject(result4);
+                            } else {
+                                console.log('project consulted');
+                                projectID = result4[0].idproject;
+                            }
+                    });
         }
         else {
             projectID = null;
@@ -394,7 +394,7 @@
             if (err) {
                 reject(err);
             } else {
-                client.query('INSERT INTO public.lessonsLearned SET ?', {creationdate: dateCreated, manager: result[0].idusers, project: projectID, status: 'inactive'},
+                client.query('INSERT INTO public.lessonsLearned SET ?', {creationdate: dateCreated, manager: result[0].idusers, project: projectID, status: status},
                         function (err1, result1) {
                             if (err1) {
                                 reject(err1);
