@@ -40,7 +40,7 @@
           <label class="col-md-6 control-label" for="textarea">{{ 'DESCRIPTION' | translate }}</label>
           <div class="col-md-12">                     
             <textarea rows="15" class="ll form-control" id="textarea" ng-trim="false" name="textarea" max-length="9999" ng-model="lesson.situation" required>default text</textarea>
-            <span>{{ 9999 - lesson.description.length}} {{ 'CHARS_LEFT' | translate }}</span>
+            <span>{{ 9999 - lesson.situation.length}} {{ 'CHARS_LEFT' | translate }}</span>
           </div>
         </div>
 
@@ -56,7 +56,7 @@
           <label class="col-md-6 control-label" for="textarea">{{ 'RESULT_DESCRIPTION' | translate }}</label>
           <div class="col-md-12">                     
             <textarea rows="15" class="ll form-control" id="textarea" ng-trim="false" name="textarea" max-length="9999" ng-model="lesson.result" required>default text</textarea>
-            <span>{{ 9999 - lesson.results.length}} {{ 'CHARS_LEFT' | translate }}</span>
+            <span>{{ 9999 - lesson.result.length}} {{ 'CHARS_LEFT' | translate }}</span>
           </div>
         </div>
 
