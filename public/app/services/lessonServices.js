@@ -5,10 +5,12 @@ var lessonServices = function ($q, $http, $cookies, $window) {
     var deferred = $q.defer();
 
 	this.getLesson = function(lessonid) {
-		 return $http.get('/api/lesson', lessonid)
+		 return $http.get('/api/lesson', {
+						headers: {'lesson_id': lessonid}
+				})
                 .success(function(res) {
 				
-					console.log(res);
+					console.log(res[0]);
 				
                     deferred.resolve('Success');
                 })

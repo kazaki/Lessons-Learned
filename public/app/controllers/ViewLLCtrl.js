@@ -9,14 +9,15 @@
 		$scope.getLesson = function(lessonid) {
 			lessonServices.getLesson(lessonid)
 				.then(function (res) {
-				console.log(res);
-				// $scope.itemsLogin.pop();
-				//$scope.itemsLogin.push();
+				
+				var data = res.data[0];
+
+				console.log(data);
+				$("#vll_title").val(data["name"]);
+
 			})
 			.catch(function (err) {
 				alert(err.data.message);
-				//$scope.itemsLogin.pop();
-				//$scope.itemsLogin.push(err.data.message);
 			});
 			
 		}
