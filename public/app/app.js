@@ -36,7 +36,7 @@
 
             .when("/create_project", {
                 templateUrl: "app/views/admin/create_project.html",
-                controller: "AdminCtrl"
+                controller: "Create_projCtrl"
             })
 
             .when("/users", {
@@ -53,17 +53,7 @@
                 templateUrl: "app/views/create_ll.html",
                 controller: "CreateLLCtrl"
             })
-
-            .when("/create_project", {
-                templateUrl: "app/views/admin/create_project.html",
-                controller: "CreateLLCtrl"
-            })
 			
-			.when("/create_project", {
-                templateUrl: "app/views/admin/create_project.html",
-                controller: "CreateLLCtrl"
-            })
-
 			.when("/view_ll", {
                 templateUrl: "app/views/view_ll.html",
                 controller: "ViewLLCtrl"
@@ -159,7 +149,18 @@
                 CHARS_LEFT: 'caracteres restantes',
                 SUBMIT: 'Submeter',
                 SAVE_DRAFT: 'Guardar rascunho',
-                CANCEL: 'Cancelar'
+                CANCEL: 'Cancelar',
+
+                //Create Project
+                LL_TITLE: 'Título da Lesson Learned',
+                PROJECT_NAME: 'Nome do Projeto',
+                PROJECT_MANAGER: 'Project Manager',
+                COLABORATORS: 'Colaboradores',
+                BUSINESS_SECTOR: 'Setor de Negócio',
+                DAYS_LENGTH: 'Duração Projeto',
+                PROJECT_TYPE: 'Tipo de Projeto',
+                ADD_PROJECT: 'Adicionar Projeto'
+
             })
         $translateProvider.preferredLanguage('pt');
     }]);

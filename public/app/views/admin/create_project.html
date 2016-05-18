@@ -1,76 +1,65 @@
-<br>
-<br>
+<link rel="stylesheet" href="styles/create_project.css">
+
+<div ng-include='"app/views/templates/header.html"'></div>
+
+<!-- Select Basic -->
+<!-- Text input-->
 <div class="container">
   <div class="row clearfix">
-    
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
-
 <form ng-submit="addProject(project)">
 <fieldset>
-
-<!-- Form Name -->
-<legend>Criação de um projeto</legend>
-<br>
-<!-- Select Basic -->
-
-<!-- Text input-->
-<div class="form-group">
-  <div class="col-md-4">
-  <label class="col-md-6 control-label" for="textarea">Nome Projeto</label>
-    <input ng-model="project.name" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+<div class="form-group col-xs-8 col-sm-8 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1" >
+  <div class="col-md-5">
+    <input ng-model="project.name" id="textinput" name="textinput" type="text" placeholder="{{ 'PROJECT_NAME' | translate }}" class="form-control input-md">
   </div>
-  <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Modelo Entrega</label>
-    <input ng-model="project.deliveringModel" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
-  </div>
-  <div class="col-md-4">
-  <label class="col-md-8 control-label" for="textarea">Gestor Responsável</label>
-    <select id="selectbasic" ng-model="project.manager" name="selectbasic" class="form-control">
+</div>
+
+<div class="form-group col-xs-12 col-sm-12 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
+<div class="col-md-4">
+    <select id="selectbasic" ng-model="project.manager" name="selectbasic" class="form-control sc">
+      <option value="" disabled selected>{{ 'PROJECT_MANAGER' | translate }}</option>
       <option  ng-repeat="manager in managers" value="{{ manager.name }}"> {{ manager.name  }} </option>
     </select>
   </div>
+  <div class="col-md-4">
+    <input ng-model="project.numberConsultants" id="textinput" name="textinput" type="text" placeholder="{{ 'COLABORATORS' | translate }}" class="form-control input-md">
+  </div>
+<div class="col-md-4">
+    <input ng-model="project.deliveringModel" id="textinput" name="textinput" type="text" placeholder="{{ 'BUSINESS_SECTOR' | translate }}" class="form-control input-md">
+  </div>
 </div>
 
-<div class="form-group">
+<div class="form-group col-xs-12 col-sm-12 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
   <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Data Inicio</label>
        <input ng-model="project.dateBeginning" type="date" value="{{ project.dateBeginning }}" class="form-control input-md" >
   </div>
   <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Fim Expectável</label>
        <input ng-model="project.dateEndExpected" type="date" value="{{ project.dateEndExpected }}" class="form-control input-md" >
   </div>
   <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Data Fim</label>
        <input ng-model="project.dateEnd" type="date" value="{{ project.dateEnd }}" class="form-control input-md" >
   </div>
 </div>
-
-<div class="form-group">
+<div class="form-group col-xs-8 col-sm-8 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
   <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Número Colaboradores</label>
-    <input ng-model="project.numberConsultants" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+    <input ng-model="project.numberConsultants" id="textinput" name="textinput" type="text" placeholder="{{ 'DAYS_LENGTH' | translate }}" class="form-control input-md">
   </div>
   <div class="col-md-4">
-    <label class="col-md-6 control-label" for="textarea">Número Dias</label>
-    <input ng-model="project.daysDuration" id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
-  </div>
-  <div class="col-md-4">
-  <label class="col-md-8 control-label" for="textarea">Tipo Projeto</label>
-    <select id="selectbasic" ng-model="project.type"  name="selectbasic" class="form-control">
+    <select id="selectbasic" ng-model="project.type"  name="selectbasic" class="form-control sc">
+    <option value="" disabled selected>{{ 'PROJECT_TYPE' | translate }}</option>
       <option id="AMD2"> ADM2 </option>
       <option id="AMD3"> ADM3 </option>
       <option id"ADM4"> ADM4 </option>
     </select>
   </div>
 </div>
-
-<!-- Button (Double) -->
-  <button type="submit" class="btn btn-primary btn-outline center-block">Add Project</button>
-
 </fieldset>
+<!-- Button (Double) -->
+  <button type="submit" class="btn btn-primary btn-outline pull-right">{{ 'ADD_PROJECT' | translate }}</button>
+
+  <button type="submit" class="btn btn-primary btn-outline pull-right">{{ 'CANCEL' | translate }}</button>
+
 </form>
     </div>
     
-  </div>
 </div>
