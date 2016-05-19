@@ -73,7 +73,7 @@
         $locationProvider.html5Mode(true);
 
     });
-
+         
     app.config(['$translateProvider', function($translateProvider) {
         $translateProvider
             .useSanitizeValueStrategy('escape')

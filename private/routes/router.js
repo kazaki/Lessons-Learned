@@ -7,7 +7,9 @@
          crypto = require('crypto'),
          StreamSearch = require('streamsearch'),
          inspect = require('util').inspect,
-         validator = require("email-validator");
+         validator = require("email-validator"),
+         im = require("imagemagick"),
+         fs = require('fs');
     // Main router where all routes are called. This is done so the project code is cleaner and more maintainable.
     module.exports = function (server) {
         
@@ -137,8 +139,48 @@
             var email = req.body.email.toLowerCase();
             var pass = req.body.password;
             var name = req.body.name;
+            var permission = req.body.permission;
+            var photo = req.body.photo;
+            
+            //check if photo is valid
 
-            console.log(email + pass + name);
+            //console.log(email + pass + name+ "pppppppppppppp:   "+permission);
+            
+            console.log(req.body.image);
+             fs.readFile(req.body.image.path, function (err, data) {
+    var imageName = req.body.image.name
+    /// If there's an error
+    if(!imageName){
+      console.log("There was an error")
+      //res.redirect("/");
+        res.end();
+    } else {
+      var newPath = __dirname + "/images/fullsize/" + req.body.email;
+      var thumbPath = __dirname + "/images/small/" + req.body.email;
+      // write file to uploads/fullsize folder
+      fs.writeFile(newPath, data, function (err) {
+        // write file to uploads/thumbs folder
+        im.resize({
+          srcPath: newPath,
+          dstPath: thumbPath,
+          width:   200
+        }, function(err, stdout, stderr){
+          if (err) throw err;
+          console.log('resized image to fit within 200x200px');
+        });
+         //res.redirect("/uploads/fullsize/" + imageName);
+      });
+    }
+  });
+  
+  
+            if(permission!="1" && permission!="2" && permission!="0"){
+                // Check if permission is valid. 
+                res.status(400).json({
+                    message_class: 'error',
+                    message: 'Permission not valid.'
+                });
+            }
 
             if(!validator.validate(email)){
                 // Check if email is valid. 
@@ -150,7 +192,7 @@
 
             else{
 
-            database.insertUser(email, pass, name)
+            database.insertUser(email, pass, name, permission)
                 .then(function (user_id) {
                     res.sendStatus(200);
                 })

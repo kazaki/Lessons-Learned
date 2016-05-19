@@ -145,7 +145,7 @@
          });
     }
 
-    exports.insertUser = function (email, password,name) {
+    exports.insertUser = function (email, password, name, permission) {
         return new Promise(function (resolve, reject) {
             bcrypt.hash(password, null, null, function (err, hash) {
                 if (err) {
@@ -155,7 +155,7 @@
                         if (err) {
                             reject(err);
                         } else {
-                            client.query('INSERT INTO public.users SET ?', {email: email, name: name, password: hash, token: buf.toString('hex')},
+                            client.query('INSERT INTO public.users SET ?', {email: email, name: name, password: hash, permission: permission, token: buf.toString('hex')},
                                 function (err, result) {
                                     if (err) {
                                         reject(err);
