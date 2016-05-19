@@ -8,7 +8,7 @@
 	    $scope.login = function(user,remember){
              userServices.login(user, remember)
                 .then(function (res) {
-                    $window.location.href = '/';
+                    $window.location.href = '/home';
                     $scope.items.pop();
                     $scope.items.push();
                 })
@@ -19,6 +19,7 @@
                 });
             
         };
+
         
          $scope.logged = function(){
             userServices.logged()
@@ -43,7 +44,7 @@
        
 	 };
 	 // Injecting modules used for better minifing later on
-    LoginCtrl.$inject = ['$scope', '$routeParams', '$window','userServices'];
+    LoginCtrl.$inject = ['$scope', '$routeParams', '$window', 'userServices'];
 
     // Enabling the controller in the app
     angular.module('lessonslearned').controller('LoginCtrl', LoginCtrl);

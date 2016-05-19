@@ -43,6 +43,9 @@
             res.render('index');
         });
         
+        server.get('/settings', function (req, res) {
+            res.render('index');
+        });
         // Route to send forbidden view
         server.get('/forbidden', function (req, res) {
             res.render('index');
