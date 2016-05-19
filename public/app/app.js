@@ -58,7 +58,12 @@
                 templateUrl: "app/views/view_ll.html",
                 controller: "ViewLLCtrl"
             })
-			
+
+			.when("/settings",{
+                templateUrl: "app/views/settings.html",
+                controller: "HomeCtrl"
+            })
+
             .when("/forbidden",{
                 templateUrl: "app/views/forbidden.html",
                 controller: "HomeCtrl"
