@@ -65,7 +65,7 @@
             })
 
             .when("/forbidden",{
-                templateUrl: "app/views/forbidden.html",
+                templateUrl: "app/views/404.html",
                 controller: "HomeCtrl"
             })
 
