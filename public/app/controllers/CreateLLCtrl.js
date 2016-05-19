@@ -1,9 +1,17 @@
 (function(){
-	 var  CreateLLCtrl = function($scope, genServices, llServices, userServices) {
+	 var  CreateLLCtrl = function($scope, $window, genServices, llServices, userServices) {
 
         $scope.technologies = [];
         $scope.projects = [];
         var manager = null;
+
+        $scope.localLang = {
+            selectAll       : "Tick all",
+            selectNone      : "Tick none",
+            reset           : "Undo all",
+            search          : "Type here to search...",
+            nothingSelected : "Nothing is selected"
+        }
 
         genServices.getTechnologies()
             .then(function (techs) {
@@ -36,6 +44,7 @@
             alert(lesson.result);*/
 
             var status = draft? 'draft' : 'active';
+
             var ll = 
              {
                  "project": lesson.project,
@@ -49,17 +58,17 @@
 
             llServices.createLL(ll)
                 .then(function (result) {
-                    alert("Inserted!");
                     console.log(JSON.stringify(result));
+                    alert("Inserted "+status);                   
                 })
                 .catch(function (err) {
-                    alert(err.data);
+                    alert("Erro "+err.data);
                 });
         }            
 
 	 };
 	 // Injecting modules used for better minifing later on
-    CreateLLCtrl.$inject = ['$scope', 'genServices', 'llServices', 'userServices'];
+    CreateLLCtrl.$inject = ['$scope', '$window', 'genServices', 'llServices', 'userServices'];
 
     // Enabling the controller in the app
     angular.module('lessonslearned').controller('CreateLLCtrl', CreateLLCtrl);

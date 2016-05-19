@@ -9,7 +9,8 @@
         'ngCookies',
         'pascalprecht.translate',
         'ui.bootstrap',
-        'angular-advanced-searchbox'
+        'angular-advanced-searchbox',
+        'isteven-multi-select'
     ]);
 
     /**
@@ -84,6 +85,7 @@
             .useSanitizeValueStrategy('escape')
             .translations('en', { //TODO: Translations from each language on different files
                 HOME: 'Home',
+                ADMIN_PANEL: 'Administration',
                 USERS: 'Users',
                 LESSONS: 'Lessons Learned',
                 STATS: 'Statistics',
@@ -119,7 +121,8 @@
                 CHARS_LEFT: 'characters left',
                 SUBMIT: 'Submit',
                 SAVE_DRAFT: 'Save as draft',
-                CANCEL: 'Cancelar',
+                CANCEL: 'Cancel',
+                CREATE_LL: 'Creating Lesson Learned',
 
                 //Create Project
                 LL_TITLE: 'Lesson Learned title',
@@ -133,6 +136,7 @@
             })
             .translations('pt', {
                 HOME: 'Começar',
+                ADMIN_PANEL: 'Administração',
                 USERS: 'Utilizadores',
                 LESSONS: 'Lições Aprendidas',
                 STATS: 'Estatísticas',
@@ -169,6 +173,7 @@
                 SUBMIT: 'Submeter',
                 SAVE_DRAFT: 'Guardar rascunho',
                 CANCEL: 'Cancelar',
+                CREATE_LL: 'Criação de Lição Aprendida',
 
                 //Create Project
                 LL_TITLE: 'Título da Lesson Learned',
@@ -183,6 +188,7 @@
             })
             .translations('fr', {
                 HOME: 'Début',
+                ADMIN_PANEL: 'Administration',
                 USERS: 'Utilisateurs',
                 LESSONS: 'Les Leçons Apprises',
                 STATS: 'Statistiques',
@@ -219,6 +225,7 @@
                 SUBMIT: 'Submeter',
                 SAVE_DRAFT: 'Guardar rascunho',
                 CANCEL: 'Cancelar',
+                CREATE_LL: 'Criação de Lição Aprendida',
 
                 //Create Project
                 LL_TITLE: 'Título da Lesson Learned',
