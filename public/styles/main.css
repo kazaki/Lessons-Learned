@@ -23,7 +23,9 @@ body {
   background-color: #344770;
   color: #fff;
 }
-
+select {
+  color: #344770;
+}
 /* Footer Styles */
 footer {
 	font-weight: bold;
