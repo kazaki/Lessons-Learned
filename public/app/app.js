@@ -18,8 +18,8 @@
     app.config(function($routeProvider, $locationProvider) {
 
         $routeProvider
-            .when("/", {
-                templateUrl: "app/views/login.html",
+            .when("/", {              
+				templateUrl: "app/views/login.html",
                 controller: "LoginCtrl"
             })
 			
