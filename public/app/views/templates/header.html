@@ -13,35 +13,28 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <div class="collapse navbar-collapse navbar-ex1-collapse" ng-controller="HomeCtrl">
             <ul class="nav navbar-nav navbar-right">
 
-                <!-- <li><a href="/#/about">About</a>
-                </li>
-                <li><a href="/#/faq">FAQ</a>
-                </li>
-                <li><a href="/#/contact">Contact</a>
-                </li>
-				<li><a href="http://www.altran.pt" target="_blank">ALTRAN.pt</a> -->
-				<li ng-if="getUser()"><a href="" ><i class="fa fa-bell-o" aria-hidden="true"></i></a> </li>
-				<li ng-if="getUser()" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> EN </a>
+				<li ng-if="hasSession.logged"><a href="" ><i class="fa fa-bell-o" aria-hidden="true"></i></a> </li>
+				<li ng-if="hasSession.logged" class="dropdown">
+					<a id="langs" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>{{lang}}</a>
 					<ul class="dropdown-menu">
-						<li><a href="#/">English</a>
+						<li><a ng-click="changeLanguage('en')">EN</a>
 						</li>
-						<li><a href="#/profile">Portuguese</a>
+						<li><a ng-click="changeLanguage('pt')">PT</a>
 						</li>
-						<li><a href="#/">French</a>
+						<li><a ng-click="changeLanguage('fr')">FR</a>
 						</li>
 					</ul>
 				</li>
 				
-				<li ng-if="getUser()" class="dropdown">
+				<li ng-if="hasSession.logged" class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> User </a>
 					<ul class="dropdown-menu">
 						<li><a href="#/profile">My Profile</a>
 						</li>
-						<li><a href="#/">Logout</a>
+						<li><a ng-click="logout()">Log Out</a>
 						</li>
 					</ul>
 				</li>
