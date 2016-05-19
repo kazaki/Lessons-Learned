@@ -12,15 +12,16 @@ html {
     height: 100%;
 }
 body {
-    margin: 0;
-	background-image: linear-gradient(rgb(124, 165, 182), rgb(12, 33, 97));
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+  margin: 0;
+	/*background-image: linear-gradient(rgb(124, 165, 182), rgb(12, 33, 97));
+  background-repeat: no-repeat;
+  background-attachment: fixed;*/
 	padding-top: 50px;
-    padding-bottom: 20px;
-    padding-top: 50px;
-    padding-bottom: 20px;
-    background-color: #E0E0E0;
+  padding-bottom: 20px;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background-color: #344770;
+  color: #fff;
 }
 
 /* Footer Styles */
@@ -39,12 +40,20 @@ footer {
 	}
 } */
 
+.modal-header, .modal-body, .modal-footer {
+  color: #000;
+}
+
+.card {
+  color: #000;
+}
+
 .dropdown {
     cursor:pointer;
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
-	background-color: rgba(22,22,22,0.7);
+	background-color: #FFFFFE;
 }
 
 .img-home-portfolio,
@@ -155,11 +164,11 @@ footer {
 
 /* Navbar Styles */
 .navbar {
-	background-color: rgba(0,0,0,0);
-	color: white;
+	background-color: #FFFFFE;
+	color: black;
 	line-height: 50px;
-	background-image: linear-gradient(rgb(255, 255, 255), rgb(222, 222, 222));
-
+  background-image: none;
+  border-bottom: 5px solid #5772AA;
 }
 
 .navbar-brand {
@@ -174,31 +183,23 @@ footer {
 }
 
 .navbar .nav > li > a {
-    color:  #000;
-	font-size: 130%;
+  color:  #5772aa;
+	font-size: 100%;
 }
 
 .navbar .nav > li > a:hover,
-.navbar .nav > li > a:active {
-	color:  #000;
-	background-color: rgba(80,80,80,0.1);
-}
-
+.navbar .nav > li > a:active,
 .navbar .nav > li > a:focus {
-	color:  #000;
+  color:  #fff;
+  background-color: #5772aa;
 }
 
-/* .navbar-inverse .navbar-brand {
-    color: #ffffff;
+.navbar .navbar-nav > .open > a,
+.navbar .navbar-nav > .open > a:hover,
+.navbar .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: #5772aa;
 }
-
-.navbar-inverse .navbar-brand :hover {
-    color: #ff0000; 
-} */
-
-/* #forcewhite{
-	color: white;
-} */
 
 /* User List */
 .stylish-input-group .input-group-addon{
@@ -215,17 +216,17 @@ footer {
 }
 
 .bg-blue {
-    background-color: #1565C0;
+    background-color: #5772aa;
     color: #fff;
-    /*width: 50%;
-    max-width: 160px;*/
+}
+
+.panel-bg {
+  border-color: #5772aa;
 }
 
 .bg-black {
     background-color: #000;
     color: #fff;
-    /*width: 50%;
-    max-width: 160px;*/
 }
 
 .btn-circle {
@@ -237,6 +238,11 @@ footer {
   line-height: 1.428571429;
   border-radius: 15px;
 }
+
+.btn-circle:hover, .btn-circle:active, .btn-circle:focus {
+  background-color: #5772aa; /* #286090 */
+}
+
 .btn-circle.btn-lg {
   width: 50px;
   height: 50px;
