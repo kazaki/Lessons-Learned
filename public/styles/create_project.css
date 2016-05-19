@@ -1,0 +1,38 @@
+
+.row, .clearfix{
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+
+.col-md-6,.col-md-4,.col-md-5 {
+    margin-bottom:40px;
+}
+
+
+input[type="text"],input[type="date"],.sc {
+  
+    background: rgba(0,0,0,0.3);
+    height: 45px;
+    color:white;
+    border:none;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+color: white !important;
+}
+ 
+input[type="text"]:-moz-placeholder { /* Firefox 18- */
+color: white !important;  
+}
+ 
+input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
+color: white !important;  
+}
+ 
+input[type="text"]:-ms-input-placeholder {  
+color: white !important;  
+}
+
+
+::-webkit-inner-spin-button { display: none; }
+::-webkit-calendar-picker-indicator { background: rgba(0,0,0,0.3); }

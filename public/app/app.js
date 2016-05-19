@@ -36,7 +36,7 @@
 
             .when("/create_project", {
                 templateUrl: "app/views/admin/create_project.html",
-                controller: "AdminCtrl"
+                controller: "Create_projCtrl"
             })
 
             .when("/users", {
@@ -53,22 +53,17 @@
                 templateUrl: "app/views/create_ll.html",
                 controller: "CreateLLCtrl"
             })
-
-            .when("/create_project", {
-                templateUrl: "app/views/admin/create_project.html",
-                controller: "CreateLLCtrl"
-            })
 			
-			.when("/create_project", {
-                templateUrl: "app/views/admin/create_project.html",
-                controller: "CreateLLCtrl"
-            })
-
 			.when("/view_ll", {
                 templateUrl: "app/views/view_ll.html",
                 controller: "ViewLLCtrl"
             })
-			
+
+			.when("/settings",{
+                templateUrl: "app/views/settings.html",
+                controller: "HomeCtrl"
+            })
+
             .when("/forbidden",{
                 templateUrl: "app/views/forbidden.html",
                 controller: "HomeCtrl"
@@ -96,6 +91,8 @@
                 AUDIT_TRAIL: 'Audit Trail',
                 SETTINGS: 'Settings',
 
+                LANGUAGE: 'Language',
+
                 EXPORT: 'Export',
                 EXPORT_TO_PDF: 'Export to PDF file',
                 EXPORT_TO_CSV: 'Export to CSV file',
@@ -122,7 +119,17 @@
                 CHARS_LEFT: 'characters left',
                 SUBMIT: 'Submit',
                 SAVE_DRAFT: 'Save as draft',
-                CANCEL: 'Cancel'
+                CANCEL: 'Cancelar',
+
+                //Create Project
+                LL_TITLE: 'Lesson Learned title',
+                PROJECT_NAME: 'Project Name',
+                PROJECT_MANAGER: 'Project Manager',
+                COLABORATORS: 'Colaborators',
+                BUSINESS_SECTOR: 'Busines Sector',
+                DAYS_LENGTH: 'Project Duration (days)',
+                PROJECT_TYPE: 'Project Type',
+                ADD_PROJECT: 'Add Project'
             })
             .translations('pt', {
                 HOME: 'Começar',
@@ -130,8 +137,10 @@
                 LESSONS: 'Lições Aprendidas',
                 STATS: 'Estatísticas',
                 IN_WAIT: 'À espera de aprovação',
-                AUDIT_TRAIL: 'Audit Trail',
+                AUDIT_TRAIL: 'Histórico',
                 SETTINGS: 'Configurações',
+
+                LANGUAGE: 'Dialeto',
 
                 EXPORT: 'Exportar',
                 EXPORT_TO_PDF: 'Exportar para ficheiro PDF',
@@ -159,7 +168,68 @@
                 CHARS_LEFT: 'caracteres restantes',
                 SUBMIT: 'Submeter',
                 SAVE_DRAFT: 'Guardar rascunho',
-                CANCEL: 'Cancelar'
+                CANCEL: 'Cancelar',
+
+                //Create Project
+                LL_TITLE: 'Título da Lesson Learned',
+                PROJECT_NAME: 'Nome do Projeto',
+                PROJECT_MANAGER: 'Project Manager',
+                COLABORATORS: 'Colaboradores',
+                BUSINESS_SECTOR: 'Setor de Negócio',
+                DAYS_LENGTH: 'Duração Projeto',
+                PROJECT_TYPE: 'Tipo de Projeto',
+                ADD_PROJECT: 'Adicionar Projeto'
+
+            })
+            .translations('fr', {
+                HOME: 'Début',
+                USERS: 'Utilisateurs',
+                LESSONS: 'Les Leçons Apprises',
+                STATS: 'Statistiques',
+                IN_WAIT: 'En attente d´approbation',
+                AUDIT_TRAIL: 'Histoire',
+                SETTINGS: 'Réglages',
+
+                LANGUAGE: 'Dialeto',
+
+                EXPORT: 'Exportation',
+                EXPORT_TO_PDF: 'Exporter vers un fichier PDF',
+                EXPORT_TO_CSV: 'Exporter vers un fichier CSV',
+                ADD_USER: 'Ajouter l´utilisateur',
+
+                SELECT: 'Selecionar...',
+                CLIENT: 'Cliente',
+                SELECT_CLIENT: 'Cliente',
+                NONE: 'Nenhum',
+
+                //Pagination buttons
+                FIRST: 'Início',
+                LAST: 'Fim',
+                NEXT: 'Próximo',
+                PREVIOUS: 'Anterior',
+
+                //Create LL
+                SELECT_TECHS: 'Selecionar Tecnologias',
+                SELECT_MANAGER: 'Selecionar Gestor de Projeto',
+                SELECT_PROJECT: 'Selecionar Projeto',
+                DESCRIPTION: 'Descrição da situação',
+                ACTION_TAKEN: 'Descrição da ação tomada',
+                RESULT_DESCRIPTION: 'Descrição do resultado',
+                CHARS_LEFT: 'caracteres restantes',
+                SUBMIT: 'Submeter',
+                SAVE_DRAFT: 'Guardar rascunho',
+                CANCEL: 'Cancelar',
+
+                //Create Project
+                LL_TITLE: 'Título da Lesson Learned',
+                PROJECT_NAME: 'Nome do Projeto',
+                PROJECT_MANAGER: 'Project Manager',
+                COLABORATORS: 'Colaboradores',
+                BUSINESS_SECTOR: 'Setor de Negócio',
+                DAYS_LENGTH: 'Duração Projeto',
+                PROJECT_TYPE: 'Tipo de Projeto',
+                ADD_PROJECT: 'Adicionar Projeto'
+
             })
         $translateProvider.preferredLanguage('pt');
     }]);
