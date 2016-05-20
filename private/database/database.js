@@ -493,7 +493,7 @@
          });
     }
 
-    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected, dateEnd, deliveringModel,numberConsultants, daysDuration) {
+    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected, dateEnd, deliveringModel,numberConsultants, daysDuration, projclient) {
         return new Promise(function (resolve, reject) {
             var query = 'Select idusers FROM users WHERE name = ?';
             query = mysql.format(query, manager);
@@ -504,7 +504,7 @@
                         console.log(dateBeginning + 'beg');
                         console.log(dateEndExpected + 'endex');
                         console.log(dateEnd + 'end');
-                        client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: result2[0].idusers, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, dateEnd: dateEnd, deliveringModel: deliveringModel, numberConsultants: numberConsultants , daysDuration:daysDuration},
+                        client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: result2[0].idusers, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, dateEnd: dateEnd, deliveringModel: deliveringModel, numberConsultants: numberConsultants , daysDuration:daysDuration, client:projclient},
                             function (err, result) {
                                 if (err) {
                                     reject(err);
@@ -562,5 +562,67 @@
         });
     }
 
+    <!------------------------------------------------------------------------------------------------ Project Types ------------------------------------------------------------->
+
+
+    exports.getProjectTypes = function(){
+         return new Promise(function (resolve, reject) {
+         var query = "SELECT * FROM public.project_types";
+         query = mysql.format(query);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });
+         });
+    }
+
+    exports.addProjectType = function(type){
+         return new Promise(function (resolve, reject) {
+        client.query('INSERT INTO public.project_types SET ?', {name: type },
+            function (err, result) {
+                if (err) {
+                    reject(err);
+                } else {
+
+                resolve(result.insertId);
+                }
+            });
+        });
+    }
+
+    <!------------------------------------------------------------------------------------------------ Business Sectors ------------------------------------------------------------->
+
+
+    exports.getSectors = function(){
+         return new Promise(function (resolve, reject) {
+            console.log("...");
+         var query = "SELECT * FROM public.business_sectors";
+         query = mysql.format(query);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });
+         });
+    }
+
+    exports.addSector = function(sector){
+         return new Promise(function (resolve, reject) {
+        client.query('INSERT INTO public.business_sectors SET ?', {name: sector },
+            function (err, result) {
+                if (err) {
+                    reject(err);
+                } else {
+
+                resolve(result.insertId);
+                }
+            });
+        });
+    }
 
 }());

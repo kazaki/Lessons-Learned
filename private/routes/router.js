@@ -519,6 +519,7 @@
                 var type = req.body.type;
                 var name = req.body.name;
                 var manager = req.body.manager;
+                var client = req.body.client;
 
                 var dateBeginning = req.body.dateBeginning;
                 var dateEndExpected = req.body.dateEndExpected;
@@ -528,7 +529,10 @@
                 var numberConsultants = req.body.numberConsultants;
                 var daysDuration = req.body.daysDuration;
 
-                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,dateEnd,deliveringModel,numberConsultants,daysDuration)
+                if(!client)
+                    client = "Altran";
+
+                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,dateEnd,deliveringModel,numberConsultants,daysDuration,client)
                     .then(function (project) {
                         res.sendStatus(200);
                     })
@@ -593,6 +597,66 @@
                     
                     });
          });
+
+         //<!------------------------------------------------------------------ Project Types ---------------------------------------------------------------------------------------------------->
+
+
+        server.get('/api/projecttypes', function (req, res) {
+                database.getProjectTypes()
+                   .then(function (types) {
+                        res.status(200).send(types);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Could not retrieve project types information');
+                    });
+        });
+
+         server.post("/api/projecttypes",function(req,res){
+                var type = req.body.projecttype;
+
+                database.addProjectType(type)
+                    .then(function (project) {
+                        res.sendStatus(200);
+                    })
+                    .catch(function (err) {
+                        // Sending the error to the log file
+                        console.log('Error inserting project type to database');
+                        console.log(err);
+                    
+                    });
+         });
+
+
+         //<!------------------------------------------------------------------ Business Sectors ---------------------------------------------------------------------------------------------------->
+
+
+        server.get('/api/sectors', function (req, res) {
+            
+                database.getSectors()
+                   .then(function (sectors) {
+                        res.status(200).send(sectors);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Could not retrieve business sectors information');
+                    });
+        });
+
+         server.post("/api/sectors",function(req,res){
+
+                var sector = req.body.sector;
+
+                database.addSector(type)
+                    .then(function (sector) {
+                        res.sendStatus(200);
+                    })
+                    .catch(function (err) {
+                        // Sending the error to the log file
+                        console.log('Error inserting business sector to database');
+                        console.log(err);
+                    
+                    });
+         });
+
 
 
     };

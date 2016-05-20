@@ -8,6 +8,10 @@
     margin-bottom:40px;
 }
 
+.sc option { 
+    background-color: #fff; 
+    color:#000;
+}
 
 input[type="text"],input[type="date"],.sc {
   
