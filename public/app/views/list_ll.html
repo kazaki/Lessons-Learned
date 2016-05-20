@@ -15,55 +15,49 @@
              <button ng-click="order('title')">Name</button>
              <button ng-click="order('creationdate')">Date</button>
              <span class="sortorder" ng-show="predicate === 'creationdate'" ng-class="{reverse:reverse}"></span>
+
+
+             <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                     Order by
+                     <span class="caret"></span>
+                 </button>
+
+             </div>
            -->
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Order by
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#" ng-click="order('title')">Project title</a></li>
-                    <li><a href="#" ng-click="order('creationdate')">Date created</a></li>
-                    <li><a href="#" ng-click="order('technology')">Technology</a></li>
 
-                    <!--
-                    TODO: TROCAR A POR BOTOES E METER ORDERS BYS
-                  -->
-                </ul>
+
+
+
+            <div class="tbl-header">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                        <tr>
+                            <th> <a href="#" ng-click="order('creationdate')"> DATE <span class="caret"></span>  </a> </th>
+                            <th><a href="#" ng-click="order('technology')"> TECHNOLOGY <span class="caret"></span> </a> </th>
+                            <th><a href="#" ng-click="order('name')"> AUTHOR <span class="caret"></span> </a> </th>
+                            <th><a href="#" ng-click="order('title')"> PROJECT <span class="caret"></span> </a> </th>
+
+                        </tr>
+                    </thead>
+                </table>
             </div>
 
-            <div class="list-group" id="lessonslist">
-
-
-
-
-                <a href="#" class="list-group-item clearfix" ng-repeat="lesson in lessons | orderBy:predicate:reverse">
-                    <span class="lessonslistTitle list-group-item-text">{{ lesson.creationdate | date:'shortDate' }}</span>
-                    <span class="lessonslistSubmitter list-group-item-text">
-                    <span class="list-group-item-text"> | {{lesson.technology}} | </span>
-                    <span class="list-group-item-text"> {{lesson.name}} | </span>
-                    <span class="list-group-item-text"> {{lesson.title}} | </span>
-                    <span class="list-group-item-text"> {{lesson.situation}} | </span>
-
-
-
-                    <span class="pull-right">
-
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-folder-open"></i></button>
-                            <button type="button" class="btn btn-primary addLesson"><i class="glyphicon glyphicon-plus"></i></button>
-                            <button type="button" class="btn btn-primary "><i class="glyphicon glyphicon-new-window"></i></button>
-                        </div>
-
-
-                    </span>
-                </a>
-
-
-
+            <div class="tbl-content">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr ng-repeat="lesson in lessons | orderBy:predicate:reverse">
+                            <td>{{ lesson.creationdate | date:'shortDate' }}</td>
+                            <td>{{lesson.technology}} </td>
+                            <td>{{lesson.name}}</td>
+                            <td>{{lesson.title}}</td>
+                        </tr>
 
             </div>
+
+
             <!-- Single button -->
+            <!--
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="glyphicon glyphicon-floppy-save"></i> {{ 'EXPORT' | translate }}
@@ -75,8 +69,8 @@
 
                 </ul>
             </div>
+          -->
         </div>
     </div>
-</div>
 
-<script src="scripts/list_ll.js"></script>
+    <script src="scripts/list_ll.js"></script>

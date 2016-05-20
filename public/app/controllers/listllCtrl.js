@@ -2,7 +2,7 @@
  * Create the controller
  */
 (function() {
-    var listllCtrl = function($scope, listllServices, userServices, genServices) {
+    var listllCtrl = function($scope, listllServices, userServices, genServices, filterFilter) {
 
         console.log('Page loaded.');
 
@@ -10,6 +10,16 @@
             .then(function(result) {
                 console.log('Lessons List loaded.');
                 $scope.lessons = result.data;
+
+                $scope.$on('advanced-searchbox:modelUpdated', function(event, searchParameter) {
+                    var obj = {
+                        title: searchParameter.project
+                    }
+
+                    $scope.filteredLessons = filterFilter($scope.lessons, obj);
+                });
+
+
             })
             .catch(function(err) {
                 console.log('Lessons List error.');
@@ -35,6 +45,10 @@
             name: "Project Manager",
             placeholder: "Vania"
         }, {
+            key: "project",
+            name: "Project",
+            placeholder: "Website para lessons learned"
+        }, {
             key: "model",
             name: "Delivery Model",
             placeholder: "Model..."
@@ -46,9 +60,10 @@
         });
 
         $scope.$on('advanced-searchbox:modelUpdated', function(event, searchParameter) {
-          console.log($scope.searchParams.sector);
+            console.log($scope.searchParams.sector);
+            console.log("AQUII");
 
-          //TODO: send search post and update scope.lessons
+            //TODO: send search post and update scope.lessons
         });
         $scope.predicate = 'title';
         $scope.reverse = true;
@@ -63,7 +78,7 @@
 
     };
     // Injecting modules used for better minifing later on
-    listllCtrl.$inject = ['$scope', 'listllServices', 'userServices', 'genServices'];
+    listllCtrl.$inject = ['$scope', 'listllServices', 'userServices', 'genServices', 'filterFilter'];
 
 
     // Enabling the controller in the app

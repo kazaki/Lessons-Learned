@@ -284,7 +284,7 @@
     exports.getLessonByKeyword = function(keyword){
          return new Promise(function (resolve, reject) {
          var searchit = '%' + keyword +'%';
-         var query = "SELECT t1.maker,t1.status,t1.dateCreated FROM public.lessonsLearned as t1, public.lessonstext as t2 WHERE t1.idLessonsLearned = t2.idLessonLearned AND (t2.situation Like ? OR t2.action LIKE ? OR t2.result LIKE ?)";
+         var query = "SELECT t1.manager,t1.status,t1.creationdate,t1.idLessonsLearned,t3.name as title,t2.action,t2.result,t6.technology,t4.name FROM  public.lessonsLearned as t1,  public.lessonstext as t2, public.project as t3 , public.users as t4, public.lesson_tech as t5, public.technologies as t6 WHERE  t1.idLessonsLearned = t2.idLessonLearned  AND (t2.situation Like '?' OR t2.action LIKE '?' OR t2.result LIKE '?') AND (t1.manager=t4.idusers) AND (t5.idlesson=t1.idLessonsLearned) AND (t5.idtech=t6.idtechnologies)";
          query = mysql.format(query,searchit,searchit,searchit);
          client.query(query,function (err, result) {
                     if (err) {
