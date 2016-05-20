@@ -6,20 +6,24 @@
     <div class="container">
         <div class="card card-container">
 
-            <row>
-
-                <form>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                            <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchParams">
-                        </div>
-                    </div>
-                </form>
-                <!--
+          
+            <!--
                 <nit-advanced-searchbox ng-model="searchParams" parameters="availableSearchParams" placeholder="Search..."> </nit-advanced-searchbox>
               -->
-            </row>
+
+
+            <!-- search -->
+            <div class="row">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" placeholder="Search..." ng-model="searchParams">
+                    <span class="input-group-addon">
+                            <button type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+            </div>
+            <br>
             <!--
              <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
              <button ng-click="predicate=''">Set to unsorted</button>
@@ -46,15 +50,18 @@
                         <tr>
                             <th>
                                 <a href="#" ng-click="sortType = 'creationdate'; sortReverse = !sortReverse"> DATE   </a>
-                                <span ng-show="sortType == 'creationdate' && sortReverse" class="fa fa-caret-up"></span></span> </a>
+                                <span ng-show="sortType == 'creationdate' && sortReverse" class="fa fa-caret-up"></span></span>
+                                </a>
                             </th>
                             <th>
                                 <a href="#" ng-click="sortType = 'technology'; sortReverse = !sortReverse"> TECHNOLOGY  </a>
-                                <span ng-show="sortType == 'technology' && sortReverse" class="fa fa-caret-up"></span></span> </a>
+                                <span ng-show="sortType == 'technology' && sortReverse" class="fa fa-caret-up"></span></span>
+                                </a>
                             </th>
                             <th>
                                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse"> AUTHOR  </a>
-                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></span> </a>
+                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></span>
+                                </a>
                             </th>
                             <th>
                                 <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse"> PROJECT <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
