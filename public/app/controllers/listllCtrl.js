@@ -3,7 +3,7 @@
  */
 (function() {
     var listllCtrl = function($scope, listllServices, userServices, genServices, filterFilter) {
-        $scope.sortType = 'date';
+        $scope.sortType = 'title';
         console.log('Page loaded.');
 
         listllServices.getAllLessons()
@@ -11,7 +11,7 @@
                 console.log('Lessons List loaded.');
                 $scope.lessons = result.data;
 
-              
+
 
 
             })
