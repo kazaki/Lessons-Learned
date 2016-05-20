@@ -11,13 +11,7 @@
                 console.log('Lessons List loaded.');
                 $scope.lessons = result.data;
 
-                $scope.$watch('searchParams', function(term) {
-                    var obj = {
-                        title: term
-                    }
-
-                    $scope.filteredLessons = filterFilter($scope.lessons, obj);
-                });
+              
 
 
             })

@@ -10,7 +10,8 @@
         'pascalprecht.translate',
         'ui.bootstrap',
         'angular-advanced-searchbox',
-        'isteven-multi-select'
+        'isteven-multi-select',
+        'angular.filter'
     ]);
 
     /**
@@ -19,11 +20,11 @@
     app.config(function($routeProvider, $locationProvider) {
 
         $routeProvider
-            .when("/", {              
+            .when("/", {
 				templateUrl: "app/views/login.html",
                 controller: "LoginCtrl"
             })
-			
+
              .when("/home", {
                 templateUrl: "app/views/home.html",
                 controller: "HomeCtrl"
@@ -54,7 +55,7 @@
                 templateUrl: "app/views/create_ll.html",
                 controller: "CreateLLCtrl"
             })
-			
+
 			.when("/view_ll", {
                 templateUrl: "app/views/view_ll.html",
                 controller: "ViewLLCtrl"
@@ -79,7 +80,7 @@
         $locationProvider.html5Mode(true);
 
     });
-         
+
     app.config(['$translateProvider', function($translateProvider) {
         $translateProvider
             .useSanitizeValueStrategy('escape')

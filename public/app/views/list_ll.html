@@ -6,7 +6,7 @@
     <div class="container">
         <div class="card card-container">
 
-          
+
             <!--
                 <nit-advanced-searchbox ng-model="searchParams" parameters="availableSearchParams" placeholder="Search..."> </nit-advanced-searchbox>
               -->
@@ -14,14 +14,17 @@
 
             <!-- search -->
             <div class="row">
-                <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control" placeholder="Search..." ng-model="searchParams">
-                    <span class="input-group-addon">
+                <form>
+                    <div class="input-group stylish-input-group">
+                        <input type="text" class="form-control " placeholder="Search..." ng-model="searchParams">
+                        <span class="input-group-addon">
+
                             <button type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
-                </div>
+                        </button>
+                        </span>
+                    </div>
+                </form>
             </div>
             <br>
             <!--
@@ -76,7 +79,7 @@
             <div class="tbl-content">
                 <table cellpadding="0" cellspacing="0" border="0">
                     <tbody>
-                        <tr ng-repeat="lesson in lessons | orderBy:sortType:sortReverse  | filter:searchParams">
+                        <tr ng-repeat="lesson in lessons | orderBy:sortType:sortReverse  | fuzzy: searchParams">
                             <td>{{ lesson.creationdate | date:'dd.MM.yyyy' }}</td>
                             <td>{{lesson.technology}} </td>
                             <td>{{lesson.name}}</td>
