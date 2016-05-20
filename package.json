@@ -21,6 +21,7 @@
     "jsonwebtoken": "^5.7.0",
     "morgan": "^1.7.0",
     "mysql": "~2.5.5",
+    "ng-tags-input": "^3.0.0",
     "nodemon": "^1.9.2",
     "path": "^0.12.7",
     "streamsearch": "^0.1.2"
