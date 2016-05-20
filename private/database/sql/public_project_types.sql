@@ -16,38 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `project`
+-- Table structure for table `project_types`
 --
 
-DROP TABLE IF EXISTS `project`;
+DROP TABLE IF EXISTS `project_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `project` (
-  `idproject` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(45) NOT NULL,
+CREATE TABLE `project_types` (
+  `idType` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `manager` int(11) NOT NULL,
-  `dateBeginning` date NOT NULL,
-  `dateEndExpected` date DEFAULT NULL,
-  `dateEnd` date DEFAULT NULL,
-  `deliveringModel` varchar(45) NOT NULL,
-  `numberConsultants` int(11) NOT NULL,
-  `daysDuration` int(11) DEFAULT NULL,
-  `client` varchar(45) NOT NULL,
-  PRIMARY KEY (`idproject`),
-  KEY `idUsers_idx` (`manager`),
-  CONSTRAINT `idUsers` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idType`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `project`
+-- Dumping data for table `project_types`
 --
 
-LOCK TABLES `project` WRITE;
-/*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,' ADM3 ','asdas',24,'2016-05-24','2016-05-25','2016-05-30','adas',12321,3131,'0'),(2,'ADM2','Proj3',24,'2016-05-01','2016-05-02','2016-05-03','sector1',5,10,'Altran'),(3,'ADM3','Projecto Awesome',24,'2016-05-03','2016-05-29','2016-05-31','sector1',10,2,'Cliente');
-/*!40000 ALTER TABLE `project` ENABLE KEYS */;
+LOCK TABLES `project_types` WRITE;
+/*!40000 ALTER TABLE `project_types` DISABLE KEYS */;
+INSERT INTO `project_types` VALUES (1,'ADM1'),(2,'ADM2'),(3,'ADM3');
+/*!40000 ALTER TABLE `project_types` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

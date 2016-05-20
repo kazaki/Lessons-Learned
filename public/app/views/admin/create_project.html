@@ -25,34 +25,40 @@
     <input ng-model="project.numberConsultants" id="textinput" name="textinput" type="text" placeholder="{{ 'COLABORATORS' | translate }}" class="form-control input-md">
   </div>
 <div class="col-md-4">
-    <input ng-model="project.deliveringModel" id="textinput" name="textinput" type="text" placeholder="{{ 'BUSINESS_SECTOR' | translate }}" class="form-control input-md">
+    <select ng-model="project.deliveringModel" id="textinput" name="textinput" type="text" class="form-control input-md sc">
+      <option value="" disabled selected>{{ 'BUSINESS_SECTOR' | translate }}</option>
+      <option ng-repeat="sector in sectors" value="{{ sector.name }}">{{ sector.name }}</option>
+    </select>
   </div>
 </div>
 
 <div class="form-group col-xs-12 col-sm-12 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
   <div class="col-md-4">
-       <input ng-model="project.dateBeginning" type="date" value="{{ project.dateBeginning }}" class="form-control input-md" >
+       <input ng-model="date.dateBeginning" type="date" class="form-control input-md" placeholder="yyyy-MM-dd">
   </div>
   <div class="col-md-4">
-       <input ng-model="project.dateEndExpected" type="date" value="{{ project.dateEndExpected }}" class="form-control input-md" >
+       <input ng-model="date.dateEndExpected" type="date" class="form-control input-md" placeholder="yyyy-MM-dd">
   </div>
   <div class="col-md-4">
-       <input ng-model="project.dateEnd" type="date" value="{{ project.dateEnd }}" class="form-control input-md" >
+       <input ng-model="date.dateEnd" type="date" class="form-control input-md" placeholder="yyyy-MM-dd">
   </div>
 </div>
+
 <div class="form-group col-xs-8 col-sm-8 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
   <div class="col-md-4">
-    <input ng-model="project.numberConsultants" id="textinput" name="textinput" type="text" placeholder="{{ 'DAYS_LENGTH' | translate }}" class="form-control input-md">
+    <input ng-model="project.daysDuration" id="textinput" name="textinput" type="text" placeholder="{{ 'DAYS_LENGTH' | translate }}" class="form-control input-md">
   </div>
   <div class="col-md-4">
     <select id="selectbasic" ng-model="project.type"  name="selectbasic" class="form-control sc">
-    <option value="" disabled selected>{{ 'PROJECT_TYPE' | translate }}</option>
-      <option id="AMD2"> ADM2 </option>
-      <option id="AMD3"> ADM3 </option>
-      <option id"ADM4"> ADM4 </option>
+      <option value="" disabled selected>{{ 'PROJECT_TYPE' | translate }}</option>
+      <option ng-repeat="type in types" value="{{ type.name }}">{{ type.name }}</option>
     </select>
   </div>
+    <div class="col-md-4">
+      <input ng-model="project.client" id="textinput" name="textinput" type="text" placeholder="{{ 'CLIENT' | translate }}" class="form-control input-md">
+  </div>
 </div>
+
 </fieldset>
 <!-- Button (Double) -->
   <button type="submit" class="btn btn-primary btn-outline pull-right">{{ 'ADD_PROJECT' | translate }}</button>
