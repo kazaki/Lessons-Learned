@@ -61,3 +61,13 @@ td{
 tbl-content tr:hover{
   font-weight: bold;
 }
+
+.toggle.ios,
+.toggle-on.ios,
+.toggle-off.ios {
+    border-radius: 20px;
+}
+
+.toggle.ios .toggle-handle {
+    border-radius: 20px;
+}

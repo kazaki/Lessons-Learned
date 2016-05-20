@@ -21,11 +21,8 @@
 
         $routeProvider
             .when("/", {
-				/* templateUrl: "app/views/login.html",
-                controller: "LoginCtrl" */
-				
-				templateUrl: "app/views/view_ll.html",
-                controller: "ViewLLCtrl"
+				templateUrl: "app/views/login.html",
+                controller: "LoginCtrl"
             })
 
              .when("/home", {
