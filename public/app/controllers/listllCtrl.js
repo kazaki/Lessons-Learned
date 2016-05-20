@@ -3,7 +3,7 @@
  */
 (function() {
     var listllCtrl = function($scope, listllServices, userServices, genServices, filterFilter) {
-
+        $scope.sortType = 'date';
         console.log('Page loaded.');
 
         listllServices.getAllLessons()
@@ -11,9 +11,9 @@
                 console.log('Lessons List loaded.');
                 $scope.lessons = result.data;
 
-                $scope.$on('advanced-searchbox:modelUpdated', function(event, searchParameter) {
+                $scope.$watch('searchParams', function(term) {
                     var obj = {
-                        title: searchParameter.project
+                        title: term
                     }
 
                     $scope.filteredLessons = filterFilter($scope.lessons, obj);
@@ -59,19 +59,14 @@
 
         });
 
-        $scope.$on('advanced-searchbox:modelUpdated', function(event, searchParameter) {
-            console.log($scope.searchParams.sector);
-            console.log("AQUII");
+        /*
+                $scope.$on('advanced-searchbox:modelUpdated', function(event, searchParameter) {
+                    console.log($scope.searchParams.sector);
+                    console.log("AQUII");
 
-            //TODO: send search post and update scope.lessons
-        });
-        $scope.predicate = 'title';
-        $scope.reverse = true;
-        $scope.order = function(predicate) {
-            $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-            $scope.predicate = predicate;
-        };
-
+                    //TODO: send search post and update scope.lessons
+                });
+                */
 
 
 
