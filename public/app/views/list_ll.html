@@ -3,22 +3,15 @@
 <div ng-include='"app/views/templates/header.html"'></div>
 <div class="section">
 
+
     <div class="container">
         <div class="card card-container">
 
-
-            <!--
-                <nit-advanced-searchbox ng-model="searchParams" parameters="availableSearchParams" placeholder="Search..."> </nit-advanced-searchbox>
-              -->
-
-
-            <!-- search -->
             <div class="row">
                 <form>
                     <div class="input-group stylish-input-group">
                         <input type="text" class="form-control " placeholder="Search..." ng-model="searchParams">
                         <span class="input-group-addon">
-
                             <button type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
@@ -27,23 +20,6 @@
                 </form>
             </div>
             <br>
-            <!--
-             <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
-             <button ng-click="predicate=''">Set to unsorted</button>
-             <button ng-click="order('title')">Name</button>
-             <button ng-click="order('creationdate')">Date</button>
-             <span class="sortorder" ng-show="predicate === 'creationdate'" ng-class="{reverse:reverse}"></span>
-
-
-             <div class="dropdown">
-                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                     Order by
-                     <span class="caret"></span>
-                 </button>
-
-             </div>
-           -->
-
 
 
 
@@ -54,22 +30,34 @@
                             <th>
                                 <a href="#" ng-click="sortType = 'creationdate'; sortReverse = !sortReverse"> DATE   </a>
                                 <span ng-show="sortType == 'creationdate' && sortReverse" class="fa fa-caret-up"></span></span>
-                                </a>
+
                             </th>
                             <th>
                                 <a href="#" ng-click="sortType = 'technology'; sortReverse = !sortReverse"> TECHNOLOGY  </a>
                                 <span ng-show="sortType == 'technology' && sortReverse" class="fa fa-caret-up"></span></span>
-                                </a>
+
                             </th>
                             <th>
                                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse"> AUTHOR  </a>
                                 <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></span>
-                                </a>
+
                             </th>
                             <th>
                                 <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse"> PROJECT <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
                               <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span></span> </a>
                             </th>
+
+                            <th>
+                                <a ng-if="isAdmin==1" href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                                    
+                                    <input type="checkbox" id="selectStatus" data-toggle="toggle" data-onstyle="success" data-style="ios">
+                                    <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span></span>
+                                </a>
+                            </th>
+
+
+
 
                         </tr>
                     </thead>
@@ -84,25 +72,12 @@
                             <td>{{lesson.technology}} </td>
                             <td>{{lesson.name}}</td>
                             <td>{{lesson.title}}</td>
+                            <td>{{lesson.status}}</td>
                         </tr>
 
             </div>
 
 
-            <!-- Single button -->
-            <!--
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="glyphicon glyphicon-floppy-save"></i> {{ 'EXPORT' | translate }}
-
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">{{ 'EXPORT_TO_PDF' | translate }} </a></li>
-                    <li><a href="#">{{ 'EXPORT_TO_CSV' | translate }}</a></li>
-
-                </ul>
-            </div>
-          -->
         </div>
     </div>
 
