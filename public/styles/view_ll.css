@@ -1,7 +1,35 @@
 #viewll {
 	margin-top: 3vw;
+	font-family: 'corbertregular';
+	
+	font-weight: bold;
 }
 
 .row {
 	margin-bottom: 30px;
+}
+
+.panel {
+	border:0px;
+}
+
+.panel-heading {
+	
+	padding:4px;
+	padding-left:13px;
+	border:0;
+	color:#000;
+	background-color:#729BD3;
+	font-size:15px;
+	
+}
+
+.panel-body {
+	padding-top:10px;
+	height: 100%;
+	color:#000;
+	
+	font-size:13px;
+	
+	word-warp:break-word;
 }

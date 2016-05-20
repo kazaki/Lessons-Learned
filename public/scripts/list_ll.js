@@ -4,4 +4,8 @@ $(document).ready(function() {
         $(this).closest('a').toggleClass('active');
     });
 
+    $(function() {
+        $('#selectStatus').bootstrapToggle();
+    })
+
 });
