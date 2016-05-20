@@ -18,7 +18,26 @@
 				} 
 
 				console.log(data);
-				$("#vll_title").val(data["name"]);
+				$("#lltitle").text(data["name"]);
+				$("#llclient").text(data["client"]);
+				$("#llsituation").text(data["situation"]);
+				$("#llaction").text(data["action"]);
+				$("#llresults").text(data["result"]);
+				$("#llmanager").text(data["manager"]);
+				$("#lldimension").text(data["numberConsultants"]);
+				$("#llstart").text(data["dateBeginning"]);
+				$("#llexpected").text(data["dateEndExpected"]);
+				$("#llfinish").text(data["dateEnd"]);
+				$("#lltech").text(data["technology"]);
+				$("#lldesc").text(data["name"]);
+				
+				if (data["status"] == "approved")
+					$('#llstatus').bootstrapToggle('on');
+				else if (data["status"] == "submited" || (data["status"] == "inactive"))
+					$('#llstatus').bootstrapToggle('off');
+				
+				
+				
 
 			})
 			.catch(function (err) {

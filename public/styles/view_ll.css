@@ -22,7 +22,7 @@
 	
 }
 
-.toggle-one {
+.llstatus {
 	padding-left:10px;
 	
 }
@@ -92,4 +92,9 @@ textarea {
 
 .lldesc {
 	height:188px !important;
+}
+
+#llinfo > .row {
+	padding-left: 15px;
+	padding-right: 15px;
 }
