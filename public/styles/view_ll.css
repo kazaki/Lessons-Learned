@@ -5,9 +5,7 @@
 	font-weight: bold;
 }
 
-.row {
-	margin-bottom: 30px;
-}
+
 
 .panel {
 	border:0px;
@@ -24,12 +22,74 @@
 	
 }
 
+.toggle-one {
+	padding-left:10px;
+	
+}
+
+.toggle.android { border-radius: 0px;}
+.toggle.android .toggle-handle { border-radius: 0px; }
+
+.toggle {
+	width: 100% !important;
+}
+
+.toggle-group > .btn {
+	color: #000 !important;
+	font-family: 'corbertregular';
+	font-weight: bold;
+	font-size:13px;
+}
+
+.toggle-group > label {
+	padding-top:5px;
+}
+
+
 .panel-body {
 	padding-top:10px;
 	height: 100%;
 	color:#000;
 	
 	font-size:13px;
-	
-	word-warp:break-word;
+
+}
+
+.noborder {
+	margin:0;
+	padding:0;
+}
+
+.fa {
+	height:100%;
+	margin:0;
+	padding-right: 15px;
+	font-size: 50px;
+}
+
+.fa:hover {
+	color:orange;
+	cursor: pointer;
+}
+
+.toolbox {
+	text-align: center;
+	user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+	padding-bottom:42px;
+}
+
+textarea { 
+	resize:vertical ;
+}
+
+#lldata {
+	margin-bottom: 20px;
+}
+
+.lldesc {
+	height:188px !important;
 }
