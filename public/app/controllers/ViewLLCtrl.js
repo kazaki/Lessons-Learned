@@ -36,7 +36,8 @@
 			}
 			if (args["id"] != null) {
 				$scope.getLesson(args["id"]);
-			}
+			} else
+				console.log("No LL id was given.");
 		}
 		
 		$scope.loadLL();

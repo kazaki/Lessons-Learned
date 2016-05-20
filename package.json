@@ -25,5 +25,8 @@
     "nodemon": "^1.9.2",
     "path": "^0.12.7",
     "streamsearch": "^0.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
   }
 }
