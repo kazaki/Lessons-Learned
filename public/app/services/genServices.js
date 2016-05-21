@@ -53,6 +53,18 @@ var genServices = function ($q, $http) {
                     deferred.reject(err);
                 });
         };
+        // Function to retrieve the list of existing projects by manager ID
+        this.getProjectsByManager = function(managerid) {
+         return $http.get('/api/projectsbymanager', {
+                    headers: {'managerid': managerid}
+                })
+                .success(function(res) {             
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
         // Function to create a project
         this.createProject = function(project) {
             return $http.post('/api/createproject', project)

@@ -6,20 +6,21 @@
 			"/api/createuser",
 			"/api/managers",
 			"/api/createproject",
-			"/api/technologies",
 			"/api/projecttypes",
 			"/api/sectors",
-			"/api/projects",
-			"/api/createlesson",
 			"/api/lessons",
 			"/api/user",
-			"/api/searchlessons"
+			"/api/searchlessons",
+			"/api/projectsbymanager"
 		],
 
 		"logged": [
 
 			"/api/users",
-			"/api/updateuseremail"
+			"/api/updateuseremail",
+			"/api/technologies",
+			"/api/projects",
+			"/api/createlesson"
 		],
 
 		"admin": [

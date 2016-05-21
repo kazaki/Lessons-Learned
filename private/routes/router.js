@@ -514,6 +514,18 @@
                     });
         });
 
+        server.get("/api/projectsbymanager",function(req,res){
+
+             var managerid = req.headers.managerid;
+             database.getProjectsByManagerID(managerid)
+               .then(function (projs) {
+                    res.status(200).send(projs);
+                })
+                .catch(function (err) {
+                    res.status(406).send('Could not retrieve projects information with that manager id.');
+                });        
+        });
+
         server.post("/api/createproject",function(req,res){
 
                 var type = req.body.type;

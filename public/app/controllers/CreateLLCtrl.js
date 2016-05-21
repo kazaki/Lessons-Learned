@@ -5,6 +5,7 @@
         $scope.projects = [];
         $scope.items = [];
         var manager = null;
+        var managerid = null;
 
         $scope.localLang = {
             selectAll       : "Tick all",
@@ -14,31 +15,31 @@
             nothingSelected : "Nothing is selected"
         }
 
-        genServices.getTechnologies()
-            .then(function (techs) {
-                $scope.technologies = techs.data;
-            })
-            .catch(function (err) {
-                $scope.items.push("Field technologies: "+ err.data);
-            });
-
-        genServices.getProjects()
-            .then(function (projects) {
-                $scope.projects = projects.data;
-            })
-            .catch(function (err) {
-                $scope.items.push("Field projects: " + err.data);
-            });
-
         userServices.logged()
             .then(function (result) {
                 manager = result.data.name;
+                managerid = result.data.idusers;
+                genServices.getProjectsByManager(managerid)
+                    .then(function (projects) {
+                        $scope.projects = projects.data;
+                    })
+                    .catch(function (err) {
+                        $scope.items.push("Field projects: " + err.data);
+                    });
             })
             .catch(function (err) {
                 while ($scope.items.length > 0) {
                     $scope.items.pop();
                 }
                 $scope.items.push(err.data);
+            });
+
+        genServices.getTechnologies()
+            .then(function (techs) {
+                $scope.technologies = techs.data;
+            })
+            .catch(function (err) {
+                $scope.items.push("Field technologies: "+ err.data);
             });
 
         $scope.pop = function () {
