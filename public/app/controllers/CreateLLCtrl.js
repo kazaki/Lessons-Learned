@@ -19,7 +19,7 @@
                 $scope.technologies = techs.data;
             })
             .catch(function (err) {
-                $scope.items.push(err.data);
+                $scope.items.push("Field technologies: "+ err.data);
             });
 
         genServices.getProjects()
@@ -27,7 +27,7 @@
                 $scope.projects = projects.data;
             })
             .catch(function (err) {
-                $scope.items.push(err.data);
+                $scope.items.push("Field projects: " + err.data);
             });
 
         userServices.logged()
@@ -35,6 +35,9 @@
                 manager = result.data.name;
             })
             .catch(function (err) {
+                while ($scope.items.length > 0) {
+                    $scope.items.pop();
+                }
                 $scope.items.push(err.data);
             });
 
