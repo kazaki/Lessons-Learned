@@ -102,6 +102,7 @@
                 ADD_USER: 'Add user',
 
                 SELECT: 'Select...',
+                SEARCH: 'Search',
                 CLIENT: 'Client',
                 SELECT_CLIENT: 'Project\'s Client',
                 NONE: 'None',
@@ -153,6 +154,7 @@
                 ADD_USER: 'Adicionar utilizador',
 
                 SELECT: 'Selecionar...',
+                SEARCH: 'Pesquisar',
                 CLIENT: 'Cliente',
                 SELECT_CLIENT: 'Cliente',
                 NONE: 'Nenhum',
@@ -205,6 +207,7 @@
                 ADD_USER: 'Ajouter l´utilisateur',
 
                 SELECT: 'Selecionar...',
+                SEARCH: 'Pesquisar',
                 CLIENT: 'Cliente',
                 SELECT_CLIENT: 'Cliente',
                 NONE: 'Nenhum',
