@@ -8,29 +8,28 @@
 
 		$scope.itemsPerPage = 3;
         $scope.currentPage = 1;
+        $scope.items = [];
 
 		services.getUsers()
             .then(function (result) {
-                console.log('User List loaded.');
                 $scope.users = result.data;
+                $scope.items.pop();
+                $scope.items.push();
                 $scope.$watch('search.filter', function (term) {
                     var obj = { name: term }
 
                     $scope.filteredUsers = filterFilter($scope.users, obj);
                     $scope.currentPage = 1;
                 });
-                /*$scope.$watch("currentPage + itemsPerPage", function() {
-		            var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
-		            var end = begin + $scope.itemsPerPage;
-
-		            $scope.filteredUsers = $scope.users.slice(begin, end);
-		        });*/
             })
             .catch(function (err) {
-                console.log('User List error.');
-                alert(err.data.message);
+                $scope.items.pop();
+               	$scope.items.push(err.data);
         	});
 
+        $scope.pop = function () {
+            $scope.items.pop();
+        };
 
 		$scope.editUser = function(ID) {
 			console.log("Modal opened.");

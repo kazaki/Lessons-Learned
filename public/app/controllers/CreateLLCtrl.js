@@ -3,6 +3,7 @@
 
         $scope.technologies = [];
         $scope.projects = [];
+        $scope.items = [];
         var manager = null;
 
         $scope.localLang = {
@@ -18,7 +19,7 @@
                 $scope.technologies = techs.data;
             })
             .catch(function (err) {
-                alert(err.data);
+                $scope.items.push(err.data);
             });
 
         genServices.getProjects()
@@ -26,16 +27,20 @@
                 $scope.projects = projects.data;
             })
             .catch(function (err) {
-                alert(err.data);
+                $scope.items.push(err.data);
             });
 
         userServices.logged()
-                .then(function (result) {
-                    manager = result.data.name;
-                })
-                .catch(function (err) {
-                    alert(err.data);
-                });
+            .then(function (result) {
+                manager = result.data.name;
+            })
+            .catch(function (err) {
+                $scope.items.push(err.data);
+            });
+
+        $scope.pop = function () {
+            $scope.items.pop();
+        };
 
         $scope.createLesson = function(lesson, draft) {
             /*alert(lesson.technologies[0].technology + ' ' + lesson.technologies[0].idtechnologies);
@@ -58,11 +63,13 @@
 
             llServices.createLL(ll)
                 .then(function (result) {
-                    console.log(JSON.stringify(result));
+                    $scope.items.pop();
+                    $scope.items.push();
                     alert("Inserted "+status);                   
                 })
                 .catch(function (err) {
-                    alert("Erro "+err.data);
+                    $scope.items.pop();
+                    $scope.items.push(err.data);
                 });
         }            
 
