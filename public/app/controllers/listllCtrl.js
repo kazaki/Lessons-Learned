@@ -22,13 +22,18 @@
             })
             .catch(function(err) {
                 console.log('Lessons List error.');
-                alert(err.data.message);
+                alert(err);
             });
 
         listllServices.getAllLessons()
             .then(function(result) {
                 if ($scope.isAdmin == 1) {
                     $scope.lessons = result.data;
+                    //console.log(JSON.stringify(result.data));
+                    console.log('HIII: ' + result.data[0].title);
+                    console.log('HIII: ' + result.data[0].name);
+                    console.log('HIII: ' + result.data[0].status);
+                    console.log('HIII: ' + result.data[0].technology);
 
                 } else {
                     $scope.lessons = $filter('filter')(result.data, {
@@ -39,7 +44,7 @@
             })
             .catch(function(err) {
                 console.log('Lessons List error.');
-                alert(err.data.message);
+                alert(err);
             });
 
         $scope.clickStatus = function() {

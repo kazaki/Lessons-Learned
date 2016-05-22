@@ -10,8 +10,6 @@
         path = require('path'),
         port = 8080;
 
-
-
 // Create connection to the database
 database.connect()
         .then(function () {

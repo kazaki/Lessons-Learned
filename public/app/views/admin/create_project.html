@@ -14,6 +14,12 @@
   </div>
 </div>
 
+<div class="form-group col-xs-8 col-sm-8 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1" >
+  <div class="col-md-5">
+    <input ng-model="project.deliveringModel" id="textinput" name="textinput" type="text" placeholder="{{ 'DELIVERING_MODEL' | translate }}" class="form-control input-md">
+  </div>
+</div>
+
 <div class="form-group col-xs-12 col-sm-12 col-md-8 col-lg-10  column col-sm-offset-0 col-md-offset-2 col-lg-offset-1">
 <div class="col-md-4">
     <select id="selectbasic" ng-model="project.manager" name="selectbasic" class="form-control sc">
@@ -25,7 +31,7 @@
     <input ng-model="project.numberConsultants" id="textinput" name="textinput" type="text" placeholder="{{ 'COLABORATORS' | translate }}" class="form-control input-md">
   </div>
 <div class="col-md-4">
-    <select ng-model="project.deliveringModel" id="textinput" name="textinput" type="text" class="form-control input-md sc">
+    <select ng-model="project.sector" id="textinput" name="textinput" type="text" class="form-control input-md sc">
       <option value="" disabled selected>{{ 'BUSINESS_SECTOR' | translate }}</option>
       <option ng-repeat="sector in sectors" value="{{ sector.name }}">{{ sector.name }}</option>
     </select>

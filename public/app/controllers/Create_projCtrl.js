@@ -19,7 +19,6 @@
 
         genServices.getProjectTypes()
             .then(function (types) {
-                console.log(JSON.stringify("types "+types.data));
                 $scope.types = types.data;
 
             })
@@ -29,7 +28,6 @@
 
         genServices.getBusinessSectors()
             .then(function (sectors) {
-                console.log(JSON.stringify("sectors "+sectors.data));
                 $scope.sectors = sectors.data;
 
             })

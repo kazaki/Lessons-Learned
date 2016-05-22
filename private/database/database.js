@@ -241,7 +241,7 @@
 
     exports.getLessons = function(){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT idLessonsLearned,status,creationdate,aproveddate,situation,action,result,technology,type,t5.name as title,t6.name FROM public.lessonslearned as t1, public.lessonstext as t2, public.technologies as t3,public.lesson_tech as t4,public.project as t5 ,public.users as t6  WHERE t1.idLessonsLearned = t2.idLessonLearned   AND t1.idLessonsLearned = t4.idlesson  AND t4.idlesson = t1.idLessonsLearned   AND t1.project = t5.idproject  AND t3.idtechnologies = t4.idtech AND t1.manager =t6.idusers";
+         var query = "SELECT t1.idLessonsLearned,t1.status, t1.creationdate,t1.aproveddate,t2.situation,t2.action,t2.result,t3.technology,t7.name,t5.name as title,t6.name FROM public.lessonstext as t2, public.technologies as t3,public.lesson_tech as t4, public.users as t6,public.business_sectors as t7,public.lessonslearned as t1 LEFT OUTER JOIN public.project as t5 ON t5.idproject = t1.project WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t4.idlesson AND t3.idtechnologies = t4.idtech AND t1.manager = t6.idusers AND t5.sector = t7.idSector";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -312,19 +312,6 @@
                         }
                     });
              });
-    }
-
-    exports.updateLessonFieldByID = function (businessSector, idLesson) {
-        return new Promise(function (resolve, reject) {
-            client.query('UPDATE public.lessonsLearned SET businessSector = ? WHERE idLesson = ?',  [businessSector, idLesson ],
-                function (err, result) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve('Updated lesson with id: ' + idLesson);
-                    }
-                });
-        });
     }
 
     exports.updateLessonTextByID = function (action, situation, result, idLesson) {
@@ -508,30 +495,35 @@
          });
     }
 
-    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected, dateEnd, deliveringModel,numberConsultants, daysDuration, projclient) {
+    exports.insertProject = function (type,name,manager,dateBeginning,dateEndExpected, dateEnd, deliveringModel,numberConsultants, daysDuration, projclient,sector) {
         return new Promise(function (resolve, reject) {
-            var query = 'Select idusers FROM users WHERE name = ?';
+            console.log('heyyy: ' + sector + projclient + deliveringModel);
+            var query = 'Select idusers FROM public.users WHERE name = ?';
             query = mysql.format(query, manager);
             client.query(query,function (err2, result2) {
                     if (err2) {
                         reject(err2);
                     } else {
-                        console.log(dateBeginning + 'beg');
-                        console.log(dateEndExpected + 'endex');
-                        console.log(dateEnd + 'end');
-                        client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: result2[0].idusers, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, dateEnd: dateEnd, deliveringModel: deliveringModel, numberConsultants: numberConsultants , daysDuration:daysDuration, client:projclient},
-                            function (err, result) {
-                                if (err) {
-                                    reject(err);
+                        var query = 'Select idSector FROM public.business_sectors WHERE name = ?';
+                        query = mysql.format(query, sector);
+                        client.query(query,function (err3, result3) {
+                                if (err3) {
+                                    reject(err3);
                                 } else {
-
-                                resolve(result.insertId);
+                                    client.query('INSERT INTO public.project SET ?', {type: type, name: name, manager: result2[0].idusers, dateBeginning: dateBeginning, dateEndExpected: dateEndExpected, dateEnd: dateEnd, deliveringModel: deliveringModel, numberConsultants: numberConsultants , daysDuration:daysDuration, client:projclient, sector:result3[0].idSector},
+                                        function (err, result) {
+                                            if (err) {
+                                                reject(err);
+                                            } else {
+                                                resolve(result.insertId);
+                                            }
+                                        });
                                 }
-                            });
+                        });
                     }
-                });
+            });
         });
-    }
+    }   
 
     exports.updateProjectDateByID = function(idproject,date){
         return new Promise(function (resolve, reject) {

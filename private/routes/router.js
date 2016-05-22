@@ -143,12 +143,12 @@
             var pass = req.body.password;
             var name = req.body.name;
             var permission = req.body.permission;
-            var photo = req.body.photo;
+            //var photo = req.body.photo;
             
             //check if photo is valid
 
             //console.log(email + pass + name+ "pppppppppppppp:   "+permission);
-            
+        /*    
             console.log(req.body.image);
              fs.readFile(req.body.image.path, function (err, data) {
     var imageName = req.body.image.name
@@ -176,7 +176,7 @@
     }
   });
   
-  
+  */
             if(permission!="1" && permission!="2" && permission!="0"){
                 // Check if permission is valid. 
                 res.status(400).json({
@@ -537,14 +537,13 @@
                 var dateEndExpected = req.body.dateEndExpected;
                 var dateEnd = req.body.dateEnd;
 
+                var sector = req.body.sector;
+
                 var deliveringModel = req.body.deliveringModel;
                 var numberConsultants = req.body.numberConsultants;
                 var daysDuration = req.body.daysDuration;
 
-                if(!client)
-                    client = "Altran";
-
-                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,dateEnd,deliveringModel,numberConsultants,daysDuration,client)
+                database.insertProject(type,name,manager,dateBeginning,dateEndExpected,dateEnd,deliveringModel,numberConsultants,daysDuration,client,sector)
                     .then(function (project) {
                         res.sendStatus(200);
                     })

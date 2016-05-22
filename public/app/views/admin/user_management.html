@@ -3,7 +3,7 @@
 
 <div ng-include='"app/views/templates/header.html"'></div>
 
-<form ng-submit="addUser(user)">
+<form ng-submit="addUser(user)" enctype="multipart/form-data">
 <div class="container">
   <div class="row">
  
@@ -12,7 +12,7 @@
     <h3>Select Avatar</h3>
       <div class="thumb" > <img id="img" ng-src={{image}} /></div>
     <label for="upload">Choose File
-      <input file-model = "myFile" type='file' name="image" id="upload" ></label>
+      <input file-model = "myFile" type='file' name="file" id="upload" ></label>
     </div>
 </div>
     <div class="col-md-4">
