@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: public
 -- ------------------------------------------------------
--- Server version	5.7.12
+-- Server version	5.7.12-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-20 17:04:59
+-- Dump completed on 2016-05-23  0:13:14

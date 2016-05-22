@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: public
 -- ------------------------------------------------------
--- Server version	5.7.12
+-- Server version	5.7.12-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,10 +34,13 @@ CREATE TABLE `project` (
   `numberConsultants` int(11) NOT NULL,
   `daysDuration` int(11) DEFAULT NULL,
   `client` varchar(45) NOT NULL,
+  `sector` int(11) NOT NULL,
   PRIMARY KEY (`idproject`),
   KEY `idUsers_idx` (`manager`),
-  CONSTRAINT `idUsers` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  KEY `idsector_idx` (`sector`),
+  CONSTRAINT `idUsers` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idsector` FOREIGN KEY (`sector`) REFERENCES `business_sectors` (`idSector`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +49,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,' ADM3 ','asdas',24,'2016-05-24','2016-05-25','2016-05-30','adas',12321,3131,'0'),(2,'ADM2','Proj3',24,'2016-05-01','2016-05-02','2016-05-03','sector1',5,10,'Altran'),(3,'ADM3','Projecto Awesome',24,'2016-05-03','2016-05-29','2016-05-31','sector1',10,2,'Cliente');
+INSERT INTO `project` VALUES (4,'ADM3','asdasdas',22,'2016-05-23','2016-05-26','2016-05-31','asdsdas',12,12,'asdasdas',6),(5,'ADM1','sdasdsadasdsa',22,'2016-05-30','2016-06-01','2016-06-04','dasdsadsadsa',12,12,'sadsadsadas',6);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-20 17:04:59
+-- Dump completed on 2016-05-23  0:13:13

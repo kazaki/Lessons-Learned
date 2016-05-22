@@ -31,7 +31,7 @@ CREATE TABLE `lessonstext` (
   PRIMARY KEY (`idlessonsText`),
   KEY `idLesson_idx` (`idLessonLearned`),
   CONSTRAINT `idLesson` FOREIGN KEY (`idLessonLearned`) REFERENCES `lessonslearned` (`idLessonsLearned`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `lessonstext` (
 
 LOCK TABLES `lessonstext` WRITE;
 /*!40000 ALTER TABLE `lessonstext` DISABLE KEYS */;
+INSERT INTO `lessonstext` VALUES (1,1,'Situação 222','Ação 21312312','Desc asdasdas');
 /*!40000 ALTER TABLE `lessonstext` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-13 22:34:09
+-- Dump completed on 2016-05-23  0:13:13

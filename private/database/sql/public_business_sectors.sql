@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: public
 -- ------------------------------------------------------
--- Server version	5.7.12
+-- Server version	5.7.12-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,7 +26,7 @@ CREATE TABLE `business_sectors` (
   `idSector` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`idSector`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `business_sectors` (
 
 LOCK TABLES `business_sectors` WRITE;
 /*!40000 ALTER TABLE `business_sectors` DISABLE KEYS */;
-INSERT INTO `business_sectors` VALUES (1,'sector1');
+INSERT INTO `business_sectors` VALUES (1,'Telecomunicações'),(2,'Administração Pública'),(3,'Distribuição'),(4,'Saúde'),(5,'Financeiro'),(6,'Media');
 /*!40000 ALTER TABLE `business_sectors` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-20 17:04:59
+-- Dump completed on 2016-05-23  0:13:13
