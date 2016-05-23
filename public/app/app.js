@@ -61,6 +61,11 @@
                 controller: "ViewLLCtrl"
             })
 
+            .when("/view_audit", {
+                templateUrl: "app/views/list_audit.html",
+                controller: "ViewLLCtrl"
+            })
+
 			.when("/settings",{
                 templateUrl: "app/views/settings.html",
                 controller: "HomeCtrl"
@@ -134,7 +139,8 @@
                 BUSINESS_SECTOR: 'Busines Sector',
                 DAYS_LENGTH: 'Project Duration (days)',
                 PROJECT_TYPE: 'Project Type',
-                ADD_PROJECT: 'Add Project'
+                ADD_PROJECT: 'Add Project',
+                DELIVERING_MODEL: 'Delivering Model'
             })
             .translations('pt', {
                 HOME: 'Começar',
@@ -186,7 +192,8 @@
                 BUSINESS_SECTOR: 'Setor de Negócio',
                 DAYS_LENGTH: 'Duração Projeto',
                 PROJECT_TYPE: 'Tipo de Projeto',
-                ADD_PROJECT: 'Adicionar Projeto'
+                ADD_PROJECT: 'Adicionar Projeto',
+                DELIVERING_MODEL: 'Modelo de Entrega'
 
             })
             .translations('fr', {
@@ -239,7 +246,8 @@
                 BUSINESS_SECTOR: 'Setor de Negócio',
                 DAYS_LENGTH: 'Duração Projeto',
                 PROJECT_TYPE: 'Tipo de Projeto',
-                ADD_PROJECT: 'Adicionar Projeto'
+                ADD_PROJECT: 'Adicionar Projeto',
+                DELIVERING_MODEL: 'Delivering Model'
 
             })
         $translateProvider.preferredLanguage('pt');

@@ -1,5 +1,5 @@
 (function(){
-	 var  Create_projCtrl = function($scope, $filter, genServices) {
+	 var  Create_projCtrl = function($scope, $filter, $window, genServices) {
 
 		 console.log('Page loaded.');
 
@@ -42,20 +42,21 @@
 
             genServices.createProject(project)
                 .then(function (res) {
-                    console.log('loool');
-                    alert(res);
+                    alert('Project Created Successfuly!');
+                    $window.location.href = '/home';
 
                 })
                 .catch(function (err) {
                     console.log('loool');
                     alert(err.data.message);
+                    $window.location.href = '/create_project';
                 });
          };
             
 
 	 };
 	 // Injecting modules used for better minifing later on
-    Create_projCtrl.$inject = ['$scope', '$filter', 'genServices'];
+    Create_projCtrl.$inject = ['$scope', '$filter', '$window', 'genServices'];
 
     // Enabling the controller in the app
     angular.module('lessonslearned').controller('Create_projCtrl', Create_projCtrl);
