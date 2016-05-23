@@ -51,6 +51,11 @@
                 controller: "listllCtrl"
             })
 
+            .when("/mylistll", {
+                templateUrl: "app/views/mylist_ll.html",
+                controller: "mylistllCtrl"
+            })
+
             .when("/create_ll", {
                 templateUrl: "app/views/create_ll.html",
                 controller: "CreateLLCtrl"

@@ -12,17 +12,17 @@
          fs = require('fs');
     // Main router where all routes are called. This is done so the project code is cleaner and more maintainable.
     module.exports = function (server) {
-        
+
         //<!------------------------------------------------------------------ RENDERS ---------------------------------------------------------------------------------------------------->
 
         server.get('/', function (req, res) {
             res.render('index');
         });
-        
+
         server.get('/home', function (req, res) {
             res.render('index');
         });
-        
+
         server.get('/user_management', function (req, res) {
             res.render('index');
         });
@@ -30,36 +30,40 @@
         server.get('/create_project', function (req, res) {
             res.render('index');
         });
-        
+
         server.get('/users', function (req, res) {
             res.render('index');
         });
-        
+
         server.get('/listll', function (req, res) {
+            res.render('index');
+        });
+
+        server.get('/mylistll', function (req, res) {
             res.render('index');
         });
 
         server.get('/create_ll', function (req, res) {
             res.render('index');
         });
-        
+
         server.get('/settings', function (req, res) {
             res.render('index');
         });
-		
+
 		server.get('/view_ll', function (req, res) {
 			res.render('index');
 		});
-		
+
         // Route to send forbidden view
         server.get('/forbidden', function (req, res) {
             res.render('index');
         });
-        
+
         // <!------------------------------------------------------------------ USERS ---------------------------------------------------------------------------------------------------->
-        
+
         server.get('/api/users', function (req, res) {
-            
+
             database.getUser()
                .then(function (user) {
                     res.status(200).send(user);
@@ -71,7 +75,7 @@
         });
 
         server.get('/api/managers', function (req, res) {
-            
+
             database.getManagers()
                .then(function (user) {
                     res.status(200).send(user);
@@ -93,7 +97,7 @@
                 .catch(function (err) {
                     res.status(406).send('Could not retrieve users information');
                 });
-        
+
         });
 
         server.post('/api/login', function (req, res) {
@@ -114,7 +118,7 @@
                         });
 
                 })
-                
+
                 .catch(function (err) {
 
                     console.log(err);
@@ -128,7 +132,7 @@
                 });
 
         });
-        
+
         server.get('/api/verifysession', function (req, res){
              if (req.cookies.session) {
                 cookie.verifySession(req.cookies.session)
@@ -149,11 +153,11 @@
             var name = req.body.name;
             var permission = req.body.permission;
             //var photo = req.body.photo;
-            
+
             //check if photo is valid
 
             //console.log(email + pass + name+ "pppppppppppppp:   "+permission);
-        /*    
+        /*
             console.log(req.body.image);
              fs.readFile(req.body.image.path, function (err, data) {
     var imageName = req.body.image.name
@@ -180,10 +184,10 @@
       });
     }
   });
-  
+
   */
             if(permission!="1" && permission!="2" && permission!="0"){
-                // Check if permission is valid. 
+                // Check if permission is valid.
                 res.status(400).json({
                     message_class: 'error',
                     message: 'Permission not valid.'
@@ -191,7 +195,7 @@
             }
 
             if(!validator.validate(email)){
-                // Check if email is valid. 
+                // Check if email is valid.
                 res.status(400).json({
                     message_class: 'error',
                     message: 'Email not valid.'
@@ -284,7 +288,7 @@
          var newpassword = req.body.newpassword;
 
             database.checkPasswordbyEmail(email, password)
-                .then(function(){    
+                .then(function(){
                 database.updateUserByEmail(name,newpassword,email)
                     .then(function() {
 
@@ -302,7 +306,7 @@
                         });
 
                     });
-             }) 
+             })
              .catch(function (err) {
 
                         console.log('HELLOOO' + err);
@@ -313,13 +317,13 @@
                             message: "Wrong Password."
                         });
 
-                    });      
+                    });
         });
 
          //<!------------------------------------------------------------------ LESSONS ---------------------------------------------------------------------------------------------------->
 
          server.get('/api/lessons', function (req, res) {
-            
+
                 database.getLessons()
                    .then(function (lessons) {
                         res.status(200).send(lessons);
@@ -330,7 +334,7 @@
         });
 
         server.get('/api/searchlessons', function (req, res) {
-            
+
                 var keyword = req.params.keyword;
 
                 database.getLessonByKeyword(keyword)
@@ -343,7 +347,7 @@
         });
 
         server.get('/api/lessonsByStatus', function (req, res) {
-            
+
                 var status = req.params.status;
 
                 database.getLessonByStatus(status)
@@ -365,7 +369,7 @@
                 })
                 .catch(function (err) {
                     res.status(406).send('Could not retrieve LL information with that id.');
-                });        
+                });
         });
 
          server.delete("/api/deletelesson",function(req,res){
@@ -469,7 +473,7 @@
                         // TODO Sending the error to the log file
                         console.log('Error inserting lesson to database');
                         console.log(err);
-                    
+
                     });
          });
 
@@ -504,12 +508,12 @@
                             message: "Incorrect state! Choose one of the following: draft|submited|approved|inactive."
                 });
              }
-        }  
+        }
 
         //<!------------------------------------------------------------------ PROJECT ---------------------------------------------------------------------------------------------------->
 
         server.get('/api/projects', function (req, res) {
-            
+
                 database.getProjects()
                    .then(function (projects) {
                         res.status(200).send(projects);
@@ -528,7 +532,7 @@
                 })
                 .catch(function (err) {
                     res.status(406).send('Could not retrieve projects information with that manager id.');
-                });        
+                });
         });
 
         server.post("/api/createproject",function(req,res){
@@ -556,7 +560,7 @@
                         // Sending the error to the log file
                         console.log('Error inserting project to database');
                         console.log(err);
-                    
+
                     });
          });
 
@@ -588,7 +592,7 @@
 
 
         server.get('/api/technologies', function (req, res) {
-            
+
                 database.getTechnologies()
                    .then(function (techs) {
                         res.status(200).send(techs);
@@ -610,7 +614,7 @@
                         // Sending the error to the log file
                         console.log('Error inserting technology to database');
                         console.log(err);
-                    
+
                     });
          });
 
@@ -638,7 +642,7 @@
                         // Sending the error to the log file
                         console.log('Error inserting project type to database');
                         console.log(err);
-                    
+
                     });
          });
 
@@ -647,7 +651,7 @@
 
 
         server.get('/api/sectors', function (req, res) {
-            
+
                 database.getSectors()
                    .then(function (sectors) {
                         res.status(200).send(sectors);
@@ -669,7 +673,7 @@
                         // Sending the error to the log file
                         console.log('Error inserting business sector to database');
                         console.log(err);
-                    
+
                     });
          });
 
