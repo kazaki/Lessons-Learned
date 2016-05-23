@@ -141,6 +141,11 @@
                 PROJECT_TYPE: 'Project Type',
                 ADD_PROJECT: 'Add Project',
                 DELIVERING_MODEL: 'Delivering Model'
+
+                //Lista LL
+                ACTIVE: 'Active',
+                INACTIVE: 'Inactive',
+                SUBMITTED: 'Pending approval'
             })
             .translations('pt', {
                 HOME: 'Começar',
@@ -194,6 +199,11 @@
                 PROJECT_TYPE: 'Tipo de Projeto',
                 ADD_PROJECT: 'Adicionar Projeto',
                 DELIVERING_MODEL: 'Modelo de Entrega'
+
+                //Lista LL
+                ACTIVE: 'Ativas',
+                INACTIVE: 'Inativas',
+                SUBMITTED: 'Aprovação pendente'
 
             })
             .translations('fr', {
@@ -249,6 +259,10 @@
                 ADD_PROJECT: 'Adicionar Projeto',
                 DELIVERING_MODEL: 'Delivering Model'
 
+                //Lista LL
+                ACTIVE: 'Actif',
+                INACTIVE: 'Négligé',
+                SUBMITTED: 'Validation en attente'
             })
         $translateProvider.preferredLanguage('pt');
     }]);
