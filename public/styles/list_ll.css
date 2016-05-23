@@ -1,20 +1,5 @@
-
-
-.lessonslistTitle{
-font-weight: bold;
-letter-spacing: 1px;
-text-align: center;
-}
-
-.lessonslistSubmitter{
-}
-
-
-.btn-group > .btn{
-  height: 100%;
-  padding: 0 5px;
-  margin: 0;
-
+body{
+  font-family: 'corbertregular';
 }
 
 table{
@@ -23,7 +8,7 @@ table{
 }
 
 .tbl-header{
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.1);
  }
 
  .tbl-content{
@@ -40,9 +25,19 @@ th{
   color: #fff;
   text-transform: uppercase;
   font-weight: bold;
+  border-bottom: solid 5px rgba(255,255,255,1);
 }
 th a{
   color:#fff;
+}
+
+th a:hover, a:focus{
+  color:#fff;
+  text-decoration: none;
+  -webkit-stroke-width: 5.3px;
+      -webkit-stroke-color: #FFFFFF;
+      -webkit-fill-color: #FFFFFF;
+      text-shadow: 1px 0px 20px white;
 }
 
 .tbl-header .caret{

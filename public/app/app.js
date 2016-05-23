@@ -134,7 +134,12 @@
                 BUSINESS_SECTOR: 'Busines Sector',
                 DAYS_LENGTH: 'Project Duration (days)',
                 PROJECT_TYPE: 'Project Type',
-                ADD_PROJECT: 'Add Project'
+                ADD_PROJECT: 'Add Project',
+
+                //Lista LL
+                ACTIVE: 'Active',
+                INACTIVE: 'Inactive',
+                SUBMITTED: 'Pending approval'
             })
             .translations('pt', {
                 HOME: 'Começar',
@@ -186,7 +191,12 @@
                 BUSINESS_SECTOR: 'Setor de Negócio',
                 DAYS_LENGTH: 'Duração Projeto',
                 PROJECT_TYPE: 'Tipo de Projeto',
-                ADD_PROJECT: 'Adicionar Projeto'
+                ADD_PROJECT: 'Adicionar Projeto',
+
+                //Lista LL
+                ACTIVE: 'Ativas',
+                INACTIVE: 'Inativas',
+                SUBMITTED: 'Aprovação pendente'
 
             })
             .translations('fr', {
@@ -239,7 +249,12 @@
                 BUSINESS_SECTOR: 'Setor de Negócio',
                 DAYS_LENGTH: 'Duração Projeto',
                 PROJECT_TYPE: 'Tipo de Projeto',
-                ADD_PROJECT: 'Adicionar Projeto'
+                ADD_PROJECT: 'Adicionar Projeto',
+
+                //Lista LL
+                ACTIVE: 'Actif',
+                INACTIVE: 'Négligé',
+                SUBMITTED: 'Validation en attente'
 
             })
         $translateProvider.preferredLanguage('pt');

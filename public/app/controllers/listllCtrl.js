@@ -5,8 +5,7 @@
     var listllCtrl = function($scope, listllServices, userServices, filterFilter, $filter) {
         $scope.isAdmin = 0;
         $scope.sortType = 'title';
-        $scope.statusSel = false;
-        $scope.statusString = "Draft";
+        $scope.statusString = "active";
         console.log('Page loaded.');
 
         userServices.logged()
@@ -37,7 +36,7 @@
 
                 } else {
                     $scope.lessons = $filter('filter')(result.data, {
-                        status: "Active"
+                        status: "active"
                     }, true);
                 }
 
@@ -47,28 +46,38 @@
                 alert(err);
             });
 
-        $scope.clickStatus = function() {
-            $scope.sortType = 'status';
-            $scope.StatusSel = !$scope.StatusSel
-            console.log($scope.StatusSel);
-            if ($scope.StatusSel == true) {
-                $scope.statusString = "Online";
-            } else {
-                $scope.statusString = "Offline";
-            }
-            console.log($scope.statusString);
-        }
 
-        $scope.OnlineOrOffline = function(status) {
+        $scope.Status = function(status) {
             return function(lesson) {
-                console.log("NO SERV:" + $scope.statusString);
-                if ($scope.statusString == "Offline") {
-                    return lesson.status == 'Draft' || lesson.status == 'Inactive';
-                } else {
-                    return lesson.status == 'Active';
+                console.log("estado clicado:" + $scope.statusString);
+
+                if ($scope.statusString == "active" || $scope.isAdmin==0) {
+                    return lesson.status == 'active';
+                } else if ($scope.statusString == "submitted") {
+                    return lesson.status == 'submitted';
+                } else if ($scope.statusString == "inactive") {
+                    return lesson.status == 'inactive';
                 }
             }
 
+        };
+
+        $scope.fieldTable = [{
+            field: "active",
+            title: "Active"
+        }, {
+            field: "inactive",
+            title: "Inactive"
+        }, {
+            field: "submitted",
+            title: "Pending approval"
+
+        }];
+
+        $scope.selected = $scope.fieldTable[0];
+
+        $scope.hasChanged = function() {
+            $scope.statusString=$scope.selected.field;
         };
 
 
@@ -76,24 +85,7 @@
 
     };
 
-    /*
-    app.filter('filterStatus', function() {
-        return function(lessons, StatusSel) {
-            if (StatusSel == 1) {
-                lessons = $filter('filter')(result.data, {
-                    status: "Active"
-                }, true);
-            }
-            else{
-              lessons = $filter('filter')(result.data, {
-                  status: "Inactive"
-              }, true);
-            }
-        };
 
-    });
-
-    */
     // Injecting modules used for better minifing later on
     listllCtrl.$inject = ['$scope', 'listllServices', 'userServices', 'filterFilter', '$filter'];
 
