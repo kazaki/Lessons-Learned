@@ -18,6 +18,7 @@
 
 			"/api/users",
 			"/api/updateuseremail",
+			"/api/updateuserpass",
 			"/api/technologies",
 			"/api/projects",
 			"/api/createlesson"

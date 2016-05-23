@@ -91,15 +91,16 @@
 
     exports.checkPasswordbyEmail = function(email, password){
          return new Promise(function (resolve, reject) {
+            console.log(email + " " + password);
          client.query('SELECT password FROM public.users WHERE ?', {email: email},
                 function (err, result) {
                     if (err) {
                         reject(err);
+                    } else if(result.length <= 0) {
+                        reject('Wrong password.');
                     } else {
-                        console.log(result[0].password);
-                        console.log(password);
+                        console.log(JSON.stringify(result));
                         bcrypt.compare(password, result[0].password, function (err, res) {
-
                             if (err) {
                                 console.log('adada');
                                 reject(err);
@@ -234,6 +235,44 @@
                 });
             });
         });
+    }
+
+    exports.updateUserPass = function (id, password) {
+        return new Promise(function (resolve, reject) {
+            bcrypt.hash(password, null, null, function (err, hash) {
+                if (err) {
+                    reject(err);
+                } else {
+                    crypto.randomBytes(20, function (err, buf) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            client.query('UPDATE public.users SET password = ? WHERE idusers = ?', [hash, id],
+                                function (err, result) {
+                                    if (err) {
+                                        reject(err);
+                                    } else {
+                                        resolve('Updated User Pass with id: ' + id);
+                                    }
+                                });
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    exports.updateUserByID = function(id, email, name, permission){
+         return new Promise(function (resolve, reject) {
+         client.query('UPDATE public.users SET name = ?, email = ?, permission = ? WHERE idusers = ?', [name, email, permission, id],
+            function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('Updated User with id: ' + id);
+                    }
+                });
+         });
     }
 
 

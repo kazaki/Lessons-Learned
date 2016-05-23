@@ -11,7 +11,8 @@
         'ui.bootstrap',
         'angular-advanced-searchbox',
         'isteven-multi-select',
-        'angular.filter'
+        'angular.filter',
+        'ui.checkbox'
     ]);
 
     /**
@@ -154,7 +155,23 @@
                 //Lista LL
                 ACTIVE: 'Active',
                 INACTIVE: 'Inactive',
-                SUBMITTED: 'Pending approval'
+                SUBMITTED: 'Pending approval',
+
+                //Lista Users
+                USER_MANAGEMENT: 'User Management',
+                EDITING_USER: 'Edit User information',
+                USER_NAME: 'Name',
+                PASSWORD: 'Password',
+                AGAIN: 'Password again',
+                HAS_PERMISSIONS: 'Current permission level',
+                CHANGE_TO: 'Change to',
+                CONFIRM_CHANGE: 'Change password',
+                MODIFY_DATA: 'Modify main data',
+                MODIFY_PERMISSIONS: 'Change permissions',
+                MODIFY_PASSWORD: 'Change password',
+                MODIFY_PROJECTS: 'Add projects',
+                MODIFY_CONFIRM: 'Confirm changes',
+                TYPE_PASS: 'Type your password'
             })
             .translations('pt', {
                 HOME: 'Começar',
@@ -216,7 +233,23 @@
                 //Lista LL
                 ACTIVE: 'Ativas',
                 INACTIVE: 'Inativas',
-                SUBMITTED: 'Aprovação pendente'
+                SUBMITTED: 'Aprovação pendente',
+
+                //Lista Users
+                USER_MANAGEMENT: 'Gestão de utilizadores',
+                EDITING_USER: 'Editar utilizador',
+                USER_NAME: 'Nome',
+                PASSWORD: 'Password',
+                AGAIN: 'Repetir password',
+                HAS_PERMISSIONS: 'Nível de permissão atual',
+                CHANGE_TO: 'Mudar para',
+                CONFIRM_CHANGE: 'Alterar password',
+                MODIFY_DATA: 'Modificar dados principais',
+                MODIFY_PERMISSIONS: 'Alterar permissões',
+                MODIFY_PASSWORD: 'Alterar a password',
+                MODIFY_PROJECTS: 'Associar projetos',
+                MODIFY_CONFIRM: 'Confirmar alterações',
+                TYPE_PASS: 'Digite a sua password'
 
             })
             .translations('fr', {
@@ -279,7 +312,23 @@
                 //Lista LL
                 ACTIVE: 'Actif',
                 INACTIVE: 'Négligé',
-                SUBMITTED: 'Validation en attente'
+                SUBMITTED: 'Validation en attente',
+
+                //Lista Users
+                USER_MANAGEMENT: 'Gestion des utilisateurs',
+                EDITING_USER: 'Modifier l\'utilisateur',
+                USER_NAME: 'Nom',
+                PASSWORD: 'Mot de pass',
+                AGAIN: 'Mot de pass à nouveau',
+                HAS_PERMISSIONS: 'Niveau d\'autorisation actuel',
+                CHANGE_TO: 'Confirmer le changement',
+                CONFIRM_CHANGE: 'Modifier le mot de passe',
+                MODIFY_DATA: 'Modifier les données clés',
+                MODIFY_PERMISSIONS: 'Modifier les autorisationss',
+                MODIFY_PASSWORD: 'Modifier mot de passe',
+                MODIFY_PROJECTS: 'Ajouter des projets',
+                MODIFY_CONFIRM: 'Confirmer les modifications',
+                TYPE_PASS: 'Tapez votre mot de passe'
             })
         $translateProvider.preferredLanguage('pt');
     }]);

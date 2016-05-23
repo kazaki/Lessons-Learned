@@ -283,46 +283,90 @@
 
         server.put("/api/updateuseremail",function(req,res){
 
-         console.log("asdasdasdas:" + req);
+            //user to be edited
+            var user = {
+                id: req.body.idusers,
+                name: req.body.name,
+                email: req.body.email.toLowerCase(),
+                permission: req.body.permissionid
+            };
 
-         var email = req.body.email.toLowerCase();
-         var name = req.body.name;
-         var password = req.body.password;
-         var newpassword = req.body.newpassword;
+            //admin making the edition
+            var admin = {
+                pass: req.body.confirmpass,
+                email: req.body.adminemail
+            }
 
-         console.log(email + name + password + newpassword);
-
-            database.checkPasswordbyEmail(email, password)
+            database.checkPasswordbyEmail(admin.email, admin.pass)
                 .then(function(){
-                database.updateUserByEmail(name,newpassword,email)
-                    .then(function() {
+                    database.updateUserByID(user.id,user.email, user.name, user.permission)
+                        .then(function() {
+                            res.status(200).send("ok");
+                        })
+                        .catch(function (err) {
+                            res.status(406).json({
+                                message_class: 'error',
+                                message: "No such user with that ID."
+                            });
 
-                        res.status(200);
-
-                    })
-                    .catch(function (err) {
-
-                        console.log('shiiit' + err);
-
-                        // Send the Response with message error
-                        res.status(406).json({
-                            message_class: 'error',
-                            message: "No such user with that email."
                         });
-
+                })
+                .catch(function (err) {
+                    // Send the Response with message error
+                    res.status(406).json({
+                        message_class: 'error',
+                        message: "Wrong Admin Password."
                     });
-             })
-             .catch(function (err) {
 
-                        console.log('HELLOOO' + err);
+                });
+        });
 
-                        // Send the Response with message error
-                        res.status(406).json({
-                            message_class: 'error',
-                            message: "Wrong Password."
+        server.put('/api/updateuserpass', function (req, res) {
+            //user to be edited
+            var user = {
+                id: req.body.idusers,
+                password: req.body.password,
+                password_again: req.body.passwordagain
+            };
+
+            //admin making the edition
+            var admin = {
+                pass: req.body.confirmpass,
+                email: req.body.adminemail
+            }
+
+            console.log("update user pass " + admin.pass + admin.email);
+            if(user.password == user.password_again && user.password.length > 0) {
+                database.checkPasswordbyEmail(admin.email, admin.pass)
+                .then(function(){
+
+                    database.updateUserPass(user.id,user.password)
+                        .then(function() {
+                            res.status(200).send("ok");
+                        })
+                        .catch(function (err) {
+                            res.status(406).json({
+                                message_class: 'error',
+                                message: "Couldn't update user password."
+                            });
+
                         });
-
+                 }) 
+                 .catch(function (err) {
+                    res.status(406).json({
+                        message_class: 'error',
+                        message: "Wrong Admin Password."
                     });
+
+                });        
+            
+            }
+            else {
+                res.status(406).json({
+                    message_class: 'error',
+                    message: "Passwords don't match."
+                });
+            }
         });
 
          //<!------------------------------------------------------------------ LESSONS ---------------------------------------------------------------------------------------------------->

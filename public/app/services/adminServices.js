@@ -27,9 +27,18 @@ var adminServices = function ($q, $http, $cookies, $window) {
                     deferred.reject(err);
                 });
         };
-
+        // Function to update a user's password
+        this.updateUserPass = function(info) {
+            return $http.put('/api/updateuserpass',info)
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
+        // Function to update user's informations (email, permission...)
         this.edition = function(user) {
-            console.log('HELLOOOOOOasdasd:' + user.data);
             return $http.put('/api/updateuseremail',user)
                 .success(function(res) {
                     deferred.resolve('Success');
