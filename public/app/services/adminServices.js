@@ -28,6 +28,17 @@ var adminServices = function ($q, $http, $cookies, $window) {
                 });
         };
 
+        this.edition = function(user) {
+            console.log('HELLOOOOOOasdasd:' + user.data);
+            return $http.put('/api/updateuseremail',user)
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
+
 };
 
 // Injecting modules used for better minifing later on

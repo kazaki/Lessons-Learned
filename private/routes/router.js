@@ -283,10 +283,14 @@
 
         server.put("/api/updateuseremail",function(req,res){
 
+         console.log("asdasdasdas:" + req);
+
          var email = req.body.email.toLowerCase();
          var name = req.body.name;
          var password = req.body.password;
          var newpassword = req.body.newpassword;
+
+         console.log(email + name + password + newpassword);
 
             database.checkPasswordbyEmail(email, password)
                 .then(function(){

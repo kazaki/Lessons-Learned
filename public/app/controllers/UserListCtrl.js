@@ -9,7 +9,7 @@
 		$scope.itemsPerPage = 3;
         $scope.currentPage = 1;
         $scope.items = [];
-
+        
 		services.getUsers()
             .then(function (result) {
                 $scope.users = result.data;
@@ -31,7 +31,7 @@
             $scope.items.pop();
         };
 
-		$scope.editUser = function(ID) {
+		$scope.editUser = function(user) {
 			console.log("Modal opened.");
 			var modalInstance = $uibModal.open({
 				animation: true,
@@ -39,13 +39,13 @@
 				controller: 'DialogController',
 				resolve: {
 					selectedItem: function () {
-						return ID;
+						return user;
 					}
 				}
 			});
 
 			modalInstance.result.then(function (selectedItem) {
-			//$scope.selectedItem = selectedItem;
+				$scope.selectedItem = selectedItem;
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
@@ -54,12 +54,25 @@
 	};
 
 	//Modal Controller
-	var DialogController = function ($scope, $uibModalInstance, selectedItem) {
-
+	var DialogController = function ($scope, $uibModalInstance, $window, services, selectedItem) {
+			
 		$scope.selectedItem = selectedItem;
-		$scope.ok = function () {
-			$uibModalInstance.close('ok');
-		};
+
+		$scope.submit = function(mydata) {
+			mydata.email = selectedItem.email;
+			console.log("MYDATA:" + mydata);
+			console.log("JSON:" + JSON.stringify(mydata));
+			console.log(mydata.name);
+			$uibModalInstance.dismiss('ok');
+			services.edition(mydata)
+                .then(function (res) {
+                    alert(res);
+            })
+	            .catch(function (err) {
+	                alert(err.data.message);
+            });
+	        $window.location.reload();
+	  	};
 
 		$scope.cancel = function () {
 			$uibModalInstance.dismiss('cancel');
@@ -68,7 +81,7 @@
 
 	 // Injecting modules used for better minifing later on
     UserListCtrl.$inject = ['$scope', '$uibModal', '$log', 'adminServices', 'filterFilter'];
-    DialogController.$inject = ['$scope', '$uibModalInstance', 'selectedItem'];
+    DialogController.$inject = ['$scope', '$uibModalInstance','$window', 'adminServices', 'selectedItem'];
 
     // Enabling the controllers in the app
     angular.module('lessonslearned')

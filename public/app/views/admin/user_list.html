@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 col-lg-push-8 col-md-push-8 col-sm-push-9 clearfix">
-					<button type="button" class="btn btn-primary btn-circle pull-right btn-lg box-shadow--2dp" ng-click="editUser(user.idusers)"><i class="glyphicon glyphicon-pencil"></i></button>
+					<button type="button" class="btn btn-primary btn-circle pull-right btn-lg box-shadow--2dp" ng-click="editUser(user)"><i class="glyphicon glyphicon-pencil"></i></button>
 				</div>
 
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-lg-pull-1 col-md-pull-1">
@@ -63,14 +63,23 @@
 <!-- Modal -->
 <script type="text/ng-template" id="usersTpl">
         <div class="modal-header">
-            <h3 class="modal-title">Im a modal!</h3>
+            <h3 class="modal-title">Edit User information</h3>
         </div>
-        <div class="modal-body">
-            Selected: <b>{{ selectedItem }}</b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
+        <form ng-submit="submit(mydata)">
+          <div class="modal-body">
+            <label>User name</label>
+            <input type="text" class="form-control" value="selectedItem.name" ng-model="mydata.name" /><br>
+            <label>Email</label>
+            <input type="text" class="form-control" value="{{selectedItem.email}}" disabled/><br>
+            <label>Current Password</label>
+            <input type="password" class="form-control" ng-model="mydata.password" /><br>
+            <label>New Password</label>
+            <input type="password" class="form-control" ng-model="mydata.newpassword" /><br>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+              <button type="submit" class="btn btn-primary" data-ng-click="ok(mydata)">Submit</button>
+          </div>
+        </form>
 </script>
 <div ng-include='"app/views/templates/footer.html"'></div>

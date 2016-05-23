@@ -1,7 +1,5 @@
 #viewll {
-	margin-top: 3vw;
-	font-family: 'corbertregular';
-	
+	margin-top: 5vw;
 	font-weight: bold;
 }
 
@@ -60,14 +58,14 @@
 	padding:0;
 }
 
-.fa {
+.ic {
 	height:100%;
 	margin:0;
 	padding-right: 15px;
-	font-size: 50px;
+	font-size: 40px;
 }
 
-.fa:hover {
+.ic:hover {
 	color:orange;
 	cursor: pointer;
 }

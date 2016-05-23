@@ -91,7 +91,7 @@
 
     exports.checkPasswordbyEmail = function(email, password){
          return new Promise(function (resolve, reject) {
-         client.query('SELECT password FROM users WHERE ?', {email: email},
+         client.query('SELECT password FROM public.users WHERE ?', {email: email},
                 function (err, result) {
                     if (err) {
                         reject(err);
