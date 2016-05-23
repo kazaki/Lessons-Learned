@@ -140,7 +140,7 @@
                 DAYS_LENGTH: 'Project Duration (days)',
                 PROJECT_TYPE: 'Project Type',
                 ADD_PROJECT: 'Add Project',
-                DELIVERING_MODEL: 'Delivering Model'
+                DELIVERING_MODEL: 'Delivering Model',
 
                 //Lista LL
                 ACTIVE: 'Active',
@@ -198,7 +198,7 @@
                 DAYS_LENGTH: 'Duração Projeto',
                 PROJECT_TYPE: 'Tipo de Projeto',
                 ADD_PROJECT: 'Adicionar Projeto',
-                DELIVERING_MODEL: 'Modelo de Entrega'
+                DELIVERING_MODEL: 'Modelo de Entrega',
 
                 //Lista LL
                 ACTIVE: 'Ativas',
@@ -257,7 +257,7 @@
                 DAYS_LENGTH: 'Duração Projeto',
                 PROJECT_TYPE: 'Tipo de Projeto',
                 ADD_PROJECT: 'Adicionar Projeto',
-                DELIVERING_MODEL: 'Delivering Model'
+                DELIVERING_MODEL: 'Delivering Model',
 
                 //Lista LL
                 ACTIVE: 'Actif',

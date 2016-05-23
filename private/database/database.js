@@ -59,7 +59,7 @@
     exports.getManagers = function(){
          return new Promise(function (resolve, reject) {
          var query = "SELECT * FROM public.users WHERE permission = ?";
-         query = mysql.format(query,2);
+         query = mysql.format(query,1);
          client.query(query,function (err, result) {
                     if (err) {
                         reject(err);
