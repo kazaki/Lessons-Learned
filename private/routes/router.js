@@ -51,7 +51,7 @@
             res.render('index');
         });
 
-		server.get('/view_ll', function (req, res) {
+		server.get('/view_ll/:id/', function (req, res) {
 			res.render('index');
 		});
 
@@ -59,6 +59,7 @@
         server.get('/forbidden', function (req, res) {
             res.render('index');
         });
+        
 
         // <!------------------------------------------------------------------ USERS ---------------------------------------------------------------------------------------------------->
 

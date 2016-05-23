@@ -8,7 +8,9 @@
     module.exports = function(req, res, next) {
         var i;
 
-        if (req.url.split('/')[1] == 'api') {
+var url = req.url.split('/')[1];
+
+        if (url == 'api') {
 
             // START REGION: API permissions (all)
             for (i = 0; i < routes.api.all.length; i++) {
@@ -33,7 +35,6 @@
                         if (i == routes.api.logged.length) {
                             return res.sendStatus(403);
                         } else {
-                            console.log('shit');
                             next();
                         }
 
@@ -59,11 +60,10 @@
              // START REGION: Views permissions (all)
 
             for (i = 0; i < routes.views.all.length; i++) {
-                if (routes.views.all[i].indexOf(req.url) > -1) {
+                if (routes.views.all[i].indexOf(url) > -1) {
                     break;
                 }
             }
-
             if (i != routes.views.all.length) {
                 next();
             } else {
@@ -77,7 +77,7 @@
                         switch(permission){
                             case 0:
                                 for (i = 0; i < routes.views.logged.length; i++) {
-                                    if (req.url.indexOf(routes.views.logged[i]) > -1) {
+                                    if (url.indexOf(routes.views.logged[i]) > -1) {
                                         break;
                                     }
                                 }
@@ -92,7 +92,7 @@
                             break;
                             case 1:
                                 for (i = 0; i < routes.views.advanced.length; i++) {
-                                    if (req.url.indexOf(routes.views.advanced[i]) > -1) {
+                                    if (url.indexOf(routes.views.advanced[i]) > -1) {
                                         break;
                                     }
                                 }
@@ -107,7 +107,7 @@
                             break;
                             case 2:
                                 for (i = 0; i < routes.views.admin.length; i++) {
-                                    if (req.url.indexOf(routes.views.admin[i]) > -1) {
+                                    if (url.indexOf(routes.views.admin[i]) > -1) {
                                         break;
                                     }
                                 }

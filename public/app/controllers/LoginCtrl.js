@@ -30,6 +30,7 @@
                 .catch( function (err){
                     $scope.hasSession.logged=false;
                 });
+                
         };
         $scope.logout = function(){
             userServices.logout();
@@ -40,7 +41,9 @@
         };
         
 		$scope.logged();
-        
+        $scope.qq = function(){
+            console.log($scope.hasSession);
+        };
        
 	 };
 	 // Injecting modules used for better minifing later on
