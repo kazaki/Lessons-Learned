@@ -141,6 +141,10 @@
                 PROJECT_TYPE: 'Project Type',
                 ADD_PROJECT: 'Add Project',
                 DELIVERING_MODEL: 'Delivering Model',
+                STARTING_DATE: 'Start Date',
+                EXPECTED_DATE: 'End Date Foreseen',
+                CONCLUSION_DATE: 'End Date',
+                CREATE_PROJECT: 'Creating Project',
 
                 //Lista LL
                 ACTIVE: 'Active',
@@ -199,6 +203,10 @@
                 PROJECT_TYPE: 'Tipo de Projeto',
                 ADD_PROJECT: 'Adicionar Projeto',
                 DELIVERING_MODEL: 'Modelo de Entrega',
+                STARTING_DATE: 'Data de Início',
+                EXPECTED_DATE: 'Data de Fim previsto',
+                CONCLUSION_DATE: 'Data de Conclusão',
+                CREATE_PROJECT: 'Criar Projecto',
 
                 //Lista LL
                 ACTIVE: 'Ativas',
@@ -258,6 +266,10 @@
                 PROJECT_TYPE: 'Tipo de Projeto',
                 ADD_PROJECT: 'Adicionar Projeto',
                 DELIVERING_MODEL: 'Delivering Model',
+                STARTING_DATE: 'Date de début',
+                EXPECTED_DATE: 'Date de fin prévue',
+                CONCLUSION_DATE: 'Date de fin',
+                CREATE_PROJECT: 'Créer un projet',
 
                 //Lista LL
                 ACTIVE: 'Actif',

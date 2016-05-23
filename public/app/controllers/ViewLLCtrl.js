@@ -47,6 +47,7 @@
 		}
 		
 		$scope.loadLL = function() {
+			console.log(location);
 			var parameters = location.search.substring(1).split("&");
 			var args = [];
 			for (var i=0; i < parameters.length; i++) {
