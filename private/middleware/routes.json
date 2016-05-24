@@ -16,10 +16,11 @@
 		],
 
 		"logged": [
-
 			"/api/users",
 			"/api/updateuseremail",
 			"/api/updateuserpass",
+			"/api/updatelessonstate",
+			"/api/updatelessontext",
 			"/api/technologies",
 			"/api/projects",
 			"/api/createlesson"

@@ -55,6 +55,28 @@
 
         };
 
+        // Function to update ll's info
+        this.editLL = function(ll, updatestate) {
+            return $http.put('/api/updatelessontext',ll)
+                .success(function(res) {
+                    if(updatestate) {
+                        return $http.put('/api/updatelessonstate',ll);
+                    }
+                    else {
+                        deferred.resolve('Success');
+                    }
+                })
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
+
         // Function to logout a user
         this.logout = function() {
             console.log($cookies);

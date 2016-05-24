@@ -1,5 +1,5 @@
 (function(){
-	 var  EditLLCtrl = function($scope, $location, genServices, llServices, lessonServices, userServices) {
+	 var  EditLLCtrl = function($scope, $location, $route, genServices, llServices, lessonServices, userServices) {
 
         var manager = null;
         var managerid = null;
@@ -63,12 +63,11 @@
                 //check if this manager has this lesson
                 genServices.getManagerLesson(managerid,lessonid)
                     .then(function (ll) {
-                        console.log("HEY"+managerid + lessonid + JSON.stringify(ll.data));
                         if(ll.data.length <= 0) {
                             $location.path('/forbidden');
                         }
                         else {
-                            $scope.llstatus = ll.data.status;
+                            $scope.llstatus = ll.data[0].status;
                             loadTechnologies();
                         }
                     })
@@ -100,11 +99,55 @@
 
         $scope.pop = function () {
             $scope.items.pop();
-        };          
+        };
+
+        $scope.editLesson = function(lesson, draft) {
+            /*alert(lesson.technologies[0].technology + ' ' + lesson.technologies[0].idtechnologies);
+            alert(lesson.actionTaken);
+            alert(lesson.situation);
+            alert(lesson.result);*/
+            $scope.items.pop();
+            var status = draft? 'draft' : 'submited';
+            if($scope.llstatus != 'draft' && draft) {
+                $scope.items.push("Invalid action.");
+                return;
+            }
+
+            if($scope.llstatus == 'submited') {
+                $scope.items.push("Invalid action.");
+                return;
+            }
+
+            var updatestate = ($scope.llstatus != status)? true : false;
+
+            var ll = 
+             {
+                 "idlesson": lessonid,
+                 "technologies": lesson.techs,
+                 "action": lesson.actionTaken,
+                 "situation": lesson.situation,
+                 "result": lesson.result,
+                 "maker": manager,
+                 "state": status
+             };
+
+             console.log("what");
+
+            userServices.editLL(ll, updatestate)
+                .then(function (result) {
+                    $scope.items.pop();
+                    $scope.items.push();
+                    $route.reload();               
+                })
+                .catch(function (err) {
+                    $scope.items.pop();
+                    $scope.items.push(err.data.message);
+                });
+        }           
 
 	 };
 	 // Injecting modules used for better minifing later on
-    EditLLCtrl.$inject = ['$scope', '$location', 'genServices', 'llServices', 'lessonServices', 'userServices'];
+    EditLLCtrl.$inject = ['$scope', '$location', '$route', 'genServices', 'llServices', 'lessonServices', 'userServices'];
 
     // Enabling the controller in the app
     angular.module('lessonslearned').controller('EditLLCtrl', EditLLCtrl);

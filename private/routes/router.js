@@ -484,18 +484,15 @@
                  var situation = req.body.situation;
                  var action = req.body.action;
                  var result = req.body.result;
-
+                 var technologies = req.body.technologies;
                  var idLesson = req.body.idlesson;
 
-                 database.updateLessonTextByID(action, situation, result, idLesson)
+                 database.updateLessonTextByID(action, situation, result, idLesson, technologies)
                     .then(function() {
-
-                        res.status(200);
+                        res.sendStatus(200);
                     })
                     .catch(function (err) {
-
                         console.log(err);
-
                         // Send the Response with message error
                         res.status(406).json({
                             message_class: 'error',
@@ -535,21 +532,16 @@
                     });
          });
 
-         server.put("/api/updatelessonstate"), function(req, res){
-
+         server.put("/api/updatelessonstate", function(req, res){
              var state = req.body.state.toLowerCase();
              var idLesson = req.body.idlesson;
 
               if(state == 'draft' || state == 'submited' || state == 'approved' || state == 'inactive'){
-
                 database.updateLessonStateByID(idLesson,state)
                     .then(function() {
-
-                        res.status(200);
+                        res.sendStatus(200);
                     })
                     .catch(function (err) {
-
-                        console.log(err);
                         // Send the Response with message error
                         res.status(406).json({
                             message_class: 'error',
@@ -559,14 +551,13 @@
                     });
 
              }
-
              else{
                 res.status(406).json({
                             message_class: 'error',
                             message: "Incorrect state! Choose one of the following: draft|submited|approved|inactive."
                 });
              }
-        }
+        });
 
         //<!------------------------------------------------------------------ PROJECT ---------------------------------------------------------------------------------------------------->
 

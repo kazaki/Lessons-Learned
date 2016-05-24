@@ -10,21 +10,12 @@
     <div class="col-lg-12 col-xs-12 col-sm-12 col-md-8" name="createll">
       <form class="form-horizontal">
         <fieldset>
-
-        <div class="form-group">
-          <label class="control-label" for="project">{{ 'SELECT_PROJECT' | translate }}</label><br>
-          <select id="project" ng-model="lesson.project" class="form-control sc" name="project">
-            <option value="">{{ 'NONE' | translate }}</option>
-            <option ng-repeat="project in projects" value="{{ project.name }}">{{ project.name }}</option>
-          </select>
-        </div>
-
         <div class="form-group">
           <label class="control-label" for="technologies">{{ 'SELECT_TECHS' | translate }}</label><br>
           <div
             isteven-multi-select
             input-model="lesson.technologies"
-            output-model="technologies"
+            output-model="lesson.techs"
             button-label="technology"
             item-label="technology"
             tick-property="ticked"
@@ -61,8 +52,8 @@
         <div class="form-group">
           <label class="col-md-3 control-label" for="button1id"></label><br>
           <div class="col-md-12">
-            <button ng-click="createLesson(lesson, false)" id="button1id" name="button1id" class="btn btn-success" ng-disabled="createll.$invalid">{{ 'SUBMIT' | translate }}</button>
-            <button ng-click="createLesson(lesson, true)" id="button1id" name="button1id" class="btn btn-success">{{ 'SAVE_DRAFT' | translate }}</button>
+            <button ng-click="editLesson(lesson, false)" id="button1id" name="button1id" class="btn btn-success" ng-show="llstatus != 'submitted'">{{ 'SUBMIT' | translate }}</button>
+            <button ng-click="editLesson(lesson, true)" id="button1id" name="button1id" class="btn btn-success" ng-show="llstatus == 'draft'">{{ 'SAVE_DRAFT' | translate }}</button>
             <button id="button2id" name="button2id" class="btn btn-danger">{{ 'CANCEL' | translate }}</button>
           </div>
         </div>

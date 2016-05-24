@@ -367,9 +367,9 @@
              });
     }
 
-    exports.updateLessonTextByID = function (action, situation, result, idLesson) {
+    exports.updateLessonTextByID = function (action, situation, result, idLesson, technologies) {
         return new Promise(function (resolve, reject) {
-            client.query('UPDATE public.lessonstext SET situation = ?, result = ?, action = ? WHERE idLesson = ?',  [action, situation, result, idLesson ],
+            client.query('UPDATE public.lessonstext SET situation = ?, result = ?, action = ? WHERE idLessonLearned = ?',  [situation, result, action, idLesson ],
                 function (err, result) {
                     if (err) {
                         reject(err);
@@ -507,12 +507,14 @@
 
     exports.updateLessonStateByID = function(idlesson,state){
         return new Promise(function (resolve, reject) {
-            client.query('UPDATE public.lessonsLearned SET status = ? WHERE idLesson = ?',  [state, idLesson ],
+            client.query('UPDATE public.lessonsLearned SET status = ? WHERE idLessonsLearned = ?',  [state, idlesson ],
                 function (err, result) {
                     if (err) {
+                        console.log(err);
                         reject(err);
                     } else {
-                        resolve('Updated lesson with id: ' + idLesson + 'to: ' + state);
+                        console.log(result);
+                        resolve('Updated lesson with id: ' + idlesson + 'to: ' + state);
                     }
                 });
         });

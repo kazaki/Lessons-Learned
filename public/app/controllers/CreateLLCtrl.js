@@ -52,7 +52,7 @@
             alert(lesson.situation);
             alert(lesson.result);*/
 
-            var status = draft? 'draft' : 'submitted';
+            var status = draft? 'draft' : 'submited';
 
             var ll = 
              {
