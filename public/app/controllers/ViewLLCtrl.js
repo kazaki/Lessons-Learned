@@ -28,7 +28,7 @@
 				$("#llstart").text(data["dateBeginning"]);
 				$("#llexpected").text(data["dateEndExpected"]);
 				$("#llfinish").text(data["dateEnd"]);
-				$("#lltech").text(data["technology"]);
+				$("#lltech").text(data["technologies"]);
 				$("#lldesc").text(data["name"]);
 				
 				if (data["status"] == "approved")
@@ -47,7 +47,7 @@
 		}
 		
 		$scope.loadLL = function() {
-				$scope.getLesson();
+			$scope.getLesson();
 		}
 		
 		$scope.loadLL();

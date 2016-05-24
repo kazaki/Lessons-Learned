@@ -65,6 +65,18 @@ var genServices = function ($q, $http) {
                     deferred.reject(err);
                 });
         };
+        // Function to check if there exists a lesson created by this manager
+        this.getManagerLesson = function(managerid,lessonid) {
+         return $http.get('/api/checklessonmanager', {
+                    headers: {'managerid': managerid, 'lessonid': lessonid}
+                })
+                .success(function(res) {             
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
         // Function to create a project
         this.createProject = function(project) {
             return $http.post('/api/createproject', project)

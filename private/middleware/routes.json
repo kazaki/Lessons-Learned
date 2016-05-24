@@ -11,7 +11,8 @@
 			"/api/lessons",
 			"/api/user",
 			"/api/searchlessons",
-			"/api/projectsbymanager"
+			"/api/projectsbymanager",
+			"/api/checklessonmanager"
 		],
 
 		"logged": [
@@ -43,7 +44,8 @@
 			"/users",
 			"/create_project",
 			"/create_ll",
-			"/view_ll/"
+			"/view_ll/",
+			"/edit_ll/"
 		],
 		"logged": [
 

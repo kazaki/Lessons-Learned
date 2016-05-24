@@ -321,6 +321,20 @@
          });
     }
 
+    exports.checkLessonManager = function(idManager, idLesson){
+         return new Promise(function (resolve, reject) {
+            client.query('SELECT * FROM public.lessonslearned WHERE manager = ? AND idLessonsLearned = ?', [idManager,idLesson],
+                function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });
+         });
+    }
+
     exports.getLessonByKeyword = function(keyword){
          return new Promise(function (resolve, reject) {
          var searchit = '%' + keyword +'%';

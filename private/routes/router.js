@@ -58,6 +58,11 @@
 			res.render('index');
 		});
 
+        server.get('/edit_ll/:id/', function (req, res) {
+            res.render('index');
+        });
+
+
         // Route to send forbidden view
         server.get('/forbidden', function (req, res) {
             res.render('index');
@@ -574,6 +579,19 @@
                     .catch(function (err) {
                         res.status(406).send('Could not retrieve projects information');
                     });
+        });
+
+        server.get("/api/checklessonmanager",function(req,res){
+
+             var managerid = req.headers.managerid;
+             var lessonid = req.headers.lessonid;
+             database.checkLessonManager(managerid,lessonid)
+               .then(function (ll) {
+                    res.status(200).send(ll);
+                })
+                .catch(function (err) {
+                    res.status(406).send('Could not retrieve lesson information with that manager id.');
+                });
         });
 
         server.get("/api/projectsbymanager",function(req,res){

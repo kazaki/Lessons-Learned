@@ -67,6 +67,11 @@
                 controller: "ViewLLCtrl"
             })
 
+            .when("/edit_ll/:id/", {
+                templateUrl: "app/views/edit_ll.html",
+                controller: "EditLLCtrl"
+            })
+
             .when("/view_audit", {
                 templateUrl: "app/views/list_audit.html",
                 controller: "ViewLLCtrl"
