@@ -23,8 +23,8 @@
           <label class="control-label" for="technologies">{{ 'SELECT_TECHS' | translate }}</label><br>
           <div
             isteven-multi-select
-            input-model="technologies"
-            output-model="lesson.technologies"
+            input-model="lesson.technologies"
+            output-model="technologies"
             button-label="technology"
             item-label="technology"
             tick-property="ticked"
@@ -33,6 +33,7 @@
             id="technologies"
             name="technologies"
             orientation="horizontal" 
+            tick-property="ticked"
           >
           </div>
         </div>

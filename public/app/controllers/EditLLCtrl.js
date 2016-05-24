@@ -4,17 +4,47 @@
         var manager = null;
         var managerid = null;
         var lessonid = null;
+        var techs = [];
+        $scope.items = [];
         var data;
 
-        $scope.getLesson = function() {
+        var loadTechnologies = function() {
+            genServices.getTechnologies()
+            .then(function (mytechs) {
+                var alltechs = mytechs.data;
+                var lessontechs = data.technologies.split(",");
+                var checkedtechs = [];
+                //checking technologies that this lesson has already
+                for(i = 0; i < alltechs.length; i++) {
+                    checkedtechs[i] = alltechs[i];
+                    checkedtechs[i].ticked = (lessontechs.indexOf(alltechs[i].technology) < 0)? false : true;
+                    /*console.log("Lesson techs:" + JSON.stringify(lessontechs[i]));
+                    console.log("All tech:" + JSON.stringify(alltechs[i]));
+                    console.log("Checked:" + JSON.stringify(checkedtechs[i]));*/
+                }
+                $scope.lesson = { 
+                    technologies: checkedtechs, 
+                    situation: data.situation, 
+                    actionTaken: data.action, 
+                    result: data.result 
+                };
+
+            })
+            .catch(function (err) {
+                $scope.items.push("Field technologies: "+ err.data);
+            });
+        }
+
+        var getLesson = function() {
             lessonServices.getLesson()
                 .then(function (res) {
-                
                 data = res.data[0];
                 lessonid = data.idLessonsLearned;
                 if (data == null) {
                     $location.path('/forbidden');
-                } 
+                }
+
+                confirmAuth(); 
 
                 console.log(data);
 
@@ -29,10 +59,16 @@
             .then(function (result) {
                 manager = result.data.name;
                 managerid = result.data.idusers;
-                genServices.getManagerLesson(managerid,lessonid)//check if this manager has this lesson
+                //check if this manager has this lesson
+                genServices.getManagerLesson(managerid,lessonid)
                     .then(function (ll) {
-                        if(ll.data.length <= 0 || ll.data.status == 'inactive') {
+                        console.log("HEY"+managerid + lessonid + JSON.stringify(ll.data));
+                        if(ll.data.length <= 0) {
                             $location.path('/forbidden');
+                        }
+                        else {
+                            $scope.llstatus = ll.data.status;
+                            loadTechnologies();
                         }
                     })
                     .catch(function (err) {
@@ -48,15 +84,10 @@
         }
 
         $scope.loadLL = function() {
-            $scope.getLesson();
-            confirmAuth();
+            getLesson();
         }
         
         $scope.loadLL();
-
-        $scope.technologies = [];
-        $scope.projects = [];
-        $scope.items = [];
 
         $scope.localLang = {
             selectAll       : "Tick all",
@@ -66,48 +97,9 @@
             nothingSelected : "Nothing is selected"
         }
 
-        genServices.getTechnologies()
-            .then(function (techs) {
-                $scope.technologies = techs.data;
-            })
-            .catch(function (err) {
-                $scope.items.push("Field technologies: "+ err.data);
-            });
-
         $scope.pop = function () {
             $scope.items.pop();
-        };
-
-        $scope.createLesson = function(lesson, draft) {
-            /*alert(lesson.technologies[0].technology + ' ' + lesson.technologies[0].idtechnologies);
-            alert(lesson.actionTaken);
-            alert(lesson.situation);
-            alert(lesson.result);*/
-
-            var status = draft? 'draft' : 'active';
-
-            var ll = 
-             {
-                 "project": lesson.project,
-                 "technologies": lesson.technologies,
-                 "actionTaken": lesson.actionTaken,
-                 "situation": lesson.situation,
-                 "result": lesson.result,
-                 "maker": manager,
-                 "status": status
-             };
-
-            llServices.createLL(ll)
-                .then(function (result) {
-                    $scope.items.pop();
-                    $scope.items.push();
-                    alert("Inserted "+status);                   
-                })
-                .catch(function (err) {
-                    $scope.items.pop();
-                    $scope.items.push(err.data);
-                });
-        }            
+        };          
 
 	 };
 	 // Injecting modules used for better minifing later on
