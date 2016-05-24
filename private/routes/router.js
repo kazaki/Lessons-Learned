@@ -50,6 +50,9 @@
         server.get('/settings', function (req, res) {
             res.render('index');
         });
+        server.get('/statistics', function (req, res) {
+            res.render('index');
+        });
 
 		server.get('/view_ll/:id/', function (req, res) {
 			res.render('index');

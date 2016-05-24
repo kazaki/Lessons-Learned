@@ -76,6 +76,11 @@
                 templateUrl: "app/views/settings.html",
                 controller: "HomeCtrl"
             })
+            .when("/statistics",{
+                templateUrl: "app/views/statistics.html",
+                controller: "HomeCtrl"
+            })
+
 
             .when("/forbidden",{
                 templateUrl: "app/views/404.html",
