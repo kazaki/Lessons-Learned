@@ -26,6 +26,11 @@ CREATE TABLE `audit_trail` (
   `idaudit_trail` int(11) NOT NULL,
   `idlessonlearned` int(11) NOT NULL,
   `editiondate` datetime NOT NULL,
+  `editor` int(11) NOT NULL,
+  `action` varchar(1000) DEFAULT NULL,
+  `situation` varchar(1000) DEFAULT NULL,
+  `result` varchar(1000) DEFAULT NULL,
+  `operation` varchar(45) NOT NULL,
   PRIMARY KEY (`idaudit_trail`),
   KEY `idauditlesson_idx` (`idlessonlearned`),
   CONSTRAINT `idauditlesson` FOREIGN KEY (`idlessonlearned`) REFERENCES `lessonslearned` (`idLessonsLearned`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -50,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-23  0:13:14
+-- Dump completed on 2016-05-25  0:08:21

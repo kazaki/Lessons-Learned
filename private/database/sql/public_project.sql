@@ -40,7 +40,7 @@ CREATE TABLE `project` (
   KEY `idsector_idx` (`sector`),
   CONSTRAINT `idUsers` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `idsector` FOREIGN KEY (`sector`) REFERENCES `business_sectors` (`idSector`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (4,'ADM3','asdasdas',22,'2016-05-23','2016-05-26','2016-05-31','asdsdas',12,12,'asdasdas',6),(5,'ADM1','sdasdsadasdsa',22,'2016-05-30','2016-06-01','2016-06-04','dasdsadsadsa',12,12,'sadsadsadas',6);
+INSERT INTO `project` VALUES (4,'ADM3','asdasdas',22,'2016-05-23','2016-05-26','2016-05-31','asdsdas',12,12,'asdasdas',6),(5,'ADM1','sdasdsadasdsa',22,'2016-05-30','2016-06-01','2016-06-04','dasdsadsadsa',12,12,'sadsadsadas',6),(6,'ADM3','Projeto7',22,'2016-05-23','2016-05-30','2016-06-03','Entrega7',12,5,'Cliente7',2),(7,'ADM2','P7',22,'2016-05-24','2016-05-31','2016-06-04','M7',12,3,'C7',2),(8,'ADM1','Projeto Teste Final',23,'2016-05-01','2016-05-01','2016-05-17','Presencial',31,16,'Cliente Teste Final',1);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-23  0:13:13
+-- Dump completed on 2016-05-25  0:08:20

@@ -62,6 +62,10 @@
             res.render('index');
         });
 
+        server.get('/view_audit/:id/', function (req, res) {
+            res.render('index');
+        });
+
 
         // Route to send forbidden view
         server.get('/forbidden', function (req, res) {
@@ -740,6 +744,22 @@
          });
 
 
+
+         //<!------------------------------------------------------------------ Business Sectors ---------------------------------------------------------------------------------------------------->
+
+          server.get("/api/audit",function(req,res){
+
+             var lesson_id = req.headers.referer.split("/")[4];
+             database.getAuditByLesson(lesson_id)
+               .then(function (audit) {
+                   console.log("qqqqqqqqq");
+                    res.status(200).send(audit);
+                })
+                .catch(function (err) {
+                    console.log("qqqqqqqqwwwwwwwwwwwwwwwwq");
+                    res.status(406).send('Could not retrieve Audit information for that lesson.');
+                });
+        });
 
     };
 } ());

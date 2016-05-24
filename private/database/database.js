@@ -687,4 +687,38 @@
         });
     }
 
+
+     <!------------------------------------------------------------------------------------------------ Audit Trail ------------------------------------------------------------->
+
+
+     exports.getAuditByLesson = function(idlesson){
+         return new Promise(function (resolve, reject) {
+         var query = "SELECT t1.*, t2.creationdate FROM audit_trail as t1 INNER JOIN lessonslearned as t2 ON(t2.idLessonsLearned = t1.idlessonlearned) Where t1.idlessonlearned = ?";
+         query = mysql.format(query,idlesson);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });
+         });
+    }
+
+     exports.getAuditByID = function(idaudit){
+         return new Promise(function (resolve, reject) {
+         var query = "SELECT action FROM audit_trail WHERE action IS NOT NULL AND idaudit_trail = ? UNION SELECT situation FROM audit_trail WHERE situation IS NOT NULL AND idaudit_trail = ? UNION SELECT result FROM audit_trail WHERE result IS NOT NULL AND idaudit_trail = ? ";
+         query = mysql.format(query,idaudit);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });
+         });
+    }
+
 }());

@@ -46,7 +46,8 @@
 			"/create_project",
 			"/create_ll",
 			"/view_ll/",
-			"/edit_ll/"
+			"/edit_ll/",
+			"/view_audit/"
 		],
 		"logged": [
 

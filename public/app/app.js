@@ -72,9 +72,14 @@
                 controller: "EditLLCtrl"
             })
 
-            .when("/view_audit", {
+            .when("/view_audit/:id/", {
                 templateUrl: "app/views/list_audit.html",
-                controller: "ViewLLCtrl"
+                controller: "AuditListCtrl"
+            })
+
+            .when("/single_audit/:id/", {
+                templateUrl: "app/views/list_audit.html",
+                controller: "AuditCtrl"
             })
 
 			.when("/settings",{
