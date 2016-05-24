@@ -4,11 +4,9 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Ativas',     6],
+          ['Inativas',      3],
+          ['Em Revisão',  2],
         ]);
         var data2 = google.visualization.arrayToDataTable([
         ["Element", "Density", { role: "style" } ],
@@ -30,7 +28,7 @@
     color: 'white',
 },
 legend: {textStyle: {color: 'white'}},
-          title: 'My Daily Activities',
+          title: 'Estado Lessons Learned',
           backgroundColor: '#344770',
           fontName: 'corbertregular',
           color:'white',
@@ -51,7 +49,7 @@ var options2 = {
 },
 legend: {textStyle: {color: 'white'}},
 vAxis:{textStyle: {color: 'white'}},
-          title: 'My Daily Activities',
+          title: 'Top Submitters Lessons Learned',
           backgroundColor: '#344770',
           fontName: 'corbertregular',
           color:'white',
