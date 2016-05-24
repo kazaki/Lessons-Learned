@@ -410,13 +410,14 @@
 
          server.get("/api/lesson",function(req,res){
 
-             var lesson_id = req.headers.lesson_id;
-
+             var lesson_id = req.headers.referer.split("/")[4];
              database.getLessonByID(lesson_id)
                .then(function (lesson) {
+                   console.log("qqqqqqqqq");
                     res.status(200).send(lesson);
                 })
                 .catch(function (err) {
+                    console.log("qqqqqqqqwwwwwwwwwwwwwwwwq");
                     res.status(406).send('Could not retrieve LL information with that id.');
                 });
         });
