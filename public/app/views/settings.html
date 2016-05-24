@@ -1,12 +1,13 @@
 <link href="styles/settings.css" type="text/css" rel="stylesheet"></link>
 <link href="styles/tags.min.css" rel="stylesheet">
 <script src="scripts/tags.min.js"></script>
+<div ng-include='"app/views/templates/header.html"'></div>
 <div class="container">
   <h4>Tecnologias</h4>
   <br><br>
   <!-- Trigger the modal with a button -->
     <input name="tags3" type="text">
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="cen">Inserir tecnologia</button>
+  <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal" id="cen">Inserir tecnologia</button>
   <br><br>
   <script>
 
@@ -27,7 +28,7 @@
   <br><br>
   <!-- Trigger the modal with a button -->
     <input name="tags2" type="text">
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3">Inserir Tipo</button>
+  <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal3">Inserir Tipo</button>
   <script>
   config = {
     join: ', ', // Tags joiner of the output value
@@ -54,7 +55,7 @@
   var foo = new Tags(document.querySelector('input[name="tags"]'), config);
   foo.beautify();
   </script>
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Inserir Setor</button>
+  <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal2">Inserir Setor</button>
    <br><br>
   
 </div>
