@@ -39,14 +39,15 @@
             lessonServices.getLesson()
                 .then(function (res) {
                 data = res.data[0];
-                lessonid = data.idLessonsLearned;
+
                 if (data == null) {
                     $location.path('/forbidden');
                 }
-
-                confirmAuth(); 
-
-                console.log(data);
+                else {
+                    lessonid = data.idLessonsLearned;
+                    confirmAuth();
+                    console.log(data);
+                }
 
             })
             .catch(function (err) {
