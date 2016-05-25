@@ -18,11 +18,10 @@
                 for(i = 0; i < alltechs.length; i++) {
                     checkedtechs[i] = alltechs[i];
                     checkedtechs[i].ticked = (lessontechs.indexOf(alltechs[i].technology) < 0)? false : true;
-                    /*console.log("Lesson techs:" + JSON.stringify(lessontechs[i]));
-                    console.log("All tech:" + JSON.stringify(alltechs[i]));
-                    console.log("Checked:" + JSON.stringify(checkedtechs[i]));*/
                 }
-                $scope.lesson = { 
+                var lesson_name = !data.project? "Altran_"+data.idLessonsLearned : data.project+"_"+data.idLessonsLearned;
+                $scope.lesson = {
+                    name: lesson_name,
                     technologies: checkedtechs, 
                     situation: data.situation, 
                     actionTaken: data.action, 
@@ -35,39 +34,22 @@
             });
         }
 
-        var getLesson = function() {
-            lessonServices.getLesson()
-                .then(function (res) {
-                data = res.data[0];
-
-                if (data == null) {
-                    $location.path('/forbidden');
-                }
-                else {
-                    lessonid = data.idLessonsLearned;
-                    confirmAuth();
-                    console.log(data);
-                }
-
-            })
-            .catch(function (err) {
-                alert(err.data);
-            });
-        }
-
         var confirmAuth = function() {
             userServices.logged()
             .then(function (result) {
                 manager = result.data.name;
                 managerid = result.data.idusers;
                 //check if this manager has this lesson
-                genServices.getManagerLesson(managerid,lessonid)
+                genServices.getManagerLesson(managerid)
                     .then(function (ll) {
                         if(ll.data.length <= 0) {
                             $location.path('/forbidden');
                         }
                         else {
-                            $scope.llstatus = ll.data[0].status;
+                            console.log(JSON.stringify(ll.data));
+                            data = ll.data[0];
+                            lessonid = data.idLessonsLearned;
+                            $scope.llstatus = data.status;
                             loadTechnologies();
                         }
                     })
@@ -84,7 +66,7 @@
         }
 
         $scope.loadLL = function() {
-            getLesson();
+            confirmAuth();
         }
         
         $scope.loadLL();
@@ -102,18 +84,14 @@
         };
 
         $scope.editLesson = function(lesson, draft) {
-            /*alert(lesson.technologies[0].technology + ' ' + lesson.technologies[0].idtechnologies);
-            alert(lesson.actionTaken);
-            alert(lesson.situation);
-            alert(lesson.result);*/
             $scope.items.pop();
-            var status = draft? 'draft' : 'submited';
+            var status = draft? 'draft' : 'submitted';
             if($scope.llstatus != 'draft' && draft) {
                 $scope.items.push("Invalid action.");
                 return;
             }
 
-            if($scope.llstatus == 'submited') {
+            if($scope.llstatus == 'submitted') {
                 $scope.items.push("Invalid action.");
                 return;
             }
@@ -130,8 +108,6 @@
                  "maker": manager,
                  "state": status
              };
-
-             console.log("what");
 
             userServices.editLL(ll, updatestate)
                 .then(function (result) {

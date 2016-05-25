@@ -294,7 +294,7 @@
 
     exports.getLessonByID = function(idlesson){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT idLessonsLearned, t6.name as manager, project, status, creationdate, aproveddate, situation,action,result, GROUP_CONCAT(technology SEPARATOR ',') AS technologies, t5.name as project, dateBeginning, dateEndExpected, dateEnd, deliveringModel, numberConsultants, daysDuration, client FROM public.lessonsLearned as t1, public.lessonstext as t2, public.technologies as t3, public.lesson_tech as t4, public.project as t5, public.users as t6 WHERE t1.idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned  AND t1.idLessonsLearned = t4.idlesson AND t4.idlesson = t1.idLessonsLearned  AND t1.project = t5.idproject AND t3.idtechnologies = t4.idtech AND t1.manager = t6.idusers GROUP BY idLessonsLearned, situation, action, result";
+         var query = "SELECT idLessonsLearned, t6.name as manager, project, status, creationdate, aproveddate, situation,action,result, GROUP_CONCAT(technology SEPARATOR ',') AS technologies, t5.name as project, dateBeginning, dateEndExpected, dateEnd, deliveringModel, numberConsultants, daysDuration, client FROM public.lessonstext as t2, public.technologies as t3, public.lesson_tech as t4, public.users as t6, public.lessonsLearned as t1 LEFT OUTER JOIN public.project as t5 ON t5.idproject = t1.project WHERE t1.idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned  AND t1.idLessonsLearned = t4.idlesson AND t3.idtechnologies = t4.idtech AND t1.manager = t6.idusers GROUP BY idLessonsLearned, situation, action, result";
          query = mysql.format(query,idlesson);
          client.query(query,function (err, result) {
                     if (err) {
@@ -323,7 +323,7 @@
 
     exports.checkLessonManager = function(idManager, idLesson){
          return new Promise(function (resolve, reject) {
-            client.query('SELECT * FROM public.lessonslearned WHERE manager = ? AND idLessonsLearned = ?', [idManager,idLesson],
+            client.query("SELECT idLessonsLearned, t6.name as manager, project, status, creationdate, aproveddate, situation,action,result, GROUP_CONCAT(technology SEPARATOR ',') AS technologies, t5.name as project, dateBeginning, dateEndExpected, dateEnd, deliveringModel, numberConsultants, daysDuration, client FROM public.lessonstext as t2, public.technologies as t3, public.lesson_tech as t4, public.users as t6, public.lessonsLearned as t1 LEFT OUTER JOIN public.project as t5 ON t5.idproject = t1.project WHERE t1.manager = ? AND t1.idLessonsLearned = ? AND t1.idLessonsLearned = t2.idLessonLearned  AND t1.idLessonsLearned = t4.idlesson AND t3.idtechnologies = t4.idtech AND t1.manager = t6.idusers GROUP BY idLessonsLearned, situation, action, result", [idManager,idLesson],
                 function (err, result) {
                     if (err) {
                         console.log(err);

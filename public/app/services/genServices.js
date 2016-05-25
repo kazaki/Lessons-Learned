@@ -66,9 +66,9 @@ var genServices = function ($q, $http) {
                 });
         };
         // Function to check if there exists a lesson created by this manager
-        this.getManagerLesson = function(managerid,lessonid) {
+        this.getManagerLesson = function(managerid) {
          return $http.get('/api/checklessonmanager', {
-                    headers: {'managerid': managerid, 'lessonid': lessonid}
+                    headers: {'managerid': managerid}
                 })
                 .success(function(res) {             
                     deferred.resolve('Success');
