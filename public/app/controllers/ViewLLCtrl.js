@@ -29,7 +29,7 @@
 			} 
 
 			console.log($scope.lldata);
-			$("#lltitle").text($scope.lldata["name"]);
+			$("#lltitle").text($scope.lldata["project"]);
 			$("#llclient").text($scope.lldata["client"]);
 			$("#llsituation").text($scope.lldata["situation"]);
 			$("#llaction").text($scope.lldata["action"]);
@@ -117,7 +117,7 @@
 							$scope.lldata["status"] = "draft";
 							
 							$('#llstatus').css("background-color", "#f0ad4e");
-							$('#llstatus').text("draft");
+							$('#llstatus').text("Draft");
 						});
 					}
 				}

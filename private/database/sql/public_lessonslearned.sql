@@ -43,7 +43,7 @@ CREATE TABLE `lessonslearned` (
 
 LOCK TABLES `lessonslearned` WRITE;
 /*!40000 ALTER TABLE `lessonslearned` DISABLE KEYS */;
-INSERT INTO `lessonslearned` VALUES (1,22,4,'active','2016-05-22',NULL);
+INSERT INTO `lessonslearned` VALUES (1,22,4,'submitted','2016-05-22',NULL);
 /*!40000 ALTER TABLE `lessonslearned` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

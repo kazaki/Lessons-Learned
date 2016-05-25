@@ -227,7 +227,8 @@ footer {
 
 .navbar .nav > li > a {
   color:  #5772aa;
-	font-size: 100%;
+	font-size: 19px;
+	font-weight:bold;
 }
 
 .navbar .nav > li > a:hover,
