@@ -60,7 +60,7 @@
 				$('#llstatus').css("background-color", "#5cb85c");
 				$('#llstatus').text("Approved");
 			} else if ($scope.llstatus == "inactive") {
-				$('#llstatus').css("background-color", "#d3d3d3");
+				$('#llstatus').css("background-color", "#d9534f");
 				$('#llstatus').text("Inactive");
 			}
 		
@@ -124,6 +124,57 @@
 			});
 		}
 		
+		$scope.adminDisable = function() {
+			bootbox.confirm("Are you sure?", function(result) {	
+				if (!result) return;
+				console.log("Disabling LL...");
+				lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "inactive")
+				.then(function (res) {
+					if (res.status != 200) {
+						console.log("Failed to disable LL.");
+						return;
+					}
+				
+					console.log("LL disabled!");
+					
+					$scope.llstatus = "inactive";
+					$scope.lldata["status"] = "inactive";
+					
+					$('#llstatus').css("background-color", "#d9534f");
+					$('#llstatus').text("Inactive");
+				})
+				.catch( function (err){
+					console.log(err);
+				});
+			}); 
+		}
+		
+		
+		$scope.adminEnable = function() {
+			bootbox.confirm("Are you sure?", function(result) {	
+				if (!result) return;
+				console.log("Enabling LL...");
+				lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "approved")
+				.then(function (res) {
+					if (res.status != 200) {
+						console.log("Failed to enable LL.");
+						return;
+					}
+				
+					console.log("LL enabled!");
+					
+					$scope.llstatus = "approved";
+					$scope.lldata["status"] = "approved";
+					
+					$('#llstatus').css("background-color", "#5cb85c");
+					$('#llstatus').text("Approved");
+				})
+				.catch( function (err){
+					console.log(err);
+				});
+			}); 
+		}
+		
 		$scope.loadLL = function() {
 			$scope.getLesson();
 		}
@@ -148,6 +199,14 @@
 			return $scope.llstatus == "submitted";
 		}
 		
+		$scope.isApproved = function() {
+			return $scope.llstatus == "approved";
+		}
+		
+		$scope.isInactive = function() {
+			return $scope.llstatus == "inactive";
+		}
+		
 		$scope.isAdminAndSubmitted = function() {
 			return $scope.isAdmin() && $scope.isSubmitted();
 		}	
@@ -155,6 +214,16 @@
 		$scope.isDnS = function() {
 			return $scope.isDraft() && $scope.isSubmitter();
 		}
+		
+		$scope.isAdminAndApproved = function() {
+			return $scope.isAdmin() && $scope.isApproved();
+		}
+		
+		$scope.isAdminAndInactive = function() {
+			return $scope.isAdmin() && $scope.isInactive();
+		}
+		
+		
 		
 	
 		

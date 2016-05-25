@@ -7,9 +7,6 @@ var lessonServices = function ($q, $http, $cookies, $window) {
 	this.getLesson = function() {
 		 return $http.get('/api/lesson')
                 .success(function(res) {
-				
-					console.log(res);
-				
                     deferred.resolve('Success');
                 })
                 .error(function(err) {
@@ -24,9 +21,6 @@ var lessonServices = function ($q, $http, $cookies, $window) {
 			'idlesson' : id
 		 })
                 .success(function(res) {
-				
-					console.log(res);
-				
                     deferred.resolve('Success');
                 })
                 .error(function(err) {
