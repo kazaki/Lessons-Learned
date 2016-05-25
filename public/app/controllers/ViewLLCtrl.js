@@ -40,17 +40,9 @@
 			$("#llexpected").text($scope.lldata["dateEndExpected"].substring(0,10));
 			$("#llfinish").text($scope.lldata["dateEnd"].substring(0,10));
 			$("#lltech").text($scope.lldata["technologies"]);
-			
 
-//IF QUE NÂO FUNCIONA????
-			if ($scope.lldata["feedback"] == null) {
-				console.log('OH NO');
-				$("#llfback").text("No Feedback yet!");
-			}
-			else{
-				console.log('OH YES');
-				$("#llfback").text($scope.lldata["feedback"]);	
-			} 
+			$("#llfeed").text($scope.lldata["name"]);
+			if (!$scope.isDraft()) $("#llfeedp").hide();
 
 			$scope.llstatus = $scope.lldata["status"];
 
@@ -121,17 +113,13 @@
 
 							console.log("Feedback set!");
 							
-							//// TODO ////
-							// UPDATE FEEDBACK USING ---> result <----
+
 						})
 						.catch( function (err){
 							console.log(err);
 						});
 							console.log("LL rejected!");
-							
-							//// TODO ////
-							// UPDATE FEEDBACK USING ---> result <----
-							
+
 							$scope.llstatus = "draft";
 							$scope.lldata["status"] = "draft";
 							

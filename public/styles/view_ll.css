@@ -1,6 +1,6 @@
 #viewll {
 	margin-top: 5vw;
-	font-weight: bold;
+	font-weight:bold;
 }
 
 
@@ -16,7 +16,7 @@
 	border:0;
 	color:#000;
 	background-color:#729BD3;
-	font-size:15px;
+	font-size:16px;
 	
 }
 
@@ -25,31 +25,12 @@
 	
 }
 
-.toggle.android { border-radius: 0px;}
-.toggle.android .toggle-handle { border-radius: 0px; }
-
-.toggle {
-	width: 100% !important;
-}
-
-.toggle-group > .btn {
-	color: #000 !important;
-	font-family: 'corbertregular';
-	font-weight: bold;
-	font-size:13px;
-}
-
-.toggle-group > label {
-	padding-top:5px;
-}
-
-
 .panel-body {
 	padding-top:10px;
 	height: 100%;
 	color:#000;
 	
-	font-size:13px;
+	font-size:17px;
 
 }
 
@@ -89,16 +70,33 @@
 }
 
 textarea { 
-	resize:vertical ;
+	resize: none;
 }
+
+.largetextarea {
+	resize: vertical;
+}
+
+
+.form-control {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	font-size:19px;
+}
+.form-control:read-only { 
+    background-color: #E7ECFF !important;
+	color: black;
+}
+
 
 #lldata {
 	margin-bottom: 20px;
 }
 
-.lldesc {
+#llfeed {
 	height:188px !important;
 }
+
 
 #llinfo > .row {
 	padding-left: 15px;
@@ -107,25 +105,29 @@ textarea {
 
 .toolbtn {
 	width: 100px;
-}
-
-#approveBtn {
-	margin-bottom: 5px;
-}
-
-.toolbtn {
 	font-weight: bold;
 }
 
-#llstatus {
+#approveBtn, #disableBtn, #submitBtn {
+	margin-bottom: 2px;
+}
+
+#llstatus, #llstatusp {
 	-webkit-user-select: none; /* Chrome/Safari */        
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+ */
 	-o-user-select: none;
 	user-select: none;
+	height:40px;
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;
 }
 
 #llstatus:hover {
 	cursor: default;
 }
 
+.modal-content {
+	width: 60%;
+	margin-left:20%;
+}
