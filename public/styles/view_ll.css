@@ -83,6 +83,11 @@
 	padding-top:15px;
 }
 
+.nohpadding {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 textarea { 
 	resize:vertical ;
 }
@@ -98,4 +103,16 @@ textarea {
 #llinfo > .row {
 	padding-left: 15px;
 	padding-right: 15px;
+}
+
+.toolbtn {
+	width: 100px;
+}
+
+#approveBtn {
+	margin-bottom: 5px;
+}
+
+.toolbtn {
+	font-weight: bold;
 }

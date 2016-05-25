@@ -63,7 +63,7 @@
                 controller: "CreateLLCtrl"
             })
 
-			.when("/view_ll", {
+			.when("/view_ll/:id/", {
                 templateUrl: "app/views/view_ll.html",
                 controller: "ViewLLCtrl"
             })
