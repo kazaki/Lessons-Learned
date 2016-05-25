@@ -54,7 +54,7 @@
             res.render('index');
         });
 
-		server.get('/view_ll', function (req, res) {
+		server.get('/view_ll/:id/', function (req, res) {
 			res.render('index');
 		});
 
@@ -184,9 +184,7 @@
           console.log('renamed complete');  
         });
     });
-           console.log(email);
-            
-            
+        
             if(permission!="1" && permission!="2" && permission!="0"){
                 // Check if permission is valid.
                 res.status(400).json({
@@ -413,11 +411,9 @@
              var lesson_id = req.headers.referer.split("/")[4];
              database.getLessonByID(lesson_id)
                .then(function (lesson) {
-                   console.log("qqqqqqqqq");
                     res.status(200).send(lesson);
                 })
                 .catch(function (err) {
-                    console.log("qqqqqqqqwwwwwwwwwwwwwwwwq");
                     res.status(406).send('Could not retrieve LL information with that id.');
                 });
         });
@@ -567,7 +563,7 @@
         server.get("/api/checklessonmanager",function(req,res){
 
              var managerid = req.headers.managerid;
-             var lessonid = req.headers.lessonid;
+             var lessonid = req.headers.referer.split("/")[4];
              database.checkLessonManager(managerid,lessonid)
                .then(function (ll) {
                     res.status(200).send(ll);
@@ -719,7 +715,7 @@
 
                 var sector = req.body.sector;
 
-                database.addSector(type)
+                database.addSector(sector)
                     .then(function (sector) {
                         res.sendStatus(200);
                     })
@@ -751,5 +747,3 @@
 
     };
 } ());
-
-

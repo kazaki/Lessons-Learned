@@ -26,12 +26,20 @@
 		
 		<div  class="col-lg-1 col-xs-3 col-md-2 nohpadding text-center">
 		
+			<div ng-if="isAdminAndApproved()" class="row">
+				<button ng-click="adminDisable()" type="button" class="toolbtn btn btn-danger">Disable</button>
+			</div>
+			
+			<div ng-if="isAdminAndInactive()" class="row">
+				<button ng-click="adminEnable()" type="button" class="toolbtn btn btn-success">Enable</button>
+			</div>
+		
 			<div ng-if="isAdminAndSubmitted()" class="row">
-				<button id="approveBtn" type="button" class="toolbtn btn btn-success">Approve</button>
+				<button ng-click="adminApprove()"type="button" class="toolbtn btn btn-success">Approve</button>
 			</div>
 			
 			<div ng-if="isAdminAndSubmitted()" class="row">
-				<button id="rejectBtn" type="button" class="toolbtn btn btn-danger">Reject</button>
+				<button ng-click="adminReject()"  type="button" class="toolbtn btn btn-danger">Reject</button>
 			</div>
 			
 			<div ng-if="isDnS()" class="row">

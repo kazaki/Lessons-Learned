@@ -7,7 +7,15 @@
 <div class="container">
   <div class="row">
  
-    <div class="col-md-6">
+    <div class="col-md-4">
+     <div class="wrap">
+    <h3>Select Avatar</h3>
+      <div class="thumb" > <img id="img" ng-src={{image}} /></div>
+    <label for="upload">Choose File
+      <input file-model = "myFile" type='file' name="file" id="upload" ></label>
+    </div>
+</div>
+    <div class="col-md-4">
     <div class="wrap">
     <h3>Personal Information</h3>
 
@@ -31,14 +39,20 @@
     </div>
     </div>
     </div>
-    <div class="col-md-6">
-     <div class="wrap">
-    <h3>Select Avatar</h3>
-      <div class="thumb" > <img id="img" ng-src={{image}} /></div>
-    <label for="upload">Choose File
-      <input id="upload" type="file" name="file" onchange="angular.element(this).scope().changeFile(this.files)"/>
+
+    <div class="col-md-4">
+    <div class="wrap">
+      <h3>Projects</h3>
+
+      <div class="list-group">
+      <button type="button" class="list-group-item ">Cras justo odio</button>
+      <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+      <button type="button" class="list-group-item">Morbi leo risus</button>
+      <button type="button" class="list-group-item">Porta ac consectetur ac</button>
+      <button type="button" class="list-group-item">Vestibulum at eros</button>
     </div>
-</div>
+    </div>
+    </div>
   </div>
       <button type="submit" class="btn btn-primary btn-outline center-block">{{ 'ADD_USER' | translate | uppercase }}</button>
       

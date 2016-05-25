@@ -57,10 +57,10 @@
 				$('#llstatus').css("background-color", "#5bc0de");
 				$('#llstatus').text("Submitted");
 			} else if ($scope.llstatus == "approved") {
-				$('#llstatus').css("background-color", "#f0ad4e");
+				$('#llstatus').css("background-color", "#5cb85c");
 				$('#llstatus').text("Approved");
 			} else if ($scope.llstatus == "inactive") {
-				$('#llstatus').css("background-color", "#5cb85c");
+				$('#llstatus').css("background-color", "#d9534f");
 				$('#llstatus').text("Inactive");
 			}
 		
@@ -69,9 +69,111 @@
 			console.log(err.data);
 		});
 		
-		$scope.adminApprove() {
-			
-		}	
+		$scope.adminApprove = function() {
+			bootbox.confirm("Are you sure?", function(result) {	
+				if (!result) return;
+				console.log("Approving LL...");
+				lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "approved")
+				.then(function (res) {
+					if (res.status != 200) {
+						console.log("Failed to approve LL.");
+						return;
+					}
+				
+					console.log("LL approved!");
+					
+					$scope.llstatus = "approved";
+					$scope.lldata["status"] = "approved";
+					
+					$('#llstatus').css("background-color", "#5cb85c");
+					$('#llstatus').text("Approved");
+				})
+				.catch( function (err){
+					console.log(err);
+				});
+			}); 
+		}
+		
+		$scope.adminReject = function() {
+			 bootbox.prompt({
+				title: "Feedback for rejection:",
+				value: "",
+				callback: function(result) {
+					if (result === null) {
+						;
+					} else {
+						lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "draft")
+						.then(function (res) {
+							if (res.status != 200) {
+								console.log("Failed to reject LL.");
+								return;
+							}
+							console.log("LL rejected!");
+							
+							//// TODO ////
+							// UPDATE FEEDBACK USING ---> result <----
+							
+							$scope.llstatus = "draft";
+							$scope.lldata["status"] = "draft";
+							
+							$('#llstatus').css("background-color", "#f0ad4e");
+							$('#llstatus').text("draft");
+						});
+					}
+				}
+			});
+		}
+		
+		$scope.adminDisable = function() {
+			bootbox.confirm("Are you sure?", function(result) {	
+				if (!result) return;
+				console.log("Disabling LL...");
+				lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "inactive")
+				.then(function (res) {
+					if (res.status != 200) {
+						console.log("Failed to disable LL.");
+						return;
+					}
+				
+					console.log("LL disabled!");
+					
+					$scope.llstatus = "inactive";
+					$scope.lldata["status"] = "inactive";
+					
+					$('#llstatus').css("background-color", "#d9534f");
+					$('#llstatus').text("Inactive");
+				})
+				.catch( function (err){
+					console.log(err);
+				});
+			}); 
+		}
+		
+		
+		$scope.adminEnable = function() {
+			bootbox.confirm("Are you sure?", function(result) {	
+				if (!result) return;
+				console.log("Enabling LL...");
+				lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "approved")
+				.then(function (res) {
+					if (res.status != 200) {
+						console.log("Failed to enable LL.");
+						return;
+					}
+				
+					console.log("LL enabled!");
+					
+					$scope.llstatus = "approved";
+					$scope.lldata["status"] = "approved";
+					
+					$('#llstatus').css("background-color", "#5cb85c");
+					$('#llstatus').text("Approved");
+				})
+				.catch( function (err){
+					console.log(err);
+				});
+			}); 
+		}
 		
 		$scope.loadLL = function() {
 			$scope.getLesson();
@@ -97,6 +199,14 @@
 			return $scope.llstatus == "submitted";
 		}
 		
+		$scope.isApproved = function() {
+			return $scope.llstatus == "approved";
+		}
+		
+		$scope.isInactive = function() {
+			return $scope.llstatus == "inactive";
+		}
+		
 		$scope.isAdminAndSubmitted = function() {
 			return $scope.isAdmin() && $scope.isSubmitted();
 		}	
@@ -104,6 +214,16 @@
 		$scope.isDnS = function() {
 			return $scope.isDraft() && $scope.isSubmitter();
 		}
+		
+		$scope.isAdminAndApproved = function() {
+			return $scope.isAdmin() && $scope.isApproved();
+		}
+		
+		$scope.isAdminAndInactive = function() {
+			return $scope.isAdmin() && $scope.isInactive();
+		}
+		
+		
 		
 	
 		
