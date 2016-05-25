@@ -540,7 +540,7 @@
              var state = req.body.state.toLowerCase();
              var idLesson = req.body.idlesson;
 
-              if(state == 'draft' || state == 'submited' || state == 'approved' || state == 'inactive'){
+              if(state == 'draft' || state == 'submitted' || state == 'approved' || state == 'inactive'){
                 database.updateLessonStateByID(idLesson,state)
                     .then(function() {
                         res.sendStatus(200);
@@ -558,7 +558,7 @@
              else{
                 res.status(406).json({
                             message_class: 'error',
-                            message: "Incorrect state! Choose one of the following: draft|submited|approved|inactive."
+                            message: "Incorrect state! Choose one of the following: draft|submitted|approved|inactive."
                 });
              }
         });

@@ -107,13 +107,13 @@
             alert(lesson.situation);
             alert(lesson.result);*/
             $scope.items.pop();
-            var status = draft? 'draft' : 'submited';
+            var status = draft? 'draft' : 'submitted';
             if($scope.llstatus != 'draft' && draft) {
                 $scope.items.push("Invalid action.");
                 return;
             }
 
-            if($scope.llstatus == 'submited') {
+            if($scope.llstatus == 'submitted') {
                 $scope.items.push("Invalid action.");
                 return;
             }
