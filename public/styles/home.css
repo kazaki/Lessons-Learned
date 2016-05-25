@@ -125,13 +125,17 @@
 #homeTitle {
 	color: #333333;
 	font-family: HelveticaFreeBold,Century Gothic, sans-serif;
-	font-size: 6vw;
-	font-size: 8vmin;
+	font-size: 4vw;
 	color: white;
 	font-weight: bold;
 	text-align: center;
-	line-height: 100px;
 	margin-top: 30px;
+}
+
+@media(max-width:770px) {
+	#homeTitle {
+		font-size: 30px;
+	}
 }
 
 #toolbox {
