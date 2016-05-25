@@ -57,10 +57,10 @@
 				$('#llstatus').css("background-color", "#5bc0de");
 				$('#llstatus').text("Submitted");
 			} else if ($scope.llstatus == "approved") {
-				$('#llstatus').css("background-color", "#f0ad4e");
+				$('#llstatus').css("background-color", "#5cb85c");
 				$('#llstatus').text("Approved");
 			} else if ($scope.llstatus == "inactive") {
-				$('#llstatus').css("background-color", "#5cb85c");
+				$('#llstatus').css("background-color", "#d3d3d3");
 				$('#llstatus').text("Inactive");
 			}
 		
@@ -69,9 +69,60 @@
 			console.log(err.data);
 		});
 		
-		$scope.adminApprove() {
-			
-		}	
+		$scope.adminApprove = function() {
+			bootbox.confirm("Are you sure?", function(result) {	
+				if (!result) return;
+				console.log("Approving LL...");
+				lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "approved")
+				.then(function (res) {
+					if (res.status != 200) {
+						console.log("Failed to approve LL.");
+						return;
+					}
+				
+					console.log("LL approved!");
+					
+					$scope.llstatus = "approved";
+					$scope.lldata["status"] = "approved";
+					
+					$('#llstatus').css("background-color", "#5cb85c");
+					$('#llstatus').text("Approved");
+				})
+				.catch( function (err){
+					console.log(err);
+				});
+			}); 
+		}
+		
+		$scope.adminReject = function() {
+			 bootbox.prompt({
+				title: "Feedback for rejection:",
+				value: "",
+				callback: function(result) {
+					if (result === null) {
+						;
+					} else {
+						lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "draft")
+						.then(function (res) {
+							if (res.status != 200) {
+								console.log("Failed to reject LL.");
+								return;
+							}
+							console.log("LL rejected!");
+							
+							//// TODO ////
+							// UPDATE FEEDBACK USING ---> result <----
+							
+							$scope.llstatus = "draft";
+							$scope.lldata["status"] = "draft";
+							
+							$('#llstatus').css("background-color", "#f0ad4e");
+							$('#llstatus').text("draft");
+						});
+					}
+				}
+			});
+		}
 		
 		$scope.loadLL = function() {
 			$scope.getLesson();

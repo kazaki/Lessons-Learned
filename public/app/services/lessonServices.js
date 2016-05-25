@@ -17,6 +17,24 @@ var lessonServices = function ($q, $http, $cookies, $window) {
                 });
 
 	};
+	
+	this.setLessonState = function(id, state) {
+		 return $http.put('/api/updatelessonstate', {
+			'state' : state,
+			'idlesson' : id
+		 })
+                .success(function(res) {
+				
+					console.log(res);
+				
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+
+	};
+	
 
    
 };
