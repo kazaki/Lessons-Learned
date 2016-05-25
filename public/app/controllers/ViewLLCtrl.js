@@ -41,6 +41,7 @@
 			$("#llfinish").text($scope.lldata["dateEnd"].substring(0,10));
 			$("#lltech").text($scope.lldata["technologies"]);
 			$("#llfeed").text($scope.lldata["name"]);
+			if (!$scope.isDraft()) $("#llfeedp").hide();
 			
 			
 			
