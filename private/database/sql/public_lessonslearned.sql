@@ -29,9 +29,13 @@ CREATE TABLE `lessonslearned` (
   `status` varchar(45) NOT NULL,
   `creationdate` date NOT NULL,
   `aproveddate` date DEFAULT NULL,
+  `approver` int(11) DEFAULT NULL,
+  `feedback` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idLessonsLearned`),
   KEY `idUser_idx` (`manager`),
   KEY `idProject_idx` (`project`),
+  KEY `idApprover_idx` (`approver`),
+  CONSTRAINT `idApprover` FOREIGN KEY (`approver`) REFERENCES `users` (`idusers`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `idManager` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `idProject` FOREIGN KEY (`project`) REFERENCES `project` (`idproject`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -56,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-25  0:08:21
+-- Dump completed on 2016-05-25 23:36:29
