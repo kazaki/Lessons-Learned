@@ -32,8 +32,9 @@
                 
              var fd = new FormData();   
              fd.append("image", image);
-             //fd.append("user", user);
-
+             fd.append("email", user.email);
+             fd.append("password", user.password);
+             fd.append("permission", user.permission);
 
              adminServices.registerUser(fd)
                 .then(function (res) {

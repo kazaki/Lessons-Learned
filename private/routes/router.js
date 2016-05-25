@@ -159,41 +159,32 @@
                 res.status(404).send('Could not verify session');
             }
         });
+        
         server.post('/api/createuser', function (req, res) {
-           /*  var fstream;
-             console.log(req.busboy);
-    req.pipe(req.busboy);
-    req.busboy.on('image', function (fieldname, file, filename) {
-        console.log("Uploading: " + filename); 
-        fstream = fs.createWriteStream(__dirname + '/files/' + filename);
-        file.pipe(fstream);
-        fstream.on('close', function () {
-            res.redirect('back');
-        });
-    });*/
+            var email,pass,name,permission;
     var form = new formidable.IncomingForm();
      //Formidable uploads to operating systems tmp dir by default
-    form.uploadDir = "./img";       //set upload directory
+    form.uploadDir = "./private/img";       //set upload directory
     form.keepExtensions = true;     //keep file extension
-
+    console.log("ddd");
     form.parse(req, function(err, fields, files) {
-        res.writeHead(200, {'content-type': 'text/plain'});
-        res.write('received upload:\n\n');
-        console.log("form.bytesReceived");
+        console.log(JSON.stringify(files));
+        email=fields.email.toLowerCase();
+        pass=fields.password;
+        name=fields.name;
+        permission=fields.permission;
+                
         //Formidable changes the name of the uploaded file
         //Rename the file to its original name
-        fs.rename(files.fileUploaded.path, './img/'+files.fileUploaded.name, function(err) {
+        
+        console.log("ola "+files.image);
+        fs.rename(files.image.path, './private/img/'+email+".jpg", function(err) {
         if (err)
-            throw err;
+            throw err; 
           console.log('renamed complete');  
         });
-          res.end();
     });
-    return;
-            var email = req.body.email.toLowerCase();
-            var pass = req.body.password;
-            var name = req.body.name;
-            var permission = req.body.permission;
+           console.log(email);
             
             
             if(permission!="1" && permission!="2" && permission!="0"){
