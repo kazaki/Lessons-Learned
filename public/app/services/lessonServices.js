@@ -28,6 +28,20 @@ var lessonServices = function ($q, $http, $cookies, $window) {
                 });
 
 	};
+
+    this.setLessonFeedback = function(id, feedback) {
+         return $http.put('/api/updatelessonfeedback', {
+            'feedback' : feedback,
+            'idlesson' : id
+         })
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+
+    };
 	
 
    

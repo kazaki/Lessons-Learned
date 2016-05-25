@@ -547,6 +547,24 @@
              }
         });
 
+        server.put("/api/updatelessonfeedback", function(req, res){
+             var feedback = req.body.feedback;
+             var idLesson = req.body.idlesson;
+
+                database.updateLessonFeedbackByID(idLesson,feedback)
+                    .then(function() {
+                        res.sendStatus(200);
+                    })
+                    .catch(function (err) {
+                        // Send the Response with message error
+                        res.status(406).json({
+                            message_class: 'error',
+                            message: "No such lesson with that id."
+                        });
+
+                    });
+        });
+
         //<!------------------------------------------------------------------ PROJECT ---------------------------------------------------------------------------------------------------->
 
         server.get('/api/projects', function (req, res) {

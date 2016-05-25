@@ -29,7 +29,7 @@
 			} 
 
 			console.log($scope.lldata);
-			$("#lltitle").text($scope.lldata["name"]);
+			$("#lltitle").text($scope.lldata["project"]);
 			$("#llclient").text($scope.lldata["client"]);
 			$("#llsituation").text($scope.lldata["situation"]);
 			$("#llaction").text($scope.lldata["action"]);
@@ -40,16 +40,20 @@
 			$("#llexpected").text($scope.lldata["dateEndExpected"].substring(0,10));
 			$("#llfinish").text($scope.lldata["dateEnd"].substring(0,10));
 			$("#lltech").text($scope.lldata["technologies"]);
-			$("#llfeed").text($scope.lldata["name"]);
 			
-			
-			
-			
+
+//IF QUE NÂO FUNCIONA????
+			if ($scope.lldata["feedback"] == null) {
+				console.log('OH NO');
+				$("#llfback").text("No Feedback yet!");
+			}
+			else{
+				console.log('OH YES');
+				$("#llfback").text($scope.lldata["feedback"]);	
+			} 
+
 			$scope.llstatus = $scope.lldata["status"];
-			
-			// TODO
-			//$scope.llstatus = "submitted";
-			
+
 			if ($scope.llstatus == "draft") {
 				$('#llstatus').css("background-color", "#f0ad4e");
 				$('#llstatus').text("Draft");
@@ -108,6 +112,21 @@
 								console.log("Failed to reject LL.");
 								return;
 							}
+							lessonServices.setLessonFeedback($scope.lldata["idLessonsLearned"], result)
+							.then(function (res) {
+							if (res.status != 200) {
+								console.log("Failed to send feedback.");
+								return;
+							}
+
+							console.log("Feedback set!");
+							
+							//// TODO ////
+							// UPDATE FEEDBACK USING ---> result <----
+						})
+						.catch( function (err){
+							console.log(err);
+						});
 							console.log("LL rejected!");
 							
 							//// TODO ////
@@ -118,6 +137,9 @@
 							
 							$('#llstatus').css("background-color", "#f0ad4e");
 							$('#llstatus').text("draft");
+						})
+						.catch( function (err){
+							console.log(err);
 						});
 					}
 				}

@@ -21,6 +21,7 @@
 			"/api/updateuseremail",
 			"/api/updateuserpass",
 			"/api/updatelessonstate",
+			"/api/updatelessonfeedback",
 			"/api/updatelessontext",
 			"/api/technologies",
 			"/api/projects",
