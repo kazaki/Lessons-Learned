@@ -729,7 +729,7 @@
 
                 var sector = req.body.sector;
 
-                database.addSector(type)
+                database.addSector(sector)
                     .then(function (sector) {
                         res.sendStatus(200);
                     })

@@ -22,8 +22,8 @@
     <br>
     <br>
     <!-- Trigger the modal with a button -->
-    <input name="tags2" type="text">
-    <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal3">Inserir Tipo</button>
+    <input name="tags2" type="text" ng-model="newType">
+    <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal3" ng-click="addType();">Inserir Tipo</button>
 
 
 
@@ -38,11 +38,8 @@
     <br>
     <br>
     <!-- Trigger the modal with a button -->
-    <input name="tags" type="text">
-
-
-
-    <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal2">Inserir Setor</button>
+    <input name="tags" type="text" ng-model="newSector">
+    <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal2" ng-click="addSector();">Inserir Setor</button>
     <br>
     <br>
 

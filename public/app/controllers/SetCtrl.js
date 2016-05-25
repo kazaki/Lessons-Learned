@@ -104,11 +104,57 @@
                           alert("oi la");
                         }
 
-                        //insert tech
+
                     });
+                    adminServices.insertTech({"technology": $scope.newTech});
                 })
                 .catch(function(err) {
                     console.log('Fetch technologies error.');
+                    alert(err);
+                });
+
+        };
+
+        $scope.addType = function() {
+
+            console.log($scope.newType);
+
+            genServices.getProjectTypes()
+                .then(function(result) {
+                    $scope.types = result.data;
+                    angular.forEach($scope.types, function(type) {
+                        if(type.name==$scope.newType){
+                          alert("oi la");
+                        }
+
+
+                    });
+                    adminServices.insertType({"projecttype": $scope.newType});
+                })
+                .catch(function(err) {
+                    console.log('Fetch types error.');
+                    alert(err);
+                });
+
+        };
+
+        $scope.addSector = function() {
+
+            console.log($scope.newSector);
+
+            genServices.getBusinessSectors()
+                .then(function(result) {
+                    $scope.sectors = result.data;
+                    angular.forEach($scope.sectors, function(sector) {
+                        if(sector.name==$scope.newSector){
+                          alert("oi la");
+                        }
+
+                    });
+                    adminServices.insertSector({"sector": $scope.newSector});
+                })
+                .catch(function(err) {
+                    console.log('Fetch types error.');
                     alert(err);
                 });
 
