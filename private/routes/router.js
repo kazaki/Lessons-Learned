@@ -579,7 +579,7 @@
         server.get("/api/checklessonmanager",function(req,res){
 
              var managerid = req.headers.managerid;
-             var lessonid = req.headers.lessonid;
+             var lessonid = req.headers.referer.split("/")[4];
              database.checkLessonManager(managerid,lessonid)
                .then(function (ll) {
                     res.status(200).send(ll);
