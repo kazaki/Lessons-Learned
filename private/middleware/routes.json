@@ -13,8 +13,7 @@
 			"/api/searchlessons",
 			"/api/projectsbymanager",
 			"/api/checklessonmanager",
-			"/api/technologies",
-			"/api/uploadimage"
+			"/api/technologies"
 		],
 
 		"logged": [

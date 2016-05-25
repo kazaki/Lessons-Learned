@@ -8,7 +8,7 @@
          StreamSearch = require('streamsearch'),
          inspect = require('util').inspect,
          validator = require("email-validator"),
-         formidable = require('formidable'),
+         im = require("imagemagick"),
          fs = require('fs');
     // Main router where all routes are called. This is done so the project code is cleaner and more maintainable.
     module.exports = function (server) {
@@ -54,7 +54,7 @@
             res.render('index');
         });
 
-		server.get('/view_ll', function (req, res) {
+		server.get('/view_ll/:id/', function (req, res) {
 			res.render('index');
 		});
 
@@ -159,43 +159,46 @@
                 res.status(404).send('Could not verify session');
             }
         });
-        server.post('/api/createuser', function (req, res) {
-           /*  var fstream;
-             console.log(req.busboy);
-    req.pipe(req.busboy);
-    req.busboy.on('image', function (fieldname, file, filename) {
-        console.log("Uploading: " + filename); 
-        fstream = fs.createWriteStream(__dirname + '/files/' + filename);
-        file.pipe(fstream);
-        fstream.on('close', function () {
-            res.redirect('back');
-        });
-    });*/
-    var form = new formidable.IncomingForm();
-     //Formidable uploads to operating systems tmp dir by default
-    form.uploadDir = "./img";       //set upload directory
-    form.keepExtensions = true;     //keep file extension
 
-    form.parse(req, function(err, fields, files) {
-        res.writeHead(200, {'content-type': 'text/plain'});
-        res.write('received upload:\n\n');
-        console.log("form.bytesReceived");
-        //Formidable changes the name of the uploaded file
-        //Rename the file to its original name
-        fs.rename(files.fileUploaded.path, './img/'+files.fileUploaded.name, function(err) {
-        if (err)
-            throw err;
-          console.log('renamed complete');  
-        });
-          res.end();
-    });
-    return;
+        server.post('/api/createuser', function (req, res) {
             var email = req.body.email.toLowerCase();
             var pass = req.body.password;
             var name = req.body.name;
             var permission = req.body.permission;
-            
-            
+            //var photo = req.body.photo;
+
+            //check if photo is valid
+
+            //console.log(email + pass + name+ "pppppppppppppp:   "+permission);
+        /*
+            console.log(req.body.image);
+             fs.readFile(req.body.image.path, function (err, data) {
+    var imageName = req.body.image.name
+    /// If there's an error
+    if(!imageName){
+      console.log("There was an error")
+      //res.redirect("/");
+        res.end();
+    } else {
+      var newPath = __dirname + "/images/fullsize/" + req.body.email;
+      var thumbPath = __dirname + "/images/small/" + req.body.email;
+      // write file to uploads/fullsize folder
+      fs.writeFile(newPath, data, function (err) {
+        // write file to uploads/thumbs folder
+        im.resize({
+          srcPath: newPath,
+          dstPath: thumbPath,
+          width:   200
+        }, function(err, stdout, stderr){
+          if (err) throw err;
+          console.log('resized image to fit within 200x200px');
+        });
+         //res.redirect("/uploads/fullsize/" + imageName);
+      });
+    }
+  });
+
+  */
             if(permission!="1" && permission!="2" && permission!="0"){
                 // Check if permission is valid.
                 res.status(400).json({
@@ -422,11 +425,9 @@
              var lesson_id = req.headers.referer.split("/")[4];
              database.getLessonByID(lesson_id)
                .then(function (lesson) {
-                   console.log("qqqqqqqqq");
                     res.status(200).send(lesson);
                 })
                 .catch(function (err) {
-                    console.log("qqqqqqqqwwwwwwwwwwwwwwwwq");
                     res.status(406).send('Could not retrieve LL information with that id.');
                 });
         });
@@ -576,7 +577,7 @@
         server.get("/api/checklessonmanager",function(req,res){
 
              var managerid = req.headers.managerid;
-             var lessonid = req.headers.lessonid;
+             var lessonid = req.headers.referer.split("/")[4];
              database.checkLessonManager(managerid,lessonid)
                .then(function (ll) {
                     res.status(200).send(ll);
@@ -760,5 +761,3 @@
 
     };
 } ());
-
-

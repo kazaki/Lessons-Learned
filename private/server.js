@@ -8,7 +8,6 @@
         morgan = require('morgan'),
         permissions = require("./middleware/permissions"),
         path = require('path'),
-        busboy = require('connect-busboy'),
         port = 8080;
 
 // Create connection to the database
@@ -37,12 +36,11 @@ server.set('view engine', 'html');
 // Allows the server to read cookies
 server.use(cookieParser());
 
-server.use(busboy());
 // Allows the server to read JSON files
 server.use(bodyParser.urlencoded({
     extended: false
 }));
-server.use(bodyParser({defer: true}));
+server.use(bodyParser.json());
 
 // Outputs simple log information to the console.
 server.use(morgan('dev'));
