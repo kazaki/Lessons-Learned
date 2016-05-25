@@ -3,11 +3,22 @@
 'use strict';
 var adminServices = function ($q, $http, $cookies, $window) {
     var deferred = $q.defer();
-    
+
       // Function to create a user
         this.registerUser = function(user) {
 
             return $http.post('/api/createuser', user)
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
+
+        this.insertTech = function(tech) {
+          console.log("tech a add:"+tech);
+            return $http.post('/api/technologies', tech)
                 .success(function(res) {
                     deferred.resolve('Success');
                 })

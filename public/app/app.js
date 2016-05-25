@@ -84,7 +84,7 @@
 
 			.when("/settings",{
                 templateUrl: "app/views/settings.html",
-                controller: "HomeCtrl"
+                controller: "SetCtrl"
             })
             .when("/statistics",{
                 templateUrl: "app/views/statistics.html",

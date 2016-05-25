@@ -3,59 +3,47 @@
 <script src="scripts/tags.min.js"></script>
 <div ng-include='"app/views/templates/header.html"'></div>
 <div class="container">
-  <h4>Tecnologias</h4>
-  <br><br>
-  <!-- Trigger the modal with a button -->
-    <input name="tags3" type="text">
-  <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal" id="cen">Inserir tecnologia</button>
-  <br><br>
-  <script>
+    <h4>Tecnologias</h4>
+    <br>
+    <br>
+    <!-- Trigger the modal with a button -->
+    <input name="tags3" type="text" ng-model="newTech" id="tagsID">
+    <button type="button" class="btn btn-primary btn-outline " ng-click="addTech();" data-toggle="modal" data-target="#myModal" id="cen">Inserir tecnologia</button>
+    <br>
+    <br>
 
-  config = {
-     // Tags joiner of the output value
-    values: ['java', 'SQL'], // pre-defined tags data
- 
-};
-  var foo = new Tags(document.querySelector('input[name="tags3"]'), config);
-  foo.beautify();
-  
-  </script>
-  
+
+
 </div>
-<br><br>
+<br>
+<br>
 <div class="container">
-  <h4>Tipo de Projeto</h4>
-  <br><br>
-  <!-- Trigger the modal with a button -->
+    <h4>Tipo de Projeto</h4>
+    <br>
+    <br>
+    <!-- Trigger the modal with a button -->
     <input name="tags2" type="text">
-  <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal3">Inserir Tipo</button>
-  <script>
-  config = {
-    join: ', ', // Tags joiner of the output value
-    values: ['Oficial', 'Development'], // pre-defined tags data
- 
-};
-  var foo = new Tags(document.querySelector('input[name="tags2"]'), config);
-  foo.beautify();
-  </script>
-   <br><br>
-  
+    <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal3">Inserir Tipo</button>
+
+
+
+    <br>
+    <br>
+
 </div>
-<br><br>
+<br>
+<br>
 <div class="container">
-  <h4>Setor de Projeto</h4><br><br>
-  <!-- Trigger the modal with a button -->
-  <input name="tags" type="text">
-  <script>
-  config = {
-    join: ', ', // Tags joiner of the output value
-    values: ['A1', 'C2' ,'B2'], // pre-defined tags data
- 
-};
-  var foo = new Tags(document.querySelector('input[name="tags"]'), config);
-  foo.beautify();
-  </script>
-  <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal2">Inserir Setor</button>
-   <br><br>
-  
+    <h4>Setor de Projeto</h4>
+    <br>
+    <br>
+    <!-- Trigger the modal with a button -->
+    <input name="tags" type="text">
+
+
+
+    <button type="button" class="btn btn-primary btn-outline " data-toggle="modal" data-target="#myModal2">Inserir Setor</button>
+    <br>
+    <br>
+
 </div>

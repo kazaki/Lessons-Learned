@@ -71,7 +71,7 @@
         server.get('/forbidden', function (req, res) {
             res.render('index');
         });
-        
+
 
         // <!------------------------------------------------------------------ USERS ---------------------------------------------------------------------------------------------------->
 
@@ -363,15 +363,15 @@
                             });
 
                         });
-                 }) 
+                 })
                  .catch(function (err) {
                     res.status(406).json({
                         message_class: 'error',
                         message: "Wrong Admin Password."
                     });
 
-                });        
-            
+                });
+
             }
             else {
                 res.status(406).json({
@@ -673,7 +673,7 @@
                 var technology = req.body.technology;
 
                 database.addTechnology(technology)
-                    .then(function (project) {
+                    .then(function () {
                         res.sendStatus(200);
                     })
                     .catch(function (err) {

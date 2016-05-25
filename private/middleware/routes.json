@@ -12,7 +12,8 @@
 			"/api/user",
 			"/api/searchlessons",
 			"/api/projectsbymanager",
-			"/api/checklessonmanager"
+			"/api/checklessonmanager",
+			"/api/technologies"
 		],
 
 		"logged": [
