@@ -51,7 +51,8 @@
 			"/view_ll/",
 			"/edit_ll/",
 			"/view_audit/",
-			"/list_audit/"
+			"/list_audit/",
+			"/list_projects"
 		],
 		"logged": [
 

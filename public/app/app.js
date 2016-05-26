@@ -83,6 +83,11 @@
                 controller: "AuditCtrl"
             })
 
+            .when("/list_projects", {
+                templateUrl: "app/views/list_project.html",
+                controller: "ProjectListCtrl"
+            })
+
 			.when("/settings",{
                 templateUrl: "app/views/settings.html",
                 controller: "SetCtrl"
@@ -120,6 +125,7 @@
                 IN_WAIT: 'In Wait',
                 AUDIT_TRAIL: 'Audit Trail',
                 SETTINGS: 'Settings',
+                PROJECTS: 'Projects',
 
                 LANGUAGE: 'Language',
 
@@ -207,6 +213,7 @@
                 IN_WAIT: 'À espera de aprovação',
                 AUDIT_TRAIL: 'Histórico',
                 SETTINGS: 'Configurações',
+                PROJECTS: 'Projetos',
 
                 LANGUAGE: 'Dialeto',
 
@@ -295,6 +302,7 @@
                 IN_WAIT: 'En attente d´approbation',
                 AUDIT_TRAIL: 'Histoire',
                 SETTINGS: 'Réglages',
+                PROJECTS: 'Projects',
 
                 LANGUAGE: 'Dialeto',
 
