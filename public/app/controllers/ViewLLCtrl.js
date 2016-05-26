@@ -41,10 +41,10 @@
 			$("#llfinish").text($scope.lldata["dateEnd"].substring(0,10));
 			$("#lltech").text($scope.lldata["technologies"]);
 
-			$("#llfeed").text($scope.lldata["name"]);
-			if (!$scope.isDraft()) $("#llfeedp").hide();
-
+			$("#llfeed").text($scope.lldata["feedback"]);
 			$scope.llstatus = $scope.lldata["status"];
+			
+			if (!$scope.isDraft()) $("#llfeedp").hide();
 
 			if ($scope.llstatus == "draft") {
 				$('#llstatus').css("background-color", "#f0ad4e");

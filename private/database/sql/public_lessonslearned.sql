@@ -47,7 +47,7 @@ CREATE TABLE `lessonslearned` (
 
 LOCK TABLES `lessonslearned` WRITE;
 /*!40000 ALTER TABLE `lessonslearned` DISABLE KEYS */;
-INSERT INTO `lessonslearned` VALUES (1,22,4,'submitted','2016-05-22',NULL);
+INSERT INTO `public`.`lessonslearned` (`idLessonsLearned`, `manager`, `project`, `status`, `creationdate`, `aproveddate`, `approver`, `feedback`) VALUES ('1', '22', '4', 'approved', '2016-03-04', '2016-03-04', '22', 'merda');
 /*!40000 ALTER TABLE `lessonslearned` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
