@@ -73,13 +73,13 @@
                 controller: "EditLLCtrl"
             })
 
-            .when("/view_audit/:id/", {
+            .when("/list_audit/:id/", {
                 templateUrl: "app/views/list_audit.html",
                 controller: "AuditListCtrl"
             })
 
-            .when("/single_audit/:id/", {
-                templateUrl: "app/views/list_audit.html",
+            .when("/view_audit/:id/", {
+                templateUrl: "app/views/view_audit.html",
                 controller: "AuditCtrl"
             })
 
@@ -172,6 +172,7 @@
                 ACTIVE: 'Active',
                 INACTIVE: 'Inactive',
                 SUBMITTED: 'Pending approval',
+                NO_PROJECT: 'No Project',
 
                 //Lista Users
                 USER_MANAGEMENT: 'User Management',
@@ -187,7 +188,15 @@
                 MODIFY_PASSWORD: 'Change password',
                 MODIFY_PROJECTS: 'Add projects',
                 MODIFY_CONFIRM: 'Confirm changes',
-                TYPE_PASS: 'Type your password'
+                TYPE_PASS: 'Type your password',
+
+                //LISTA AUDIT
+                CREATION_DATE: 'Creation Date',
+                CHANGE_DATE: 'Date of Change',
+                CREATOR: 'Creator',
+                APPROVER: 'Approver',
+                EDITOR: 'Editor',
+                TYPE_OF_CHANGE: 'Operation'
             })
             .translations('pt', {
                 HOME: 'Começar',
@@ -250,6 +259,7 @@
                 ACTIVE: 'Ativas',
                 INACTIVE: 'Inativas',
                 SUBMITTED: 'Aprovação pendente',
+                NO_PROJECT: 'Sem Projecto',
 
                 //Lista Users
                 USER_MANAGEMENT: 'Gestão de utilizadores',
@@ -265,7 +275,15 @@
                 MODIFY_PASSWORD: 'Alterar a password',
                 MODIFY_PROJECTS: 'Associar projetos',
                 MODIFY_CONFIRM: 'Confirmar alterações',
-                TYPE_PASS: 'Digite a sua password'
+                TYPE_PASS: 'Digite a sua password',
+
+                //LISTA AUDIT
+                CREATION_DATE: 'Data de Criação',
+                CHANGE_DATE: 'Data de edição',
+                CREATOR: 'Criador',
+                APPROVER: 'Approver',
+                EDITOR: 'Editor',
+                TYPE_OF_CHANGE: 'Operação'
 
             })
             .translations('fr', {
@@ -329,6 +347,7 @@
                 ACTIVE: 'Actif',
                 INACTIVE: 'Négligé',
                 SUBMITTED: 'Validation en attente',
+                NO_PROJECT: 'No Project',
 
                 //Lista Users
                 USER_MANAGEMENT: 'Gestion des utilisateurs',
@@ -344,7 +363,15 @@
                 MODIFY_PASSWORD: 'Modifier mot de passe',
                 MODIFY_PROJECTS: 'Ajouter des projets',
                 MODIFY_CONFIRM: 'Confirmer les modifications',
-                TYPE_PASS: 'Tapez votre mot de passe'
+                TYPE_PASS: 'Tapez votre mot de passe',
+
+                //LISTA AUDIT
+                CREATION_DATE: 'Creation Date',
+                CHANGE_DATE: 'Date of Change',
+                CREATOR: 'Creator',
+                APPROVER: 'Approver',
+                EDITOR: 'Editor',
+                TYPE_OF_CHANGE: 'Operation'
             })
         $translateProvider.preferredLanguage('pt');
     }]);

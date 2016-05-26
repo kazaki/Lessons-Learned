@@ -280,7 +280,7 @@
 
     exports.getLessons = function(){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT t1.idLessonsLearned,t1.status,t1.feedback, t5.client,t7.name as sector,t1.creationdate,t1.aproveddate,t2.situation,t2.action,t2.result,t3.technology,t7.name,t6.idusers,t5.name as title,t6.name FROM public.lessonstext as t2, public.technologies as t3,public.lesson_tech as t4, public.users as t6,public.business_sectors as t7,public.lessonslearned as t1 LEFT OUTER JOIN public.project as t5 ON t5.idproject = t1.project WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t4.idlesson AND t3.idtechnologies = t4.idtech AND t1.manager = t6.idusers AND t5.sector = t7.idSector";
+         var query = "SELECT t1.idLessonsLearned,t1.status,t1.feedback, t5.client,t7.name as sector,t1.creationdate,t1.aproveddate,t2.situation,t2.action,t2.result,t3.technology,t7.name,t6.idusers,t5.name as title,t6.name FROM (public.lessonstext as t2, public.technologies as t3,public.lesson_tech as t4,public.users as t6,public.business_sectors as t7,public.lessonslearned as t1 ) LEFT JOIN public.project as t5 ON t1.project = t5.idproject AND t5.sector = t7.idSector WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t4.idlesson AND t3.idtechnologies = t4.idtech AND t1.manager = t6.idusers";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -708,7 +708,7 @@
 
      exports.getAuditByLesson = function(idlesson){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT t1.*, t2.creationdate FROM audit_trail as t1 INNER JOIN lessonslearned as t2 ON(t2.idLessonsLearned = t1.idlessonlearned) Where t1.idlessonlearned = ?";
+         var query = "SELECT t1.*,t3.name As Editor, t2.creationdate, t4.name As Approver, t5.name as Creator FROM audit_trail as t1 INNER JOIN lessonslearned as t2 ON(t2.idLessonsLearned = t1.idlessonlearned) inner join users t3 on t3.idusers = t1.editor left join users t4 on t4.idusers = t2.approver inner join users t5 on t5.idusers = t2.manager Where t1.idlessonlearned = ?";
          query = mysql.format(query,idlesson);
          client.query(query,function (err, result) {
                     if (err) {

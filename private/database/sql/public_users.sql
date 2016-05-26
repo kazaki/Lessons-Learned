@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (22,'francisco@altran.pt','Francisco','$2a$10$Iua2WqU9CtGnJRyw/OzULuhRplmWkSxGsW..u3OIKB5vq3ByIFcuO','2','5ac70c58102a4f18e0a3d0ad2a0e6a3cc0e6f817',0),(23,'antonio@altran.pt','Antonio','$2a$10$QeRIZFuLU8fwVtclwJwTZ.WN114gnn5Ff3Sa5PqdWfGh48pS5J0d2','1','9482541cec29fbabdc695b59068f234f6059f8a4',0);
+INSERT INTO `users` VALUES (22,'francisco@altran.pt','Francisco','$2a$10$Iua2WqU9CtGnJRyw/OzULuhRplmWkSxGsW..u3OIKB5vq3ByIFcuO','2','5ac70c58102a4f18e0a3d0ad2a0e6a3cc0e6f817',0),(23,'antonio@altran.pt','Antonio','$2a$10$Iua2WqU9CtGnJRyw/OzULuhRplmWkSxGsW..u3OIKB5vq3ByIFcuO','1','9482541cec29fbabdc695b59068f234f6059f8a4',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-25 23:36:29
+-- Dump completed on 2016-05-26 23:53:44
