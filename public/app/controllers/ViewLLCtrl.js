@@ -28,7 +28,7 @@
 				return;
 			} 
 
-			console.log($scope.lldata);
+			console.log("DATA: " + JSON.stringify($scope.lldata));
 			$("#lltitle").text($scope.lldata["project"]);
 			$("#llclient").text($scope.lldata["client"]);
 			$("#llsituation").text($scope.lldata["situation"]);
@@ -233,6 +233,43 @@
 			return $scope.isAdmin() && $scope.isInactive();
 		}
 		
+	$scope.PDFclick = function() {
+      jsPDF.API.mymethod = function() {
+        // 'this' will be ref to internal API object. see jsPDF source
+        // , so you can refer to built-in methods like so:
+        //   this.line(....)
+        //   this.text(....)
+      };
+      var doc = new jsPDF();
+      doc.mymethod();
+      var pdfPart1 = $("#viewll").not('[id="btnshi"]')
+
+
+      var specialElementHandlers = {
+        '#loadVar': function(element, renderer) {
+          return true;
+        }
+      };
+
+      doc.fromHTML(pdfPart1.html(), 15, 15, {
+        'width': 170,
+        'elementHandlers': specialElementHandlers
+      });
+
+      doc.setFont("courier");
+
+	doc.setProperties({
+	    title: 'Lesson Learned Export',
+	    author: 'Altran'
+
+	});
+
+
+      doc.output('save', 'Download.pdf');
+    
+
+
+    };
 		
 		
 	
