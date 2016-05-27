@@ -664,7 +664,7 @@
 
     exports.getProjectTypes = function(){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.project_types";
+         var query = "SELECT * FROM public.project_types  WHERE public.project_types.visible=1";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -696,7 +696,7 @@
     exports.getSectors = function(){
          return new Promise(function (resolve, reject) {
             console.log("...");
-         var query = "SELECT * FROM public.business_sectors";
+         var query = "SELECT * FROM public.business_sectors WHERE public.business_sectors.visible=1";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
