@@ -633,7 +633,7 @@
 
     exports.getTechnologies = function(){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.technologies";
+         var query = "SELECT * FROM public.technologies WHERE public.technologies.visible=1";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
