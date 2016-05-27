@@ -659,6 +659,19 @@
         });
     }
 
+    exports.deleteTechnology = function(techid){
+         return new Promise(function (resolve, reject) {
+         client.query('UPDATE public.technologies SET visible=0 WHERE idtechnologies = ?', [techid],
+            function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('Deleted technology with id: ' + techid);
+                    }
+                });
+         });
+    }
+
     <!------------------------------------------------------------------------------------------------ Project Types ------------------------------------------------------------->
 
 
@@ -721,6 +734,8 @@
             });
         });
     }
+
+
 
 
      <!------------------------------------------------------------------------------------------------ Audit Trail ------------------------------------------------------------->
