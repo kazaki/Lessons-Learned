@@ -8,13 +8,13 @@
 		<div class="col-lg-4 col-xs-12 col-md-4">
 			<div class="panel">
 			  <div class="panel-heading">Title</div>
-			  <div class="panel-body noborder"><textarea id="lltitle" rows="1" ng-readonly="!isDnS()" class="lldesc form-control">Placeholder Title</textarea></div>
+			  <div class="panel-body noborder"><textarea id="lltitle" rows="1" readonly class="lldesc form-control">Placeholder Title</textarea></div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-xs-12 col-md-3">
 			<div class="panel">
 			  <div class="panel-heading">Client</div>
-			  <div class="panel-body noborder"><textarea id="llclient" rows="1" ng-readonly="!isDnS()" class="lldesc form-control">Placeholder Title</textarea></div>
+			  <div class="panel-body noborder"><textarea id="llclient" rows="1" readonly class="lldesc form-control">Placeholder Title</textarea></div>
 			</div>
 		</div>
 		<div class="col-lg-2 col-xs-6 col-md-2">
@@ -25,9 +25,8 @@
 		</div>
 		
 		<div  class="col-lg-1 col-xs-3 col-md-1 nohpadding text-center">
-		
 			<div ng-if="isDnS()" class="row"> <!--- test -->
-				<button id="submitBtn" id="submitBtn" type="button" class="toolbtn btn btn-success">Submit</button>
+				<button ng-click="submitDraft()" id="submitBtn" type="button" class="toolbtn btn btn-success">Submit</button>
 			</div>
 			
 			<div ng-if="isDnS()" class="row">
@@ -49,16 +48,11 @@
 			<div ng-if="isAdminAndSubmitted() || isAdminAndApproved()" class="row">
 				<button ng-click="adminReject()" type="button" class="toolbtn btn btn-danger">Reject</button>
 			</div>
-			
-			
-
 		</div>		
 		
-		<div ng-if="isAdmin()" class="col-lg-2 col-xs-3 col-md-2 nohpadding text-center">
-			<div class="toolbox">
+		<div ng-if="isAdmin()" class="col-lg-2 col-xs-3 col-md-2 nohpadding toolbox">
 				<i id="audi" class="ic fa fa-history" ariad-hidden="true"></i>
 				<i id="export" class ="ic fa fa-download" ariad-hidden="true"></i>
-			</div>
 		</div>
 
 	</div>
@@ -109,19 +103,19 @@
 			<div class="row">
 				<div class="panel">
 					<div class="panel-heading">Manager</div>
-					<div  class="panel-body noborder"><textarea id="llmanager" rows="1" ng-readonly="!isDnS()" class="lldesc form-control">Placeholder Text</textarea></div>
+					<div  class="panel-body noborder"><textarea id="llmanager" rows="1" readonly class="lldesc form-control">Placeholder Text</textarea></div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="panel">
 					<div class="panel-heading">Dimension</div>
-					<div class="panel-body noborder"><textarea id="lldimension" rows="1" ng-readonly="!isDnS()" class="lldesc form-control">Placeholder Text</textarea></div>
+					<div class="panel-body noborder"><textarea id="lldimension" rows="1" readonly class="lldesc form-control">Placeholder Text</textarea></div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="panel">
 					<div class="panel-heading">Start Date</div>
-					<div class="panel-body noborder"><textarea id="llstart" rows="1" ng-readonly="!isDnS()" class="lldesc form-control">Placeholder Text</textarea></div>
+					<div class="panel-body noborder"><textarea id="llstart" rows="1" readonly class="lldesc form-control">Placeholder Text</textarea></div>
 				</div>
 			</div>
 			<div class="row">
@@ -133,13 +127,13 @@
 			<div class="row">
 				<div class="panel">
 					<div class="panel-heading">Finish Date</div>
-					<div class="panel-body noborder"><textarea id="llfinish" rows="1" ng-readonly="!isDnS()" class="lldesc form-control">Placeholder Text</textarea></div>
+					<div class="panel-body noborder"><textarea id="llfinish" rows="1" readonly class="lldesc form-control">Placeholder Text</textarea></div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="panel">
 					<div class="panel-heading">Technologies</div>
-					<div  class="panel-body noborder"><textarea id="lltech" rows="1" ng-readonly="!isDnS()" class="lldesc form-control">Placeholder Text</textarea></div>
+					<div  class="panel-body noborder"><textarea id="lltech" rows="1" readonly class="lldesc form-control">Placeholder Text</textarea></div>
 				</div>
 			</div>
 			

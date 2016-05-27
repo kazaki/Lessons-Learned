@@ -122,7 +122,7 @@
 							$scope.lldata["status"] = "draft";
 							
 							$('#llstatus').css("background-color", "#f0ad4e");
-							$('#llstatus').text("draft");
+							$('#llstatus').text("Draft");
 						})
 						.catch( function (err){
 							console.log(err);
@@ -157,7 +157,6 @@
 			}); 
 		}
 		
-		
 		$scope.adminEnable = function() {
 			bootbox.confirm("Are you sure?", function(result) {	
 				if (!result) return;
@@ -184,33 +183,65 @@
 		}
 
 		$scope.saveDraft = function() {
+			console.log("Saving draft...");
+
+			var ll = 
+			 {
+				 "idlesson": $scope.lldata["idLessonsLearned"],
+				 "action": $scope.lldata.action,
+				 "situation": $scope.lldata.situation,
+				 "result": $scope.lldata.result,
+				 "manager": userid
+			 };
+
+			userServices.editLLFields(ll)
+			.then(function (res) {
+				if (res.status != 200) {
+					bootbox.alert("Failed to save Lesson Learned.");
+					console.log("Failed to save draft.");
+					return false;
+				}
+			
+				console.log("LL saved as draft!");
+				bootbox.alert("Lesson Learned successfully saved.");
+				return true;
+			})
+			.catch( function (err){
+				console.log(err);
+			});
+		}
+		
+		$scope.submitDraft = function() {
+		
+			if (!$scope.saveDraft) {
+				bootbox.alert("Failed to submit Lesson Learned.");
+				return;
+			}
+			
 			bootbox.confirm("Are you sure?", function(result) {	
 				if (!result) return;
-				console.log("Saving draft...");
-
-				var ll = 
-	             {
-	                 "idlesson": $scope.lldata["idLessonsLearned"],
-	                 "action": $scope.lldata.action,
-	                 "situation": $scope.lldata.situation,
-	                 "result": $scope.lldata.result,
-	                 "manager": userid
-	             };
-
-				userServices.editLLFields(ll)
+		
+				console.log("Submitting LL...");
+				lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "submitted")
 				.then(function (res) {
 					if (res.status != 200) {
-						console.log("Failed to save draft.");
+						console.log("Failed to submit LL.");
 						return;
 					}
 				
-					console.log("LL saved as draft!");
-					//route.reload(); here
+					console.log("LL submitted!");
+					
+					$scope.llstatus = "submitted";
+					$scope.lldata["status"] = "submitted";
+					
+					$('#llstatus').css("background-color", "#5bc0de");
+					$('#llstatus').text("Submitted");
 				})
 				.catch( function (err){
 					console.log(err);
 				});
 			}); 
+			
 		}
 		
 		$scope.loadLL = function() {
