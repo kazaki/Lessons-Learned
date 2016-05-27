@@ -8,9 +8,10 @@
 		
 		$scope.permission = -1;
 		$scope.llstatus = "unknown";
-		
+		var userid;
 		 userServices.logged()
 		.then(function(res){
+			userid = res.data.idusers;
 			$scope.permission=res.data.permission;
 		})
 		.catch( function (err){
@@ -31,9 +32,6 @@
 			console.log("DATA: " + JSON.stringify($scope.lldata));
 			$("#lltitle").text($scope.lldata["project"]);
 			$("#llclient").text($scope.lldata["client"]);
-			$("#llsituation").text($scope.lldata["situation"]);
-			$("#llaction").text($scope.lldata["action"]);
-			$("#llresults").text($scope.lldata["result"]);
 			$("#llmanager").text($scope.lldata["manager"]);
 			$("#lldimension").text($scope.lldata["numberConsultants"]);
 			$("#llstart").text($scope.lldata["dateBeginning"].substring(0,10));
@@ -124,7 +122,7 @@
 							$scope.lldata["status"] = "draft";
 							
 							$('#llstatus').css("background-color", "#f0ad4e");
-							$('#llstatus').text("draft");
+							$('#llstatus').text("Draft");
 						})
 						.catch( function (err){
 							console.log(err);
@@ -159,7 +157,6 @@
 			}); 
 		}
 		
-		
 		$scope.adminEnable = function() {
 			bootbox.confirm("Are you sure?", function(result) {	
 				if (!result) return;
@@ -183,6 +180,68 @@
 					console.log(err);
 				});
 			}); 
+		}
+
+		$scope.saveDraft = function() {
+			console.log("Saving draft...");
+
+			var ll = 
+			 {
+				 "idlesson": $scope.lldata["idLessonsLearned"],
+				 "action": $scope.lldata.action,
+				 "situation": $scope.lldata.situation,
+				 "result": $scope.lldata.result,
+				 "manager": userid
+			 };
+
+			userServices.editLLFields(ll)
+			.then(function (res) {
+				if (res.status != 200) {
+					bootbox.alert("Failed to save Lesson Learned.");
+					console.log("Failed to save draft.");
+					return false;
+				}
+			
+				console.log("LL saved as draft!");
+				bootbox.alert("Lesson Learned successfully saved.");
+				return true;
+			})
+			.catch( function (err){
+				console.log(err);
+			});
+		}
+		
+		$scope.submitDraft = function() {
+		
+			if (!$scope.saveDraft) {
+				bootbox.alert("Failed to submit Lesson Learned.");
+				return;
+			}
+			
+			bootbox.confirm("Are you sure?", function(result) {	
+				if (!result) return;
+		
+				console.log("Submitting LL...");
+				lessonServices.setLessonState($scope.lldata["idLessonsLearned"], "submitted")
+				.then(function (res) {
+					if (res.status != 200) {
+						console.log("Failed to submit LL.");
+						return;
+					}
+				
+					console.log("LL submitted!");
+					
+					$scope.llstatus = "submitted";
+					$scope.lldata["status"] = "submitted";
+					
+					$('#llstatus').css("background-color", "#5bc0de");
+					$('#llstatus').text("Submitted");
+				})
+				.catch( function (err){
+					console.log(err);
+				});
+			}); 
+			
 		}
 		
 		$scope.loadLL = function() {
