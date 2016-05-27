@@ -20,7 +20,7 @@
 			"/api/lessonsByStatus?status=submitted",
 			"/api/lessonsByStatus?status=rejected",
 			"/api/lessonsTop",
-			"/api/lessonsByStatus"
+			"/api/lessonsByStatus",
 			"/api/audit"
 		],
 
