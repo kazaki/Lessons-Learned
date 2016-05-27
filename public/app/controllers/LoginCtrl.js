@@ -8,9 +8,12 @@
 	    $scope.login = function(user,remember){
              userServices.login(user, remember)
                 .then(function (res) {
-                    $window.location.href = '/home';
                     $scope.items.pop();
                     $scope.items.push();
+                    if($scope.hasSession.data.permission=="2")
+                        $window.location.href = '/home';
+                    else
+                        $window.location.href = '/listll';
                 })
                 .catch(function (err) {
                     $scope.items.pop();
@@ -41,9 +44,6 @@
         };
         
 		$scope.logged();
-        $scope.qq = function(){
-            console.log($scope.hasSession);
-        };
        
 	 };
 	 // Injecting modules used for better minifing later on

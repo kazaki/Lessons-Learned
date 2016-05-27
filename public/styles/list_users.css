@@ -51,6 +51,7 @@ input[type="text"],input[type="date"],input[type="textarea"],.sc {
     color:#000;
 }
 
+
 .breadcrumb {background: rgba(0,0,0,0.3); border: none; border-radius: 7px; display: block;}
 .breadcrumb li {font-size: 14px;}
 .breadcrumb a {color: rgba(255, 255, 255, 1);}

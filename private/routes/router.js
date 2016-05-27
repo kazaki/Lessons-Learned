@@ -94,6 +94,7 @@
                 });
 
         });
+   
 
         server.get('/api/managers', function (req, res) {
 
@@ -172,7 +173,7 @@
             
     var form = new formidable.IncomingForm();
      //Formidable uploads to operating systems tmp dir by default
-    form.uploadDir = "./private/img";       //set upload directory
+    form.uploadDir = "./public/img";       //set upload directory
     form.encoding = 'utf-8';
     form.keepExtensions = false;     //keep file extension
    form.parse(req, function(err, fields, files) {
@@ -188,7 +189,7 @@
         pass=fields.password;
         name=fields.name;
         permission=fields.permission;
-        fs.rename(files.image.path, './private/img/'+email+".jpg", function(err) {
+        fs.rename(files.image.path, './public/img/'+email+".jpg", function(err) {
         if (err){
             fs.unlink(fields.image.path);
              res.status(406).json({
@@ -199,7 +200,7 @@
         });
         
             if(permission!="1" && permission!="2" && permission!="0"){
-                fs.unlink('./private/img/'+email+".jpg");
+                fs.unlink('./public/img/'+email+".jpg");
                 // Check if permission is valid.
                 res.status(400).json({
                     message_class: 'error',
@@ -209,7 +210,7 @@
 
             if(!validator.validate(email)){
                 // Check if email is valid.
-                fs.unlink('./private/img/'+email+".jpg");
+                fs.unlink('./public/img/'+email+".jpg");
                 res.status(400).json({
                     message_class: 'error',
                     message: 'Email not valid.'
@@ -225,7 +226,7 @@
 
                         // If the e-mail is already in use
                         if (err.sqlState == '23000') {
-                            fs.unlink('./private/img/'+email+".jpg");
+                            fs.unlink('./public/img/'+email+".jpg");
                             // Send the Response with message error
                             res.status(406).json({
                                 message_class: 'error',
@@ -233,7 +234,7 @@
                             });
 
                         } else {
-                            fs.unlink('./private/img/'+email+".jpg");
+                            fs.unlink('./public/img/'+email+".jpg");
                             // Sending the error to the log file
                             console.log('@authRouter.js: Error inserting user to database');
                             console.log(err);

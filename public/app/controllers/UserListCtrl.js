@@ -9,10 +9,14 @@
 		$scope.itemsPerPage = 3;
         $scope.currentPage = 1;
         $scope.items = [];
+		
         
 		services.getUsers()
             .then(function (result) {
                 $scope.users = result.data;
+				$scope.users.forEach(function(element) {
+					element.image="img/"+element.email+".jpg";
+				}, this);
                 $scope.items.pop();
                 $scope.items.push();
                 $scope.$watch('search.filter', function (term) {
@@ -166,4 +170,6 @@
     angular.module('lessonslearned')
     	.controller('UserListCtrl', UserListCtrl)
     	.controller('DialogController', DialogController);
+		
+
 }());

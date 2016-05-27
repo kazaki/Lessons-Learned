@@ -59,6 +59,8 @@ var adminServices = function ($q, $http, $cookies, $window) {
                     deferred.reject(err);
                 });
         };
+        
+        
         // Function to update a user's password
         this.updateUserPass = function(info) {
             return $http.put('/api/updateuserpass',info)
