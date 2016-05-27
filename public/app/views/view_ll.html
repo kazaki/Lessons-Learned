@@ -5,7 +5,7 @@
 
 <div id="viewll" class="container">
 	<div class="row">
-		<div class="col-lg-5 col-xs-12 col-md-5">
+		<div class="col-lg-4 col-xs-12 col-md-4">
 			<div class="panel">
 			  <div class="panel-heading">Title</div>
 			  <div class="panel-body noborder"><textarea id="lltitle" rows="1" ng-readonly="!isDnS()" class="lldesc form-control">Placeholder Title</textarea></div>
@@ -54,9 +54,10 @@
 
 		</div>		
 		
-		<div ng-if="isAdmin()" class="col-lg-1 col-xs-3 col-md-1 nohpadding text-center">
+		<div ng-if="isAdmin()" class="col-lg-2 col-xs-3 col-md-2 nohpadding text-center">
 			<div class="toolbox">
 				<i id="audi" class="ic fa fa-history" ariad-hidden="true"></i>
+				<i id="export" class ="ic fa fa-download" ariad-hidden="true"></i>
 			</div>
 		</div>
 
@@ -101,7 +102,7 @@
 				<div class="panel">
 					<div class="panel-heading">Feedback</div>
 					<div class="panel-body noborder">
-						<textarea  rows="5" id="llfeed" class="lldesc form-control">No Feedback.</textarea>
+						<textarea readonly rows="5" id="llfeed" class="lldesc form-control">No Feedback.</textarea>
 					</div>
 				</div>
 			</div>
