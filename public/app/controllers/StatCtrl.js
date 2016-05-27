@@ -12,16 +12,16 @@
 			
 	 $scope.init = function () {
 	 //	genServices.getProjects()
-	 lessonServices.getLessonByStatus('active')
+	 lessonServices.getLessonByStatus('submitted')
 	 	.then(function(res){
-	 		$scope.cenas = res.data.length;
+	 		$scope.submitted = res.data.length;
 	 	})
 	 	.catch(function (err) {
                 console.log(err.data);
             });
-	 	 lessonServices.getLessonByStatus('inactive')
+	 	 lessonServices.getLessonByStatus('approved')
 	 	.then(function(res){
-	 		$scope.inactive = res.data.length;
+	 		$scope.approved = res.data.length;
 	 	})
 	 	.catch(function (err) {
                 console.log(err.data);
@@ -34,9 +34,9 @@
 	 	.catch(function (err) {
                 console.log(err.data);
             });
-	 	lessonServices.getLessonByStatus('submitted')
+	 	lessonServices.getLessonByStatus('inactive')
 	 	.then(function(res){
-	 		$scope.submitted = res.data.length;
+	 		$scope.inactive = res.data.length;
 	 	})
 	 	.catch(function (err) {
                 console.log(err.data);
