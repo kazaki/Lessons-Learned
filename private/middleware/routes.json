@@ -14,6 +14,13 @@
 			"/api/projectsbymanager",
 			"/api/checklessonmanager",
 			"/api/technologies",
+			"/api/projects",
+			"/api/lessonsByStatus?status=approved",
+			"/api/lessonsByStatus?status=inactive",
+			"/api/lessonsByStatus?status=submitted",
+			"/api/lessonsByStatus?status=rejected",
+			"/api/lessonsTop",
+			"/api/lessonsByStatus",
 			"/api/audit"
 		],
 
@@ -25,7 +32,6 @@
 			"/api/updatelessonfeedback",
 			"/api/updatelessontext",
 			"/api/technologies",
-			"/api/projects",
 			"/api/createlesson"
 		],
 

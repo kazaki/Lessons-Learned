@@ -7,6 +7,9 @@ var lessonServices = function ($q, $http, $cookies, $window) {
 	this.getLesson = function() {
 		 return $http.get('/api/lesson')
                 .success(function(res) {
+				
+					console.log(res);
+                    
                     deferred.resolve('Success');
                 })
                 .error(function(err) {
@@ -43,6 +46,36 @@ var lessonServices = function ($q, $http, $cookies, $window) {
 
     };
 	
+
+    this.getLessonByStatus = function(status){
+           console.log(status);
+        return $http.get('/api/lessonsByStatus',{params: {
+
+                    'status': status
+                }})
+                .success(function(res) {
+                
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                  
+                    deferred.reject(err);
+                });
+            
+    }
+     this.getTop = function(){
+       
+        return $http.get('/api/lessonsTop')
+                .success(function(res) {
+                    console.log(res);
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                  
+                    deferred.reject(err);
+                });
+            
+    }
 
    
 };

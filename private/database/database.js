@@ -278,6 +278,22 @@
 
     <!------------------------------------------------------------------------------------------------ Lessons ------------------------------------------------------------->
 
+     exports.getTop = function(){
+         return new Promise(function (resolve, reject) {
+         var query = "SELECT count(idLessonsLearned),name from lessonslearned,users where users.idusers = manager group by manager order by count(idLessonsLearned) DESC;";
+         query = mysql.format(query);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        console.log('hurray');
+                        reject(err);
+                    } else {
+                        console.log('shipasoda');
+                        resolve(result);
+                    }
+                });
+         });
+    }
+
     exports.getLessons = function(){
          return new Promise(function (resolve, reject) {
          var query = "SELECT t1.idLessonsLearned,t1.status,t1.feedback, t5.client,t7.name as sector,t1.creationdate,t1.aproveddate,t2.situation,t2.action,t2.result,t3.technology,t7.name,t6.idusers,t5.name as title,t6.name FROM (public.lessonstext as t2, public.technologies as t3,public.lesson_tech as t4,public.users as t6,public.business_sectors as t7,public.lessonslearned as t1 ) LEFT JOIN public.project as t5 ON t1.project = t5.idproject AND t5.sector = t7.idSector WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t4.idlesson AND t3.idtechnologies = t4.idtech AND t1.manager = t6.idusers";
@@ -307,14 +323,18 @@
          });
     }
 
+
     exports.getLessonByStatus = function(status){
+        console.log('cheguei crl');
          return new Promise(function (resolve, reject) {
          var query = "SELECT * FROM public.lessonsLearned as t1, public.project as t2 WHERE t1.status = ? AND t1.project = t2.idproject";
          query = mysql.format(query,status);
          client.query(query,function (err, result) {
                     if (err) {
+                        console.log('nn');
                         reject(err);
                     } else {
+                        console.log('yy');
                         resolve(result);
                     }
                 });
@@ -367,9 +387,9 @@
              });
     }
 
-    exports.updateLessonTextByID = function (action, situation, result, idLesson, technologies) {
+    exports.updateLessonTextByID = function (action, situation, result, idLesson, manager) {
         return new Promise(function (resolve, reject) {
-            client.query('UPDATE public.lessonstext SET situation = ?, result = ?, action = ? WHERE idLessonLearned = ?',  [situation, result, action, idLesson ],
+            client.query('UPDATE public.lessonstext as t2, public.lessonslearned as t1 SET situation = ?, result = ?, action = ? WHERE idLessonLearned = ? AND t1.manager = ? AND t1.idLessonsLearned = t2.idLessonLearned',  [situation, result, action, idLesson, manager],
                 function (err, result) {
                     if (err) {
                         reject(err);
@@ -613,7 +633,7 @@
 
     exports.getTechnologies = function(){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.technologies";
+         var query = "SELECT * FROM public.technologies WHERE public.technologies.visible=1";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -639,12 +659,25 @@
         });
     }
 
+    exports.deleteTechnology = function(techid){
+         return new Promise(function (resolve, reject) {
+         client.query('UPDATE public.technologies SET visible=0 WHERE idtechnologies = ?', [techid],
+            function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('Deleted technology with id: ' + techid);
+                    }
+                });
+         });
+    }
+
     <!------------------------------------------------------------------------------------------------ Project Types ------------------------------------------------------------->
 
 
     exports.getProjectTypes = function(){
          return new Promise(function (resolve, reject) {
-         var query = "SELECT * FROM public.project_types";
+         var query = "SELECT * FROM public.project_types  WHERE public.project_types.visible=1";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -676,7 +709,7 @@
     exports.getSectors = function(){
          return new Promise(function (resolve, reject) {
             console.log("...");
-         var query = "SELECT * FROM public.business_sectors";
+         var query = "SELECT * FROM public.business_sectors WHERE public.business_sectors.visible=1";
          query = mysql.format(query);
          client.query(query,function (err, result) {
                     if (err) {
@@ -701,6 +734,8 @@
             });
         });
     }
+
+
 
 
      <!------------------------------------------------------------------------------------------------ Audit Trail ------------------------------------------------------------->

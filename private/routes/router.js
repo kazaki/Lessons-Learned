@@ -385,6 +385,16 @@
 
          //<!------------------------------------------------------------------ LESSONS ---------------------------------------------------------------------------------------------------->
 
+        server.get('/api/lessonsTop', function (req, res) {
+                console.log('QQ');
+                database.getTop()
+                   .then(function (lessons) {
+                        res.status(200).send(lessons);
+                    })
+                    .catch(function (err) {
+                        res.status(406).send('Oops');
+                    });
+        });
          server.get('/api/lessons', function (req, res) {
 
                 database.getLessons()
@@ -411,8 +421,9 @@
 
         server.get('/api/lessonsByStatus', function (req, res) {
 
-                var status = req.params.status;
-
+               // var status = req.params.status;
+               var status = req.query.status;
+                console.log(req.query.status);
                 database.getLessonByStatus(status)
                    .then(function (lessons) {
                         res.status(200).send(lessons);
@@ -488,10 +499,10 @@
                  var situation = req.body.situation;
                  var action = req.body.action;
                  var result = req.body.result;
-                 var technologies = req.body.technologies;
+                 var manager = req.body.manager;
                  var idLesson = req.body.idlesson;
 
-                 database.updateLessonTextByID(action, situation, result, idLesson, technologies)
+                 database.updateLessonTextByID(action, situation, result, idLesson, manager)
                     .then(function() {
                         res.sendStatus(200);
                     })

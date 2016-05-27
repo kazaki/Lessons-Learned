@@ -58,3 +58,4 @@ input[type="text"],input[type="date"],input[type="textarea"],.sc {
 .breadcrumb a:hover {color: #5772AA; text-decoration: none;}
 .breadcrumb>.active {color: rgba(255, 255, 255, 1); font-weight: bold;}
 .breadcrumb>li+li:before {color: rgba(204, 204, 204, 1); content: "\232A\00a0";}
+
