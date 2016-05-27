@@ -278,6 +278,22 @@
 
     <!------------------------------------------------------------------------------------------------ Lessons ------------------------------------------------------------->
 
+     exports.getTop = function(){
+         return new Promise(function (resolve, reject) {
+         var query = "SELECT count(idLessonsLearned),name from lessonslearned,users where users.idusers = manager group by manager order by count(idLessonsLearned) DESC;";
+         query = mysql.format(query);
+         client.query(query,function (err, result) {
+                    if (err) {
+                        console.log('hurray');
+                        reject(err);
+                    } else {
+                        console.log('shipasoda');
+                        resolve(result);
+                    }
+                });
+         });
+    }
+
     exports.getLessons = function(){
          return new Promise(function (resolve, reject) {
          var query = "SELECT t1.idLessonsLearned,t1.status, t5.client,t7.name as sector,t1.creationdate,t1.aproveddate,t2.situation,t2.action,t2.result,t3.technology,t7.name,t6.idusers,t5.name as title,t6.name FROM public.lessonstext as t2, public.technologies as t3,public.lesson_tech as t4, public.users as t6,public.business_sectors as t7,public.lessonslearned as t1 LEFT OUTER JOIN public.project as t5 ON t5.idproject = t1.project WHERE t1.idLessonsLearned = t2.idLessonLearned AND t1.idLessonsLearned = t4.idlesson AND t3.idtechnologies = t4.idtech AND t1.manager = t6.idusers AND t5.sector = t7.idSector";
@@ -307,14 +323,18 @@
          });
     }
 
+
     exports.getLessonByStatus = function(status){
+        console.log('cheguei crl');
          return new Promise(function (resolve, reject) {
          var query = "SELECT * FROM public.lessonsLearned as t1, public.project as t2 WHERE t1.status = ? AND t1.project = t2.idproject";
          query = mysql.format(query,status);
          client.query(query,function (err, result) {
                     if (err) {
+                        console.log('nn');
                         reject(err);
                     } else {
+                        console.log('yy');
                         resolve(result);
                     }
                 });

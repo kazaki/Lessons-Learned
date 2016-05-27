@@ -89,7 +89,7 @@
             })
             .when("/statistics",{
                 templateUrl: "app/views/statistics.html",
-                controller: "HomeCtrl"
+                controller: "StatCtrl"
             })
 
 

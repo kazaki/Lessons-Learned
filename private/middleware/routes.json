@@ -13,7 +13,15 @@
 			"/api/searchlessons",
 			"/api/projectsbymanager",
 			"/api/checklessonmanager",
-			"/api/technologies"
+			"/api/technologies",
+			"/api/projects",
+			"/api/lessonsByStatus?status=active",
+			"/api/lessonsByStatus?status=inactive",
+			"/api/lessonsByStatus?status=submitted",
+			"/api/lessonsByStatus?status=rejected",
+			"/api/lessonsTop",
+			"/api/lessonsByStatus"
+			
 		],
 
 		"logged": [
@@ -23,7 +31,6 @@
 			"/api/updatelessonstate",
 			"/api/updatelessontext",
 			"/api/technologies",
-			"/api/projects",
 			"/api/createlesson"
 		],
 
