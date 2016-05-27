@@ -2,18 +2,68 @@
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
+        var x = document.getElementById("datas").innerHTML.split(",")[0];
+        var y = document.getElementById("datas").innerHTML.split(",")[1];
+        var z = document.getElementById("datas").innerHTML.split(",")[2];
+        var w = document.getElementById("datas").innerHTML.split(",")[3];
+        
+        var best1 = document.getElementById("datas").innerHTML.split(",")[4];
+        var name1 = document.getElementById("datas").innerHTML.split(",")[5];
+        var best2 = document.getElementById("datas").innerHTML.split(",")[6];
+        var name2 = document.getElementById("datas").innerHTML.split(",")[7];
+        var best3 = document.getElementById("datas").innerHTML.split(",")[8];
+        var name3 = document.getElementById("datas").innerHTML.split(",")[9];
+        var best4 = document.getElementById("datas").innerHTML.split(",")[10];
+        var name4 = document.getElementById("datas").innerHTML.split(",")[11];
+      
+        if(typeof best1 != 'undefined'){
+        var best1 = best1.replace(/[^\w\s]/gi, '');
+        var name1 = name1.replace(/[^\w\s]/gi, '');
+        best1 = best1.slice(21,best1.length);
+        name1 = name1.slice(4,name1.length);
+        best1 = eval(best1);
+      }
+      if(typeof best2 != 'undefined'){
+        var best2 = best2.replace(/[^\w\s]/gi, '');
+        var name2 = name2.replace(/[^\w\s]/gi, '');
+        best2 = best2.slice(21,best2.length);
+        name2 = name2.slice(4,name2.length);
+        best2 = eval(best2);
+      }
+      if(typeof best3 != 'undefined'){
+        var best3 = best3.replace(/[^\w\s]/gi, '');
+        var name3 = name3.replace(/[^\w\s]/gi, '');
+        best3 = best3.slice(21,best3.length);
+        name3 = name3.slice(4,name3.length);
+        best3 = eval(best3);
+      }
+      if(typeof best4 != 'undefined'){
+        var best4 = best4.replace(/[^\w\s]/gi, '');
+        var name4 = name4.replace(/[^\w\s]/gi, '');
+        best4 = best4.slice(21,best4.length);
+        name4 = name4.slice(4,name4.length);
+        best4 = eval(best4);
+      }   
+        
+         x= eval(x);
+         y= eval(y);
+         z= eval(z);
+         w= eval(w);
+         
+         console.log( document.getElementById("datas").innerHTML);
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Ativas',     6],
-          ['Inativas',      3],
-          ['Em Revisão',  2],
+          ['Aprovadas',     x],
+          ['Inativas',      y],
+          ['Rejeitadas',  z],
+          ['Submetidas',  w],
         ]);
         var data2 = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
-        ["Copper", 8.94, "#b87333"],
-        ["Silver", 10.49, "silver"],
-        ["Gold", 19.30, "gold"],
-        ["Platinum", 21.45, "color: #e5e4e2"]
+        ["Element", "Top LL", { role: "style" } ],
+        [name1, best1, "#b87333"],
+        [name2, best2, "silver"],
+        [name3, best3, "gold"],
+        [name4, best4, "color: #e5e4e2"]
       ]);
         var view = new google.visualization.DataView(data2);
       view.setColumns([0, 1,
