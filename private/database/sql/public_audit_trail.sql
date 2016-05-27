@@ -43,6 +43,7 @@ CREATE TABLE `audit_trail` (
 
 LOCK TABLES `audit_trail` WRITE;
 /*!40000 ALTER TABLE `audit_trail` DISABLE KEYS */;
+INSERT INTO `audit_trail` VALUES (1,1,'2016-05-24 00:00:00',22,'LALALA','sadasdas','wewew','update'),(2,1,'2016-05-25 00:00:00',22,'sadasxa','sfasdsa',NULL,'update');
 /*!40000 ALTER TABLE `audit_trail` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-25  0:08:21
+-- Dump completed on 2016-05-26 23:53:45

@@ -10,7 +10,6 @@ var lessonServices = function ($q, $http, $cookies, $window) {
 				
 					console.log(res);
                     
-				
                     deferred.resolve('Success');
                 })
                 .error(function(err) {
@@ -18,6 +17,35 @@ var lessonServices = function ($q, $http, $cookies, $window) {
                 });
 
 	};
+	
+	this.setLessonState = function(id, state) {
+		 return $http.put('/api/updatelessonstate', {
+			'state' : state,
+			'idlesson' : id
+		 })
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+
+	};
+
+    this.setLessonFeedback = function(id, feedback) {
+         return $http.put('/api/updatelessonfeedback', {
+            'feedback' : feedback,
+            'idlesson' : id
+         })
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+
+    };
+	
 
     this.getLessonByStatus = function(status){
            console.log(status);

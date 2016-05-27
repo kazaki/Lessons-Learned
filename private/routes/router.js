@@ -8,7 +8,7 @@
          StreamSearch = require('streamsearch'),
          inspect = require('util').inspect,
          validator = require("email-validator"),
-         im = require("imagemagick"),
+         formidable = require('formidable'),
          fs = require('fs');
     // Main router where all routes are called. This is done so the project code is cleaner and more maintainable.
     module.exports = function (server) {
@@ -54,7 +54,7 @@
             res.render('index');
         });
 
-		server.get('/view_ll', function (req, res) {
+		server.get('/view_ll/:id/', function (req, res) {
 			res.render('index');
 		});
 
@@ -62,7 +62,15 @@
             res.render('index');
         });
 
+        server.get('/list_audit/:id/', function (req, res) {
+            res.render('index');
+        });
+
         server.get('/view_audit/:id/', function (req, res) {
+            res.render('index');
+        });
+
+        server.get('/list_projects', function (req, res) {
             res.render('index');
         });
 
@@ -159,47 +167,39 @@
                 res.status(404).send('Could not verify session');
             }
         });
-
+        
         server.post('/api/createuser', function (req, res) {
-            var email = req.body.email.toLowerCase();
-            var pass = req.body.password;
-            var name = req.body.name;
-            var permission = req.body.permission;
-            //var photo = req.body.photo;
-
-            //check if photo is valid
-
-            //console.log(email + pass + name+ "pppppppppppppp:   "+permission);
-        /*
-            console.log(req.body.image);
-             fs.readFile(req.body.image.path, function (err, data) {
-    var imageName = req.body.image.name
-    /// If there's an error
-    if(!imageName){
-      console.log("There was an error")
-      //res.redirect("/");
-        res.end();
-    } else {
-      var newPath = __dirname + "/images/fullsize/" + req.body.email;
-      var thumbPath = __dirname + "/images/small/" + req.body.email;
-      // write file to uploads/fullsize folder
-      fs.writeFile(newPath, data, function (err) {
-        // write file to uploads/thumbs folder
-        im.resize({
-          srcPath: newPath,
-          dstPath: thumbPath,
-          width:   200
-        }, function(err, stdout, stderr){
-          if (err) throw err;
-          console.log('resized image to fit within 200x200px');
+            
+    var form = new formidable.IncomingForm();
+     //Formidable uploads to operating systems tmp dir by default
+    form.uploadDir = "./private/img";       //set upload directory
+    form.encoding = 'utf-8';
+    form.keepExtensions = false;     //keep file extension
+   form.parse(req, function(err, fields, files) {
+       if(err){
+           fs.unlink(fields.image.path);
+            res.status(400).json({
+                    message_class: 'error',
+                    message: 'Error uploading image.'
+                });
+       }
+        var email,pass,name,permission;
+        email=fields.email.toLowerCase();
+        pass=fields.password;
+        name=fields.name;
+        permission=fields.permission;
+        fs.rename(files.image.path, './private/img/'+email+".jpg", function(err) {
+        if (err){
+            fs.unlink(fields.image.path);
+             res.status(406).json({
+                                message_class: 'error',
+                                message: "Could not rename image"
+                            });
+        }
         });
-         //res.redirect("/uploads/fullsize/" + imageName);
-      });
-    }
-  });
-
-  */
+        
             if(permission!="1" && permission!="2" && permission!="0"){
+                fs.unlink('./private/img/'+email+".jpg");
                 // Check if permission is valid.
                 res.status(400).json({
                     message_class: 'error',
@@ -209,6 +209,7 @@
 
             if(!validator.validate(email)){
                 // Check if email is valid.
+                fs.unlink('./private/img/'+email+".jpg");
                 res.status(400).json({
                     message_class: 'error',
                     message: 'Email not valid.'
@@ -216,7 +217,6 @@
             }
 
             else{
-
             database.insertUser(email, pass, name, permission)
                 .then(function (user_id) {
                     res.sendStatus(200);
@@ -225,7 +225,7 @@
 
                         // If the e-mail is already in use
                         if (err.sqlState == '23000') {
-
+                            fs.unlink('./private/img/'+email+".jpg");
                             // Send the Response with message error
                             res.status(406).json({
                                 message_class: 'error',
@@ -233,7 +233,7 @@
                             });
 
                         } else {
-
+                            fs.unlink('./private/img/'+email+".jpg");
                             // Sending the error to the log file
                             console.log('@authRouter.js: Error inserting user to database');
                             console.log(err);
@@ -241,6 +241,7 @@
                         }
                     });
             }
+            });
         });
 
         server.delete("/api/deleteuser",function(req,res){
@@ -436,11 +437,9 @@
              var lesson_id = req.headers.referer.split("/")[4];
              database.getLessonByID(lesson_id)
                .then(function (lesson) {
-                   console.log("qqqqqqqqq");
                     res.status(200).send(lesson);
                 })
                 .catch(function (err) {
-                    console.log("qqqqqqqqwwwwwwwwwwwwwwwwq");
                     res.status(406).send('Could not retrieve LL information with that id.');
                 });
         });
@@ -574,6 +573,24 @@
              }
         });
 
+        server.put("/api/updatelessonfeedback", function(req, res){
+             var feedback = req.body.feedback;
+             var idLesson = req.body.idlesson;
+
+                database.updateLessonFeedbackByID(idLesson,feedback)
+                    .then(function() {
+                        res.sendStatus(200);
+                    })
+                    .catch(function (err) {
+                        // Send the Response with message error
+                        res.status(406).json({
+                            message_class: 'error',
+                            message: "No such lesson with that id."
+                        });
+
+                    });
+        });
+
         //<!------------------------------------------------------------------ PROJECT ---------------------------------------------------------------------------------------------------->
 
         server.get('/api/projects', function (req, res) {
@@ -590,7 +607,7 @@
         server.get("/api/checklessonmanager",function(req,res){
 
              var managerid = req.headers.managerid;
-             var lessonid = req.headers.lessonid;
+             var lessonid = req.headers.referer.split("/")[4];
              database.checkLessonManager(managerid,lessonid)
                .then(function (ll) {
                     res.status(200).send(ll);
@@ -742,7 +759,7 @@
 
                 var sector = req.body.sector;
 
-                database.addSector(type)
+                database.addSector(sector)
                     .then(function (sector) {
                         res.sendStatus(200);
                     })

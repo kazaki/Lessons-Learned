@@ -21,7 +21,7 @@
 			"/api/lessonsByStatus?status=rejected",
 			"/api/lessonsTop",
 			"/api/lessonsByStatus"
-			
+			"/api/audit"
 		],
 
 		"logged": [
@@ -29,6 +29,7 @@
 			"/api/updateuseremail",
 			"/api/updateuserpass",
 			"/api/updatelessonstate",
+			"/api/updatelessonfeedback",
 			"/api/updatelessontext",
 			"/api/technologies",
 			"/api/createlesson"
@@ -53,9 +54,11 @@
 			"/users",
 			"/create_project",
 			"/create_ll",
-			"/view_ll",
+			"/view_ll/",
 			"/edit_ll/",
-			"/view_audit/"
+			"/view_audit/",
+			"/list_audit/",
+			"/list_projects"
 		],
 		"logged": [
 

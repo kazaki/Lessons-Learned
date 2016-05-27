@@ -31,7 +31,7 @@ CREATE TABLE `lesson_tech` (
   KEY `idtechless_idx` (`idtech`),
   CONSTRAINT `idlestech` FOREIGN KEY (`idlesson`) REFERENCES `lessonslearned` (`idLessonsLearned`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `idtechless` FOREIGN KEY (`idtech`) REFERENCES `technologies` (`idtechnologies`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `lesson_tech` (
 
 LOCK TABLES `lesson_tech` WRITE;
 /*!40000 ALTER TABLE `lesson_tech` DISABLE KEYS */;
-INSERT INTO `lesson_tech` VALUES (1,1,2),(2,1,3);
+INSERT INTO `lesson_tech` VALUES (1,1,2),(2,1,3),(3,2,3),(4,3,2);
 /*!40000 ALTER TABLE `lesson_tech` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-25  0:08:20
+-- Dump completed on 2016-05-26 23:53:44

@@ -6,18 +6,15 @@ var adminServices = function ($q, $http, $cookies, $window) {
 
       // Function to create a user
         this.registerUser = function(user) {
-
-            return $http.post('/api/createuser', user)
-                .success(function(res) {
-                    deferred.resolve('Success');
-                })
-                .error(function(err) {
-                    deferred.reject(err);
+                return $http.post('/api/createuser', user, {
+                    withCredentials: true,
+                    headers: {'Content-Type': undefined },
+                    transformRequest: angular.identity
                 });
         };
 
         this.insertTech = function(tech) {
-          console.log("tech a add:"+tech);
+
             return $http.post('/api/technologies', tech)
                 .success(function(res) {
                     deferred.resolve('Success');
@@ -26,6 +23,30 @@ var adminServices = function ($q, $http, $cookies, $window) {
                     deferred.reject(err);
                 });
         };
+
+        this.insertType = function(type) {
+
+            return $http.post('/api/projecttypes', type)
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
+
+        this.insertSector = function(sector) {
+
+            return $http.post('/api/sectors', sector)
+                .success(function(res) {
+                    deferred.resolve('Success');
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
+        };
+
+
 
         // Function to get all users
         this.getUsers = function() {

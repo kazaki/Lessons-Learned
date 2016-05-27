@@ -9,7 +9,6 @@
         var i;
 
 var url = req.url.split('/')[1];
-
         if (url == 'api') {
 
             // START REGION: API permissions (all)

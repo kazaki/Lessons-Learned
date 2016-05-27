@@ -29,12 +29,16 @@ CREATE TABLE `lessonslearned` (
   `status` varchar(45) NOT NULL,
   `creationdate` date NOT NULL,
   `aproveddate` date DEFAULT NULL,
+  `approver` int(11) DEFAULT NULL,
+  `feedback` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idLessonsLearned`),
   KEY `idUser_idx` (`manager`),
   KEY `idProject_idx` (`project`),
+  KEY `idApprover_idx` (`approver`),
+  CONSTRAINT `idApprover` FOREIGN KEY (`approver`) REFERENCES `users` (`idusers`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `idManager` FOREIGN KEY (`manager`) REFERENCES `users` (`idusers`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `idProject` FOREIGN KEY (`project`) REFERENCES `project` (`idproject`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +47,7 @@ CREATE TABLE `lessonslearned` (
 
 LOCK TABLES `lessonslearned` WRITE;
 /*!40000 ALTER TABLE `lessonslearned` DISABLE KEYS */;
-INSERT INTO `lessonslearned` VALUES (1,22,4,'active','2016-05-22',NULL);
+INSERT INTO `lessonslearned` VALUES (1,22,4,'approved','2016-05-22',NULL,22,'Olha que parvo que fostes!'),(2,22,NULL,'approved','2016-05-24',NULL,22,'Wooops'),(3,22,4,'approved','2016-05-26',NULL,22,'Upas Upas');
 /*!40000 ALTER TABLE `lessonslearned` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-25  0:08:21
+-- Dump completed on 2016-05-26 23:53:45
