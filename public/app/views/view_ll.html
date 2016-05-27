@@ -31,7 +31,7 @@
 			</div>
 			
 			<div ng-if="isDnS()" class="row">
-				<button id="saveBtn" type="button" class="toolbtn btn btn-primary">Save</button>
+				<button ng-click="saveDraft()" id="saveBtn" type="button" class="toolbtn btn btn-primary">Save</button>
 			</div>
 		
 			<div ng-if="isAdminAndApproved()" class="row">
@@ -69,7 +69,7 @@
 					<div class="panel">
 						<div class="panel-heading">Situation</div>
 						<div class="panel-body noborder">
-							<textarea ng-readonly="!isDnS()" id="llsituation" class="form-control largetextarea" rows="10" >Placeholder text.</textarea>
+							<textarea ng-readonly="!isDnS()" id="llsituation" ng-model="lldata.situation" class="form-control largetextarea" rows="10" >Placeholder text.</textarea>
 						</div>
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 					<div class="panel">
 						<div class="panel-heading">Action</div>
 						<div class="panel-body noborder">
-							<textarea ng-readonly="!isDnS()" id="llaction" class="form-control largetextarea" rows="10" >Placeholder text.</textarea>
+							<textarea ng-readonly="!isDnS()" id="llaction" ng-model="lldata.action" class="form-control largetextarea" rows="10" >Placeholder text.</textarea>
 						</div>
 					</div>
 				</div>
@@ -89,7 +89,7 @@
 					<div class="panel">
 						<div class="panel-heading">Results</div>
 						<div class="panel-body noborder">
-							<textarea ng-readonly="!isDnS()" id="llresults" class="form-control largetextarea" rows="10" >Placeholder text.</textarea>
+							<textarea ng-readonly="!isDnS()" id="llresults" ng-model="lldata.result" class="form-control largetextarea" rows="10" >Placeholder text.</textarea>
 						</div>
 					</div>
 				</div>

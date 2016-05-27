@@ -8,9 +8,10 @@
 		
 		$scope.permission = -1;
 		$scope.llstatus = "unknown";
-		
+		var userid;
 		 userServices.logged()
 		.then(function(res){
+			userid = res.data.idusers;
 			$scope.permission=res.data.permission;
 		})
 		.catch( function (err){
@@ -31,9 +32,6 @@
 			console.log($scope.lldata);
 			$("#lltitle").text($scope.lldata["project"]);
 			$("#llclient").text($scope.lldata["client"]);
-			$("#llsituation").text($scope.lldata["situation"]);
-			$("#llaction").text($scope.lldata["action"]);
-			$("#llresults").text($scope.lldata["result"]);
 			$("#llmanager").text($scope.lldata["manager"]);
 			$("#lldimension").text($scope.lldata["numberConsultants"]);
 			$("#llstart").text($scope.lldata["dateBeginning"].substring(0,10));
@@ -178,6 +176,36 @@
 					
 					$('#llstatus').css("background-color", "#5cb85c");
 					$('#llstatus').text("Approved");
+				})
+				.catch( function (err){
+					console.log(err);
+				});
+			}); 
+		}
+
+		$scope.saveDraft = function() {
+			bootbox.confirm("Are you sure?", function(result) {	
+				if (!result) return;
+				console.log("Saving draft...");
+
+				var ll = 
+	             {
+	                 "idlesson": $scope.lldata["idLessonsLearned"],
+	                 "action": $scope.lldata.action,
+	                 "situation": $scope.lldata.situation,
+	                 "result": $scope.lldata.result,
+	                 "manager": userid
+	             };
+
+				userServices.editLLFields(ll)
+				.then(function (res) {
+					if (res.status != 200) {
+						console.log("Failed to save draft.");
+						return;
+					}
+				
+					console.log("LL saved as draft!");
+					//route.reload(); here
 				})
 				.catch( function (err){
 					console.log(err);
