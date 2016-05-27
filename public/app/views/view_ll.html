@@ -50,9 +50,9 @@
 			</div>
 		</div>		
 		
-		<div ng-if="isAdmin()" class="col-lg-2 col-xs-3 col-md-2 nohpadding toolbox">
-				<i id="audi" class="ic fa fa-history" ariad-hidden="true"></i>
-				<i id="export" class ="ic fa fa-download" ariad-hidden="true"></i>
+		<div class="col-lg-2 col-xs-3 col-md-2 nohpadding toolbox">
+				<i ng-if="!isDraft() && isAdmin()" id="audi" class="ic fa fa-history" ariad-hidden="true"></i>
+				<i ng-if="!isDraft()" id="export" class ="ic fa fa-download" ariad-hidden="true"></i>
 		</div>
 
 	</div>
