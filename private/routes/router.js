@@ -62,7 +62,15 @@
             res.render('index');
         });
 
+        server.get('/list_audit/:id/', function (req, res) {
+            res.render('index');
+        });
+
         server.get('/view_audit/:id/', function (req, res) {
+            res.render('index');
+        });
+
+        server.get('/list_projects', function (req, res) {
             res.render('index');
         });
 

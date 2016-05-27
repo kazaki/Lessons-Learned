@@ -13,7 +13,8 @@
 			"/api/searchlessons",
 			"/api/projectsbymanager",
 			"/api/checklessonmanager",
-			"/api/technologies"
+			"/api/technologies",
+			"/api/audit"
 		],
 
 		"logged": [
@@ -49,7 +50,9 @@
 			"/create_ll",
 			"/view_ll/",
 			"/edit_ll/",
-			"/view_audit/"
+			"/view_audit/",
+			"/list_audit/",
+			"/list_projects"
 		],
 		"logged": [
 

@@ -5,7 +5,7 @@
     var listllCtrl = function($scope, listllServices, userServices, filterFilter, $filter) {
         $scope.isAdmin = 0;
         $scope.sortType = 'title';
-        $scope.statusString = "active";
+        $scope.statusString = "approved";
         console.log('Page loaded.');
 
         userServices.logged()
@@ -28,11 +28,11 @@
             .then(function(result) {
                 if ($scope.isAdmin == 1) {
                     $scope.lessons = result.data;
-                    //console.log(JSON.stringify(result.data));
+                    console.log(JSON.stringify(result.data));
 
                 } else {
                     $scope.lessons = $filter('filter')(result.data, {
-                        status: "active"
+                        status: "approved"
                     }, true);
                 }
 
@@ -47,8 +47,8 @@
             return function(lesson) {
                 console.log("estado clicado:" + $scope.statusString);
 
-                if ($scope.statusString == "active" || $scope.isAdmin==0) {
-                    return lesson.status == 'active';
+                if ($scope.statusString == "approved" || $scope.isAdmin==0) {
+                    return lesson.status == 'approved';
                 } else if ($scope.statusString == "submitted") {
                     return lesson.status == 'submitted';
                 } else if ($scope.statusString == "inactive") {
@@ -58,9 +58,13 @@
 
         };
 
+        $scope.isEmpty = function(value){
+            return (value == "" || value == null);
+        };
+
         $scope.fieldTable = [{
-            field: "active",
-            title: "Active"
+            field: "approved",
+            title: "approved"
         }, {
             field: "inactive",
             title: "Inactive"
